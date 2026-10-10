@@ -16,6 +16,16 @@
 *.yml text eol=lf
 *.yaml text eol=lf
 
+# 无扩展名与点开头的文本文件也钉死 LF
+# （否则在 core.autocrlf=true 的 Windows 上会被反复检出成 CRLF，永远显示为已修改）
+.gitignore text eol=lf
+.gitattributes text eol=lf
+LICENSE text eol=lf
+NOTICE text eol=lf
+CHANGELOG text eol=lf
+README text eol=lf
+CONTRIBUTING text eol=lf
+
 # 二进制
 *.png binary
 *.jpg binary
