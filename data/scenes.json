@@ -1,0 +1,2278 @@
+{
+  "schema": "ciallo-forge/scenes@1",
+  "note": "每场景 = acts → beats。beat.type 决定散文池：sensory/action/dialogue/interior/pressure/climax/release/afterglow。beat.dialogue 是台词种子（会过角色声线寄存器改写）。beat.tags 进绘图提示词。",
+  "beatTypes": [
+    "sensory",
+    "action",
+    "dialogue",
+    "interior",
+    "pressure",
+    "climax",
+    "release",
+    "afterglow"
+  ],
+  "scenes": [
+    {
+      "id": "S01",
+      "title": "夜班查房之后",
+      "kinkFamily": "medical-play",
+      "heatBase": 4,
+      "location": "医院值班室",
+      "mood": [
+        "克制",
+        "越界",
+        "消毒水味"
+      ],
+      "castHint": [
+        "C01",
+        "C08"
+      ],
+      "tags": [
+        "hospital",
+        "after hours",
+        "white coat",
+        "dim lamp"
+      ],
+      "camera": [
+        "over-the-shoulder",
+        "close-up on hands",
+        "handheld slight"
+      ],
+      "acts": [
+        {
+          "name": "第一幕 · 灯下",
+          "beats": [
+            {
+              "type": "sensory",
+              "text": "{who}把门反锁的声音很轻，轻到像怕吵醒整层楼。{loc}只剩一盏台灯，光从{prop}那边斜切过来，落在{target}白大褂的第二颗扣子上。夜班把人身上的味道压成两样：消毒水，和一点凉掉的咖啡。",
+              "tags": [
+                "dim lamp",
+                "white coat",
+                "closed door"
+              ]
+            },
+            {
+              "type": "dialogue",
+              "dialogue": [
+                "手别乱动嘛，针还没拔呢"
+              ],
+              "speaker": "auto",
+              "tags": [
+                "eye contact",
+                "half smile"
+              ]
+            },
+            {
+              "type": "interior",
+              "text": "{target}听话地把手收回去，收得比想象中快。{who}注意到了——注意到自己有半秒在想：{pronB}乖不乖，跟我有什么关系。",
+              "tags": [
+                "thoughtful expression",
+                "quiet tension"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "第二幕 · 听诊器",
+          "beats": [
+            {
+              "type": "action",
+              "text": "{who}把听诊器挂上脖子，金属头在掌心焐了两下才贴上去。『吸气。』声音是标准的职业音，可手下那层薄薄的衣料底下，心跳快得不像话。",
+              "tags": [
+                "stethoscope",
+                "hand on chest",
+                "professional tone"
+              ]
+            },
+            {
+              "type": "pressure",
+              "text": "{pronA}没有移开手，只是把手心往下压了半寸。金属头随着呼吸滑过{body}，每滑一次，对方的呼吸就短一截。{pronA}假装没听出来——听不出来才怪，{pronA}听了六年的心跳。",
+              "tags": [
+                "hand pressing",
+                "shallow breathing",
+                "close proximity"
+              ]
+            },
+            {
+              "type": "dialogue",
+              "dialogue": [
+                "你要是疼就说，别忍着——忍着我也看得出来"
+              ],
+              "speaker": "auto",
+              "tags": [
+                "looking down",
+                "soft voice"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "第三幕 · 只剩一把椅子",
+          "beats": [
+            {
+              "type": "action",
+              "text": "值班室只有一把椅子。{who}没有让座，也没有站起来，只是把椅子往后挪了半掌，膝盖抬起来一点——这个动作的含意两个人都懂。",
+              "tags": [
+                "single chair",
+                "knee raised",
+                "charged silence"
+              ]
+            },
+            {
+              "type": "climax",
+              "text": "坐下的一瞬间，体温隔着两层布料换了个方向。{who}的指尖先落在{target}的耳后，然后才是唇。{pronA}做每一件事都慢，慢得像在核对剂量——多一点怕过量，少一点不生效。",
+              "tags": [
+                "kiss",
+                "hand on nape",
+                "slow deliberate motion"
+              ]
+            },
+            {
+              "type": "release",
+              "text": "台灯被碰歪了，光圈往墙上爬。没人去扶。",
+              "tags": [
+                "tilted lamp",
+                "wall shadow",
+                "motion"
+              ]
+            },
+            {
+              "type": "afterglow",
+              "text": "{pronA}把白大褂重新扣好，扣到第二颗的时候停了一下。『明天……你挂我的号。』说完自己先笑了，那种笑法不像医生。",
+              "tags": [
+                "buttoning coat",
+                "warm smile",
+                "quiet afterglow"
+              ]
+            }
+          ]
+        }
+      ],
+      "leadGender": "male",
+      "autoCast": [
+        "C11",
+        "C08"
+      ]
+    },
+    {
+      "id": "S02",
+      "title": "落地窗前的契约",
+      "kinkFamily": "power-exchange",
+      "heatBase": 5,
+      "location": "高层办公室",
+      "mood": [
+        "强势",
+        "定价",
+        "逆光"
+      ],
+      "castHint": [
+        "C02"
+      ],
+      "tags": [
+        "high rise office",
+        "floor to ceiling window",
+        "boundaries",
+        "stiletto"
+      ],
+      "camera": [
+        "low angle",
+        "silhouette backlight",
+        "wide then close"
+      ],
+      "acts": [
+        {
+          "name": "第一幕 · 定条件",
+          "beats": [
+            {
+              "type": "sensory",
+              "text": "百叶窗没开，光被切成一条一条落在{loc}的地毯上。{who}把合同推到桌子中央，指尖压着纸角不松：『看清楚第几页，念给我听。』",
+              "tags": [
+                "venetian blind shadows",
+                "contract on desk",
+                "pressing finger"
+              ]
+            },
+            {
+              "type": "dialogue",
+              "dialogue": [
+                "门锁上。别问为什么。"
+              ],
+              "speaker": "auto",
+              "tags": [
+                "commanding gaze",
+                "locked door"
+              ]
+            },
+            {
+              "type": "interior",
+              "text": "锁舌落下去的那一声之后，房间里就只剩空调的低频。{who}忽然发现自己也在等——等对方是先退，还是先往前一步。",
+              "tags": [
+                "air conditioner hum",
+                "waiting tension"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "第二幕 · 交权",
+          "beats": [
+            {
+              "type": "action",
+              "text": "『手放到身后。』{pronA}绕到背面，{prop}的金属凉意先贴着腕骨试了一下，再绕第二圈。{pronA}做得很稳，稳得像在给文件盖章——可盖章的人不该有这种呼吸。",
+              "tags": [
+                "wrists behind back",
+                "restraint",
+                "walking around"
+              ]
+            },
+            {
+              "type": "pressure",
+              "text": "{who}的袖扣擦过{target}的颈侧，一路往下，隔着衬衫停在腰线。{pronA}不急着动，只是把重量压上去一点点：『说停，我立刻停。』——{pronA}没有说『我不会停』，这就是最狠的地方。",
+              "tags": [
+                "cuff brushing neck",
+                "weight pressed",
+                "whisper at ear"
+              ]
+            },
+            {
+              "type": "dialogue",
+              "dialogue": [
+                "我说过一遍的事不重复。"
+              ],
+              "speaker": "auto",
+              "tags": [
+                "cold expression",
+                "close up lips"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "第三幕 · 玻璃上的影子",
+          "beats": [
+            {
+              "type": "action",
+              "text": "背抵上落地窗的时候，玻璃是凉的。三十层以下的车灯连成一条河，从{target}肩头流过去。{who}把手掌按在玻璃上，把影子圈在里面：『看。这是你现在唯一能看的东西。』",
+              "tags": [
+                "against window glass",
+                "city lights",
+                "hand on glass",
+                "reflection"
+              ]
+            },
+            {
+              "type": "climax",
+              "text": "西装的最后一颗扣子是{pronA}自己解开的，解得很慢，慢到{who}第一次开口催——而催这件事，一旦发生，谁在上面就换了。{pronA}察觉到了，耳朵先红。",
+              "tags": [
+                "unbuttoning suit",
+                "flushed ears",
+                "eye contact"
+              ]
+            },
+            {
+              "type": "release",
+              "text": "玻璃上留下一小片雾，很快散了。{who}的膝盖轻碰着窗框，发型终于乱了。",
+              "tags": [
+                "fogged glass",
+                "messy hair",
+                "trembling knee"
+              ]
+            },
+            {
+              "type": "afterglow",
+              "text": "{pronA}捡起地上的钢笔，插回笔筒，动作恢复了那种让人讨厌的精准。只有一句话破了功：『明天的会，你替我开。』",
+              "tags": [
+                "picking up pen",
+                "composed again",
+                "small concession"
+              ]
+            }
+          ]
+        }
+      ],
+      "leadGender": "female",
+      "autoCast": [
+        "C02",
+        "C12"
+      ]
+    },
+    {
+      "id": "S03",
+      "title": "终点线之后",
+      "kinkFamily": "sweat",
+      "heatBase": 4,
+      "location": "田径场 · 更衣室",
+      "mood": [
+        "汗",
+        "滚烫",
+        "喘"
+      ],
+      "castHint": [
+        "C03"
+      ],
+      "tags": [
+        "running track",
+        "sunset",
+        "sports bra",
+        "locker room",
+        "sweat"
+      ],
+      "camera": [
+        "dynamic low angle",
+        "backlight halo",
+        "handheld"
+      ],
+      "acts": [
+        {
+          "name": "第一幕 · 最后一圈",
+          "beats": [
+            {
+              "type": "sensory",
+              "text": "塑胶跑道被晒了一天，隔着鞋底还在往上返热。{who}冲过最后一圈的时候，马尾甩过来打在{target}手臂上，汗珠跟着飞出去一小串。天边的橙红正压在围栏上。",
+              "tags": [
+                "running track",
+                "sunset",
+                "ponytail whip",
+                "flying sweat"
+              ]
+            },
+            {
+              "type": "dialogue",
+              "dialogue": [
+                "喂喂你等我一下啦我鞋带松了——好了走吧"
+              ],
+              "speaker": "auto",
+              "tags": [
+                "crouching to tie shoelace",
+                "bright smile"
+              ]
+            },
+            {
+              "type": "interior",
+              "text": "{pronA}蹲下去系鞋带的时候，后背的汗把运动内衣的边勾勒出来。{target}移开视线慢了半拍——而这半拍，{pronA}全看在眼里。",
+              "tags": [
+                "sweat-soaked back",
+                "sports bra outline",
+                "side glance"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "第二幕 · 更衣室",
+          "beats": [
+            {
+              "type": "action",
+              "text": "更衣室的风扇转得很慢，一下一下，吹不走那股混着沐浴露的汗味。{who}把毛巾甩到长椅上，动作大得像在宣布什么：『帮我擦背。擦不到的地方，你自己看着办。』",
+              "tags": [
+                "locker room",
+                "slow ceiling fan",
+                "towel on bench",
+                "bare back"
+              ]
+            },
+            {
+              "type": "pressure",
+              "text": "毛巾碰到肩胛的时候{pronA}抖了一下，不是疼——是那块皮肤刚运动完，敏感到不讲道理。{who}偏过头：『你手怎么这么凉。』嘴上抱怨，身体却往后靠了靠。",
+              "tags": [
+                "towel on shoulder blade",
+                "shiver",
+                "leaning back"
+              ]
+            },
+            {
+              "type": "dialogue",
+              "dialogue": [
+                "我又不是小孩子!……那你手别松开啊"
+              ],
+              "speaker": "auto",
+              "tags": [
+                "pouting",
+                "grabbing wrist"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "第三幕 · 一百五十下的心跳",
+          "beats": [
+            {
+              "type": "climax",
+              "text": "{pronA}把人按在长椅上，膝盖分在两侧，汗顺着下颌线滴下来落在对方的颈窝里。心跳还没落回一百以下，节奏带着整个身体一起动——运动员的坏处和好处是同一件事：收不住，也不肯收。",
+              "tags": [
+                "straddling bench",
+                "sweat dripping",
+                "athletic vigor",
+                "dominant pose"
+              ]
+            },
+            {
+              "type": "release",
+              "text": "铁皮柜被撞出一声闷响，风扇还是那个速度。{pronA}咬着下唇不肯出声，鼻音却漏了出来。",
+              "tags": [
+                "metal locker rattling",
+                "bitten lip",
+                "stifled moan"
+              ]
+            },
+            {
+              "type": "afterglow",
+              "text": "『……明天照样五点。』{pronA}说这话的时候整个人还瘫着，一根手指都懒得动。",
+              "tags": [
+                "lying exhausted",
+                "lazy grin",
+                "warm skin"
+              ]
+            }
+          ]
+        }
+      ],
+      "leadGender": "male",
+      "autoCast": [
+        "C14",
+        "C03"
+      ]
+    },
+    {
+      "id": "S04",
+      "title": "松节油与台灯",
+      "kinkFamily": "sensory-overload",
+      "heatBase": 4,
+      "location": "夜间画室",
+      "mood": [
+        "静",
+        "冷手",
+        "颜料"
+      ],
+      "castHint": [
+        "C04"
+      ],
+      "tags": [
+        "art studio",
+        "single desk lamp",
+        "oil paint",
+        "thigh highs",
+        "winter night"
+      ],
+      "camera": [
+        "north window light",
+        "extreme close-up on hands",
+        "shallow focus"
+      ],
+      "acts": [
+        {
+          "name": "第一幕 · 未完成的画",
+          "beats": [
+            {
+              "type": "sensory",
+              "text": "{loc}只开了一盏北向台灯。松节油的味道压过了所有别的气味，画布上那半张脸还差一只眼睛。{who}没回头，只说：『别动。就这样。』",
+              "tags": [
+                "unfinished canvas",
+                "turpentine smell",
+                "back turned",
+                "single lamp"
+              ]
+            },
+            {
+              "type": "dialogue",
+              "dialogue": [
+                "……你手很热。"
+              ],
+              "speaker": "auto",
+              "tags": [
+                "side profile",
+                "blunt expression"
+              ]
+            },
+            {
+              "type": "interior",
+              "text": "{pronA}画了十七张同一个人，从来没让那个人看过任何一张。今晚是第一次有人站在这个位置——站在光里，而不是画布上。",
+              "tags": [
+                "many canvases stacked",
+                "hidden feelings",
+                "warm light"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "第二幕 · 指尖的颜料",
+          "beats": [
+            {
+              "type": "action",
+              "text": "画笔被随手搁进洗笔筒。{who}转过身，食指上还沾着没干的钛白，那点白先落在{target}的锁骨上，然后往下抹开一条痕——像在给一幅画定稿。",
+              "tags": [
+                "paint on fingertip",
+                "white streak on collarbone",
+                "smearing"
+              ]
+            },
+            {
+              "type": "pressure",
+              "text": "{pronA}的呼吸是浅的，手上却一点不收着。{who}习惯用眼睛判断深浅，此刻只能靠体温。每当指尖划到{body}，{who}的睫毛就颤一次——不是因为羞，是因为太清楚自己在做什么。",
+              "tags": [
+                "shallow breathing",
+                "trembling lashes",
+                "tracing skin"
+              ]
+            },
+            {
+              "type": "dialogue",
+              "dialogue": [
+                "别动。就这样。"
+              ],
+              "speaker": "auto",
+              "tags": [
+                "holding face",
+                "intense stare"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "第三幕 · 暖气片",
+          "beats": [
+            {
+              "type": "action",
+              "text": "画室角落的暖气片是唯一热的东西。{who}被按在上面，隔着高筒袜也能感到铁皮的烫。冷和烫同时从两个方向来，{pronA}终于出声了——很轻，像笔尖断了。",
+              "tags": [
+                "leaning on radiator",
+                "thigh high socks",
+                "heat contrast",
+                "small sound"
+              ]
+            },
+            {
+              "type": "climax",
+              "text": "毛衣被推到胸口以上，颜料在那具极白的身体上留下几道不成形的痕。{pronA}不肯闭眼，非要看着——看着自己被人一笔一笔画完。",
+              "tags": [
+                "sweater pushed up",
+                "paint marks on pale skin",
+                "eyes open",
+                "intense"
+              ]
+            },
+            {
+              "type": "release",
+              "text": "洗笔筒被踢翻，浑浊的水漫过地板缝。松节油的味道更重了。",
+              "tags": [
+                "knocked over jar",
+                "spilled water",
+                "floor"
+              ]
+            },
+            {
+              "type": "afterglow",
+              "text": "{pronA}坐在画布前，把那道留在自己身上的痕照着涂了上去。这次终于画完了那只眼睛。",
+              "tags": [
+                "sitting before canvas",
+                "finishing the painting",
+                "quiet dawn"
+              ]
+            }
+          ]
+        }
+      ],
+      "leadGender": "male",
+      "autoCast": [
+        "C15",
+        "C04"
+      ]
+    },
+    {
+      "id": "S05",
+      "title": "镜子是给我看的",
+      "kinkFamily": "body-worship",
+      "heatBase": 4,
+      "location": "闭店后的健身房",
+      "mood": [
+        "掌控",
+        "汗",
+        "镜面"
+      ],
+      "castHint": [
+        "C05"
+      ],
+      "tags": [
+        "empty gym",
+        "mirror wall",
+        "lifting belt",
+        "sweat",
+        "close coaching"
+      ],
+      "camera": [
+        "mirror reflection",
+        "medium full body",
+        "cool fluorescent"
+      ],
+      "acts": [
+        {
+          "name": "第一幕 · 最后一组",
+          "beats": [
+            {
+              "type": "sensory",
+              "text": "卷帘门拉下来一半，{loc}只剩顶灯和镜子。{who}的掌心还沾着镁粉，干燥得像砂纸。『肩胛收住，别用腰代偿——对，就是这样，漂亮。』",
+              "tags": [
+                "chalked hands",
+                "mirror wall",
+                "half closed shutter",
+                "coaching pose"
+              ]
+            },
+            {
+              "type": "dialogue",
+              "dialogue": [
+                "来，最后五个，我给你数：五、四……别偷懒啊"
+              ],
+              "speaker": "auto",
+              "tags": [
+                "counting down",
+                "playful stern face"
+              ]
+            },
+            {
+              "type": "interior",
+              "text": "{pronA}数数的声音比平时慢。慢下来的不是节奏，是别的什么。镜子把两个人照得清清楚楚，也把{pronA}自己那点心思照得清清楚楚。",
+              "tags": [
+                "mirror reflection",
+                "slow counting",
+                "self aware"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "第二幕 · 触诊",
+          "beats": [
+            {
+              "type": "action",
+              "text": "『摸摸看，硬不硬?这是练出来的哦。』{pronA}抓过对方的手按在自己腹侧，让人一根一根数{pronA}的腹直肌。手掌下面是热的，皮肤上还有没干的汗。",
+              "tags": [
+                "hand placed on abs",
+                "sweat on skin",
+                "guiding touch",
+                "mirror view"
+              ]
+            },
+            {
+              "type": "pressure",
+              "text": "{who}往后靠，背贴上来，把两个人的重心都压向镜子。镜面是凉的，贴上去那一下起了薄薄一层雾。{pronA}的声音就在耳边：『看镜子。别看我。』",
+              "tags": [
+                "back to chest",
+                "against mirror",
+                "breath fogging glass",
+                "whisper"
+              ]
+            },
+            {
+              "type": "dialogue",
+              "dialogue": [
+                "摸摸看，硬不硬?这是练出来的哦"
+              ],
+              "speaker": "auto",
+              "tags": [
+                "smug smile",
+                "hand guiding"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "第三幕 · 力竭",
+          "beats": [
+            {
+              "type": "climax",
+              "text": "助力的带子挂在手腕上还没解，人已经被按在镜前。{who}用教练那种不容置疑的力道固定住髋，节奏稳得可怕——像在带一组递增强度的动作，每一次都比上一次深。镜子里那个平时总在笑着的人，此刻牙关咬着，酒窝没了。",
+              "tags": [
+                "wrist straps",
+                "bent over mirror",
+                "rhythmic motion",
+                "gritted teeth",
+                "muscle definition"
+              ]
+            },
+            {
+              "type": "release",
+              "text": "镜面上那一小片雾被手掌抹开，留下五道指痕。{pronA}的马尾终于在动作里散了一半。",
+              "tags": [
+                "handprint on mirror",
+                "undone ponytail",
+                "heavy breathing"
+              ]
+            },
+            {
+              "type": "afterglow",
+              "text": "『今天算你过关。』{pronA}拿毛巾随手搭在人肩上，自己先笑场了，笑得像刚偷到东西。",
+              "tags": [
+                "towel over shoulder",
+                "laughing",
+                "relaxed afterglow"
+              ]
+            }
+          ]
+        }
+      ],
+      "leadGender": "male",
+      "autoCast": [
+        "C13",
+        "C05"
+      ]
+    },
+    {
+      "id": "S06",
+      "title": "学姐的规矩",
+      "kinkFamily": "orgasm-control",
+      "heatBase": 5,
+      "location": "空教室 · 画室",
+      "mood": [
+        "慢",
+        "掌控",
+        "冷"
+      ],
+      "castHint": [
+        "C06"
+      ],
+      "tags": [
+        "empty lecture hall",
+        "projector glow",
+        "chalk dust",
+        "orgasm control",
+        "winter"
+      ],
+      "camera": [
+        "cold blue tones",
+        "long lens",
+        "close on fingers"
+      ],
+      "acts": [
+        {
+          "name": "第一幕 · 提问",
+          "beats": [
+            {
+              "type": "sensory",
+              "text": "投影还亮着，一束冷光穿过{loc}的空座位，粉笔灰在光柱里慢慢翻。{who}坐在第一排的桌沿上，长腿交叠，鞋跟悬着没落地。『哦?你刚才那句话，再说一遍给我听。』",
+              "tags": [
+                "empty lecture hall",
+                "projector beam",
+                "chalk dust",
+                "sitting on desk",
+                "crossed legs"
+              ]
+            },
+            {
+              "type": "dialogue",
+              "dialogue": [
+                "想清楚了再回答——我不喜欢听人改口"
+              ],
+              "speaker": "auto",
+              "tags": [
+                "evaluating gaze",
+                "cold expression"
+              ]
+            },
+            {
+              "type": "interior",
+              "text": "{pronA}说这话的时候并没有生气。{target}后来才明白，那种从容比生气可怕得多——生气的人会失手，从容的人不会。",
+              "tags": [
+                "calm control",
+                "apprehensive expression"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "第二幕 · 计数",
+          "beats": [
+            {
+              "type": "action",
+              "text": "『到之前，不许。』{pronA}的手背贴上来，掌心温度偏低，圈着动作也偏慢，慢到每一次都刚好停在临界线外半寸。教室太安静了，连呼吸打颤的声音都像被喇叭放大。",
+              "tags": [
+                "hand between thighs",
+                "slow deliberate touch",
+                "quiet room",
+                "edge of tolerance"
+              ]
+            },
+            {
+              "type": "pressure",
+              "text": "{who}开始数数。用讲课的那种音量，平平板板地数：一、二、三。数到十七的时候{pronA}自己停了半秒——{pronA}也在咬牙。这个发现比手指更让人失控。",
+              "tags": [
+                "counting aloud",
+                "biting lip",
+                "composed facade cracking"
+              ]
+            },
+            {
+              "type": "dialogue",
+              "dialogue": [
+                "冷吗?……那就靠近一点，我又没说不许"
+              ],
+              "speaker": "auto",
+              "tags": [
+                "half lidded eyes",
+                "beckoning"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "第三幕 · 破例",
+          "beats": [
+            {
+              "type": "climax",
+              "text": "数到三十九的时候{pronA}没再数下去。{pronA}扯住对方的领口往下带，砖红口红在第一次接吻时就花了。空教室里的座位一排一排往后倒退——规则是{pronA}定的，破例也得由{pronA}来。",
+              "tags": [
+                "pulling collar",
+                "smeared red lipstick",
+                "kiss",
+                "desk edge",
+                "long legs wrapped"
+              ]
+            },
+            {
+              "type": "release",
+              "text": "投影自动熄屏了，房间一下暗下来。只剩两个人的呼吸，还有一个没数完的数字。",
+              "tags": [
+                "projector turning off",
+                "sudden darkness",
+                "breathing"
+              ]
+            },
+            {
+              "type": "afterglow",
+              "text": "{pronA}拿纸巾擦掉嘴角的口红，顺手把纸巾塞进对方口袋：『这个带走。别留在我这儿。』",
+              "tags": [
+                "wiping lipstick",
+                "tissue into pocket",
+                "cold elegance"
+              ]
+            }
+          ]
+        }
+      ],
+      "leadGender": "male",
+      "autoCast": [
+        "C12",
+        "C06"
+      ]
+    },
+    {
+      "id": "S07",
+      "title": "闭馆之后",
+      "kinkFamily": "slow-sensual",
+      "heatBase": 3,
+      "location": "社区图书馆",
+      "mood": [
+        "温",
+        "旧纸",
+        "慢"
+      ],
+      "castHint": [
+        "C07",
+        "C10"
+      ],
+      "tags": [
+        "library after hours",
+        "emergency exit green light",
+        "bookshelves",
+        "warm slow"
+      ],
+      "camera": [
+        "green emergency light",
+        "medium shot",
+        "long slow pans"
+      ],
+      "acts": [
+        {
+          "name": "第一幕 · 推椅子",
+          "beats": [
+            {
+              "type": "sensory",
+              "text": "{loc}的灯一盏一盏灭掉，只剩安全出口的绿光。{who}把最后一排椅子往里推，一把不落。旧纸的气味在没人走动之后才浮出来，混着窗台那三盆薄荷。",
+              "tags": [
+                "green emergency light",
+                "pushing in chairs",
+                "old paper smell",
+                "mint plants"
+              ]
+            },
+            {
+              "type": "dialogue",
+              "dialogue": [
+                "晚饭吃了吗?……那先坐下，我给你盛一碗"
+              ],
+              "speaker": "auto",
+              "tags": [
+                "warm smile",
+                "holding thermos"
+              ]
+            },
+            {
+              "type": "interior",
+              "text": "{pronA}总先问吃没吃。问完这句，别的话就都好说了——这是{pronA}给自己找的台阶，用了很多年。",
+              "tags": [
+                "gentle expression",
+                "quiet hallway"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "第二幕 · 书架的缝",
+          "beats": [
+            {
+              "type": "action",
+              "text": "两个书架之间只有一臂宽。{who}侧身进去拿那本放错的册子，卡其色开衫的下摆扫过对方的手背。{pronA}没躲，只是把书抽出来，抱在胸前，像抱一个挡箭牌。",
+              "tags": [
+                "narrow aisle between shelves",
+                "cardigan brushing hand",
+                "holding book to chest"
+              ]
+            },
+            {
+              "type": "pressure",
+              "text": "『我这样的人，你还愿意看啊。』{pronA}说得很轻，轻到像是替谁问的。绿光落在{pronA}颈后，那里晒出过一道很浅的分界，一直没退。",
+              "tags": [
+                "green rim light",
+                "vulnerable expression",
+                "hand on spine of book"
+              ]
+            },
+            {
+              "type": "dialogue",
+              "dialogue": [
+                "我这样的人，你还愿意看啊"
+              ],
+              "speaker": "auto",
+              "tags": [
+                "looking down",
+                "blush"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "第三幕 · 借书卡",
+          "beats": [
+            {
+              "type": "action",
+              "text": "{pronA}被人抵在书架上，一本本的脊背在身后硌着。开衫从一侧滑下肩膀，露出那条淡粉色的旧疤。{pronA}没有遮，只是抓住对方的手腕，按在那道疤上：『这里……轻一点。』",
+              "tags": [
+                "pressed against bookshelf",
+                "cardigan slipping",
+                "faded scar",
+                "hand on wrist"
+              ]
+            },
+            {
+              "type": "climax",
+              "text": "整个过程慢得像翻一本很旧的书。{pronA}一直在小声地说话，说的都是无关的事——闭馆时间、借书卡、窗台那盆薄荷要不要浇水。说到一半被打断，就再也不说了。",
+              "tags": [
+                "slow lovemaking",
+                "bookshelf",
+                "soft moans",
+                "curvy body",
+                "warm intimacy"
+              ]
+            },
+            {
+              "type": "release",
+              "text": "一本画册从架上掉下来，摊开在绿光里，页码停在某一页很久。",
+              "tags": [
+                "book falling open",
+                "green light",
+                "stillness"
+              ]
+            },
+            {
+              "type": "afterglow",
+              "text": "{pronA}把衣服一件件理好，最后把画册捡起来插回原位，位置分毫不差。『明天……还来吗。』",
+              "tags": [
+                "tidy clothing",
+                "shelving book",
+                "hopeful look"
+              ]
+            }
+          ]
+        }
+      ],
+      "leadGender": "male",
+      "autoCast": [
+        "C16",
+        "C07"
+      ]
+    },
+    {
+      "id": "S08",
+      "title": "草莓糖的协议",
+      "kinkFamily": "shy-tease",
+      "heatBase": 3,
+      "location": "急诊值班室",
+      "mood": [
+        "慌",
+        "糖",
+        "白炽灯"
+      ],
+      "castHint": [
+        "C08",
+        "C01"
+      ],
+      "tags": [
+        "night shift",
+        "bunk bed",
+        "fluorescent tube",
+        "strawberry candy",
+        "flustered"
+      ],
+      "camera": [
+        "high angle",
+        "bright fluorescent",
+        "close on trembling hands"
+      ],
+      "acts": [
+        {
+          "name": "第一幕 · 说两遍",
+          "beats": [
+            {
+              "type": "sensory",
+              "text": "{loc}的白炽灯管嗡嗡地响，铁架床的漆掉了一小块。{who}抱着记录板站在门口，站了大概十秒才想起来自己该进来。",
+              "tags": [
+                "fluorescent hum",
+                "bunk bed",
+                "clipboard",
+                "hesitating at door"
+              ]
+            },
+            {
+              "type": "dialogue",
+              "dialogue": [
+                "那个…!体温计，体温计我先放在这儿了……不是，我不是催你!"
+              ],
+              "speaker": "auto",
+              "tags": [
+                "flustered",
+                "both hands raised",
+                "blushing"
+              ]
+            },
+            {
+              "type": "interior",
+              "text": "{pronA}一句话说两遍，第二遍总是用『不是』开头。柜子里那盒草莓糖已经少了一半，都是夜班时{pronA}自己吃的——紧张就吃一颗，这是{pronA}的算法。",
+              "tags": [
+                "candy box in locker",
+                "nervous habit"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "第二幕 · 手别抖",
+          "beats": [
+            {
+              "type": "action",
+              "text": "『你别看{pronA}，看我，看我好不好。』这句话不知道是在说给谁听。{who}伸手去整理对方领口的时候，指尖抖了两下——但{pronA}扎针的手从来不抖，六年的训练刻在肌肉里。",
+              "tags": [
+                "trembling fingers",
+                "adjusting collar",
+                "eye contact",
+                "close"
+              ]
+            },
+            {
+              "type": "pressure",
+              "text": "铁架床被人坐上去，嘎吱一声。{pronA}的呼吸整个乱掉，耳后那颗小痣红得发亮。想说点什么掩饰，张开嘴只有一个气音。",
+              "tags": [
+                "bunk bed creak",
+                "ears turning red",
+                "shallow breath",
+                "open mouth"
+              ]
+            },
+            {
+              "type": "dialogue",
+              "dialogue": [
+                "呜……我手在抖，你别笑我嘛"
+              ],
+              "speaker": "auto",
+              "tags": [
+                "teary eyes",
+                "pouting",
+                "hiding face"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "第三幕 · 剥一颗糖",
+          "beats": [
+            {
+              "type": "climax",
+              "text": "糖纸被撕开的声音在安静的房间里格外响。草莓味的甜先落在唇上，然后才轮到别的。护士服的第二颗扣子一直没扣上——那是{pronA}自己解开的，解之前犹豫了三次。",
+              "tags": [
+                "unwrapping candy",
+                "kiss with candy",
+                "nurse uniform unbuttoned",
+                "blushing all over"
+              ]
+            },
+            {
+              "type": "release",
+              "text": "{pronA}整张脸埋进枕头里，只留一句闷闷的话：『灯……关掉好不好。』",
+              "tags": [
+                "face in pillow",
+                "muffled voice",
+                "reaching for switch"
+              ]
+            },
+            {
+              "type": "afterglow",
+              "text": "天亮交班前，{pronA}往对方白大褂口袋里塞了两颗草莓糖。塞完就跑了，跑得像被人追。",
+              "tags": [
+                "putting candy in pocket",
+                "running away",
+                "morning light"
+              ]
+            }
+          ]
+        }
+      ],
+      "leadGender": "male",
+      "autoCast": [
+        "C11",
+        "C08"
+      ]
+    },
+    {
+      "id": "S09",
+      "title": "雨夜引擎",
+      "kinkFamily": "rough-care",
+      "heatBase": 4,
+      "location": "机车修理厂",
+      "mood": [
+        "野",
+        "机油",
+        "雨"
+      ],
+      "castHint": [
+        "C09"
+      ],
+      "tags": [
+        "garage",
+        "rainy night",
+        "tungsten lamp",
+        "motorcycle",
+        "leather",
+        "rough hands"
+      ],
+      "camera": [
+        "low key",
+        "tungsten practicals",
+        "wet reflections"
+      ],
+      "acts": [
+        {
+          "name": "第一幕 · 上车",
+          "beats": [
+            {
+              "type": "sensory",
+              "text": "卷帘门只拉到一半，雨从缝里斜着打进来，在{loc}的水泥地上铺了薄薄一层。{who}把手上的机油在裤子上蹭掉，随手扔过来一只头盔：『上车。风大，抱紧点。』",
+              "tags": [
+                "half open shutter",
+                "rain slanting in",
+                "helmet tossed",
+                "oil stained jeans"
+              ]
+            },
+            {
+              "type": "dialogue",
+              "dialogue": [
+                "少废话，手给我。"
+              ],
+              "speaker": "auto",
+              "tags": [
+                "gruff",
+                "reaching out hand"
+              ]
+            },
+            {
+              "type": "interior",
+              "text": "{pronA}从来不解释。十八岁那年离家，九年里学会的所有温柔都长在手上——拧螺丝的手，给人系带子的手，都是同一双手。",
+              "tags": [
+                "rough hands",
+                "silent type",
+                "workbench"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "第二幕 · 烫",
+          "beats": [
+            {
+              "type": "action",
+              "text": "引擎刚熄，缸体还烫得能煎蛋。{who}把人按在坐垫上，自己蹲下来解鞋带，动作粗鲁，打的结却是一个漂亮的活扣。雨落在发烫的排气管上，腾起一缕白。",
+              "tags": [
+                "warm engine",
+                "bending down",
+                "untying shoelace",
+                "steam from exhaust",
+                "rain"
+              ]
+            },
+            {
+              "type": "pressure",
+              "text": "{pronA}的手从膝盖一路往上，虎口那处机油印蹭在皮肤上留了道影。『……行。听你的。』{pronA}说这话的时候声音比平时低半个调，压着的不是火气。",
+              "tags": [
+                "hand on thigh",
+                "grease mark on skin",
+                "low voice",
+                "leather jacket"
+              ]
+            },
+            {
+              "type": "dialogue",
+              "dialogue": [
+                "……行。听你的。"
+              ],
+              "speaker": "auto",
+              "tags": [
+                "looking away",
+                "jaw tight"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "第三幕 · 排气管的温度",
+          "beats": [
+            {
+              "type": "climax",
+              "text": "皮夹克被铺在地上，雨顺着小腿往下淌。{pronA}一只手扣住后颈，另一只撑着油箱，胸膛贴着后背，把人整个圈在中间——像护着什么，也像收着什么。引擎还在滴滴答答地冷却，节奏和里面的动作撞在一起。",
+              "tags": [
+                "leather jacket on floor",
+                "hand on nape",
+                "bent over motorcycle",
+                "rain wet skin",
+                "muscular male body"
+              ]
+            },
+            {
+              "type": "release",
+              "text": "车把被攥得吱了一声，工具墙上一把扳手掉下来，砸在地上滚了两圈。谁都没去捡。",
+              "tags": [
+                "gripping handlebar",
+                "wrench falling",
+                "ignored"
+              ]
+            },
+            {
+              "type": "afterglow",
+              "text": "{pronA}抽了根烟，烟雾混着雨气。『下次——』话说到一半停住，把烟按灭：『算了。进来，别淋着。』",
+              "tags": [
+                "smoking",
+                "rain",
+                "cut off sentence",
+                "warm garage interior"
+              ]
+            }
+          ]
+        }
+      ],
+      "leadGender": "male",
+      "autoCast": [
+        "C09",
+        "C07"
+      ]
+    },
+    {
+      "id": "S10",
+      "title": "古籍修复室的午后",
+      "kinkFamily": "tension-release",
+      "heatBase": 4,
+      "location": "古籍修复室",
+      "mood": [
+        "书卷",
+        "克制",
+        "引经据典"
+      ],
+      "castHint": [
+        "C10",
+        "C06"
+      ],
+      "tags": [
+        "restoration room",
+        "rice paper",
+        "desk lamp",
+        "wooden hairpin",
+        "afternoon light"
+      ],
+      "camera": [
+        "north window soft light",
+        "close on hands and paper",
+        "static frame"
+      ],
+      "acts": [
+        {
+          "name": "第一幕 · 说起来",
+          "beats": [
+            {
+              "type": "sensory",
+              "text": "{loc}很干，宣纸摊在修复台上，糨糊的味道淡淡的。{who}戴着细框眼镜，镊子夹起一片薄如蝉翼的纸，手腕悬着不敢落下。光线从北窗进来，把{pronA}的袖口照得发白。",
+              "tags": [
+                "restoration desk",
+                "tweezers",
+                "rice paper",
+                "rolled sleeves",
+                "north window light"
+              ]
+            },
+            {
+              "type": "dialogue",
+              "dialogue": [
+                "说起来，《诗经》里那句『既见君子』，后面还有半句……算了，不说了"
+              ],
+              "speaker": "auto",
+              "tags": [
+                "looking down at paper",
+                "glasses glint",
+                "faint blush"
+              ]
+            },
+            {
+              "type": "interior",
+              "text": "{pronA}把想说的话写在纸角上，写完又用水把它洇掉。七个月修一册残本，练出来的耐心，全用在不说出口这件事上。",
+              "tags": [
+                "writing then soaking paper",
+                "restrained feelings"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "第二幕 · 摘眼镜",
+          "beats": [
+            {
+              "type": "action",
+              "text": "镊子被放下了。这是整间屋子里唯一允许的『打断工作』的动作。{who}摘下眼镜，眼下的淡青露出来，看着比平时小两岁。『你要是不方便，就当没听见。』",
+              "tags": [
+                "putting down tweezers",
+                "taking off glasses",
+                "vulnerable look",
+                "old wooden bracelet"
+              ]
+            },
+            {
+              "type": "pressure",
+              "text": "手腕上那串旧木珠被人握住了，珠子硌在两个人的掌心之间。{pronA}没有抽回来，只是把另一只手压在那册残本上——像按着最后一道防线。",
+              "tags": [
+                "holding wrist",
+                "wooden bead bracelet",
+                "hand on old book",
+                "eye contact"
+              ]
+            },
+            {
+              "type": "dialogue",
+              "dialogue": [
+                "顾清欢——你叫我全名的时候，我总以为要挨骂"
+              ],
+              "speaker": "auto",
+              "tags": [
+                "half smile",
+                "ears red"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "第三幕 · 纸不能沾水",
+          "beats": [
+            {
+              "type": "climax",
+              "text": "『纸不能沾水』——{pronA}最后一句清醒的话。之后修复台上就只剩长长短短的呼吸。木簪被抽掉的时候，黑发整个落下来铺在白衬衫上，比宣纸还黑。{pronA}抓着一角台布，指甲用力到发白，始终没让自己叫出声。",
+              "tags": [
+                "on restoration table",
+                "hairpin removed",
+                "black hair loose",
+                "white shirt",
+                "biting back moans",
+                "gripping tablecloth"
+              ]
+            },
+            {
+              "type": "release",
+              "text": "摊开的宣纸上落了一滴汗，很快洇开一个圆。{pronA}盯着那处看了很久，像在看一幅没救回来的画。",
+              "tags": [
+                "sweat drop on rice paper",
+                "staring",
+                "aftermath"
+              ]
+            },
+            {
+              "type": "afterglow",
+              "text": "{pronA}把头发重新盘起来，簪子插回去的时候手还在抖。『这册书……明天再修。』",
+              "tags": [
+                "retying hair bun",
+                "trembling hands",
+                "soft afternoon light"
+              ]
+            }
+          ]
+        }
+      ],
+      "leadGender": "male",
+      "autoCast": [
+        "C15",
+        "C10"
+      ]
+    },
+    {
+      "id": "S11",
+      "title": "走廊尽头的声控灯",
+      "kinkFamily": "public-tease",
+      "heatBase": 5,
+      "location": "办公楼层走廊",
+      "mood": [
+        "险",
+        "无声",
+        "随时有人"
+      ],
+      "castHint": [
+        "C02",
+        "C05"
+      ],
+      "tags": [
+        "office corridor",
+        "motion sensor light",
+        "risk of discovery",
+        "elevator",
+        "heels"
+      ],
+      "camera": [
+        "handheld",
+        "corridor perspective lines",
+        "sudden darkness"
+      ],
+      "acts": [
+        {
+          "name": "第一幕 · 灯灭",
+          "beats": [
+            {
+              "type": "sensory",
+              "text": "走廊的声控灯只给三十秒。两个人都没出声，灯就灭了——{loc}一下沉进电梯指示灯的红色里。{who}的鞋跟停在原地，没往前走，也没往后退。",
+              "tags": [
+                "corridor going dark",
+                "red elevator indicator",
+                "heels",
+                "stillness"
+              ]
+            },
+            {
+              "type": "dialogue",
+              "dialogue": [
+                "安静点。这层楼还有人。"
+              ],
+              "speaker": "auto",
+              "tags": [
+                "finger to lips",
+                "close whisper"
+              ]
+            },
+            {
+              "type": "interior",
+              "text": "{pronA}数过：市场部加班到十点二十，保洁十点四十推车经过。中间这二十分钟，是整层楼唯一属于{pronA}的东西。",
+              "tags": [
+                "counting time",
+                "risk assessment",
+                "dark corridor"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "第二幕 · 三十秒",
+          "beats": [
+            {
+              "type": "action",
+              "text": "裙摆被撩到腰上的时候，西装外套还好好地挂在肩上。{pronA}一手撑着墙，另一只手要腾出来按亮那盏灯——按亮了就有人看见，按不亮就什么都看不见。{pronA}选择了不按。",
+              "tags": [
+                "skirt lifted",
+                "suit jacket still on",
+                "one hand on wall",
+                "dark corridor"
+              ]
+            },
+            {
+              "type": "pressure",
+              "text": "脚步从楼梯间那头传过来，越来越近。{who}的肩膀绷起来，咬着下唇一点声音都不肯放。等人走过去，{pronA}才呼出那口憋了太久的气——那口气抖得很厉害。",
+              "tags": [
+                "footsteps approaching",
+                "tensed shoulders",
+                "bitten lip",
+                "silent",
+                "exhale"
+              ]
+            },
+            {
+              "type": "dialogue",
+              "dialogue": [
+                "我说过一遍的事不重复。"
+              ],
+              "speaker": "auto",
+              "tags": [
+                "whisper",
+                "glaring back"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "第三幕 · 电梯来了",
+          "beats": [
+            {
+              "type": "climax",
+              "text": "电梯『叮』的一声在走廊尽头亮起。{who}整个人被按在冰凉的消防栓箱上，节奏被那声提示音催得又快又乱。{pronA}终于没能守住安静，声音闷在对方肩窝里，只有气音。指示灯的红光一下一下扫过{pronA}的脸。",
+              "tags": [
+                "elevator ding",
+                "pressed against fire hose cabinet",
+                "red sweeping light",
+                "muffled moan",
+                "standing sex"
+              ]
+            },
+            {
+              "type": "release",
+              "text": "灯亮了。声控灯。两个人都没动，就那么站在光里喘。",
+              "tags": [
+                "motion light turning on",
+                "caught in light",
+                "breathing hard"
+              ]
+            },
+            {
+              "type": "afterglow",
+              "text": "{pronA}抬手把头发别到耳后，重新扣好袖扣，走进电梯的时候跟平时一模一样。只有按楼层的手指，按错了两次。",
+              "tags": [
+                "fixing hair",
+                "composed",
+                "pressing wrong floor button"
+              ]
+            }
+          ]
+        }
+      ],
+      "leadGender": "male",
+      "autoCast": [
+        "C12",
+        "C02"
+      ]
+    },
+    {
+      "id": "S12",
+      "title": "毕业画室的最后一夜",
+      "kinkFamily": "marking",
+      "heatBase": 4,
+      "location": "美院画室（搬迁前夜）",
+      "mood": [
+        "告别",
+        "颜料",
+        "急"
+      ],
+      "castHint": [
+        "C04",
+        "C10"
+      ],
+      "tags": [
+        "packed studio",
+        "cardboard boxes",
+        "paint marks",
+        "farewell",
+        "last night"
+      ],
+      "camera": [
+        "warm work lamp",
+        "cluttered background",
+        "close on painted skin"
+      ],
+      "acts": [
+        {
+          "name": "第一幕 · 搬空",
+          "beats": [
+            {
+              "type": "sensory",
+              "text": "{loc}的墙上只剩钉眼的影子。画都装箱了，只有那十七张同一个人还没舍得打封条。{who}坐在纸箱上，脚边是一桶没盖盖子的赭石。",
+              "tags": [
+                "empty studio walls",
+                "cardboard boxes",
+                "ochre paint bucket",
+                "sitting on box"
+              ]
+            },
+            {
+              "type": "dialogue",
+              "dialogue": [
+                "画完了再说。"
+              ],
+              "speaker": "auto",
+              "tags": [
+                "closing a box",
+                "determined look"
+              ]
+            },
+            {
+              "type": "interior",
+              "text": "明天这里就归别人了。{pronA}想了整整一周要怎么开口，最后发现所有句子都不如动手快。",
+              "tags": [
+                "last night",
+                "resolute"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "第二幕 · 赭石",
+          "beats": [
+            {
+              "type": "action",
+              "text": "手指蘸进颜料桶，凉，稠。{who}用整只手掌把它抹在{target}的胸口，从锁骨推到腰，红褐色的一道，抹得很慢很认真。『这是打底。』{pronA}说，像真的在画。",
+              "tags": [
+                "hand dipped in paint",
+                "paint smeared on chest",
+                "reddish brown streak",
+                "serious expression"
+              ]
+            },
+            {
+              "type": "pressure",
+              "text": "第二道抹在自己身上。{pronA}掀开旧毛衣的下摆，把掌心按在小腹，往下拖出一条渐淡的痕。『这个……明天也洗不掉。』{pronA}说的时候声音有点哑。",
+              "tags": [
+                "lifting sweater",
+                "paint on own belly",
+                "hoarse voice",
+                "pale skin"
+              ]
+            },
+            {
+              "type": "dialogue",
+              "dialogue": [
+                "别动。就这样。"
+              ],
+              "speaker": "auto",
+              "tags": [
+                "holding wrist",
+                "intense stare"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "第三幕 · 两个人的画",
+          "beats": [
+            {
+              "type": "climax",
+              "text": "颜料在两个人身上混开了，分不清谁是谁的。{pronA}趴在地上铺开的那张最大的画布上，银灰色的长发散在粗麻布上，被按住的肩胛随着动作一起一伏。这一次{pronA}终于出声了，很长，也没有再忍。",
+              "tags": [
+                "on raw canvas on floor",
+                "silver hair spread out",
+                "paint smeared bodies",
+                "shoulder blades",
+                "loud moan"
+              ]
+            },
+            {
+              "type": "release",
+              "text": "画布上留下了两个人形的印子，赭石和钛白糊在一起，像一幅没画完的画。谁也没舍得擦掉。",
+              "tags": [
+                "body prints on canvas",
+                "mixed paint",
+                "left as is"
+              ]
+            },
+            {
+              "type": "afterglow",
+              "text": "『这张我要带走。』{pronA}把画布卷起来抱在怀里，颜料蹭了满身，也没在意。窗外开始亮了。",
+              "tags": [
+                "rolling up canvas",
+                "hugging it",
+                "dawn outside",
+                "stained body"
+              ]
+            }
+          ]
+        }
+      ],
+      "leadGender": "male",
+      "autoCast": [
+        "C15",
+        "C04"
+      ]
+    },
+    {
+      "id": "S13",
+      "title": "冬夜的暖炉与毛毯",
+      "kinkFamily": "overstimulation",
+      "heatBase": 3,
+      "location": "老式公寓",
+      "mood": [
+        "暖",
+        "迟钝",
+        "缠绵"
+      ],
+      "castHint": [
+        "C07",
+        "C01"
+      ],
+      "tags": [
+        "kotatsu",
+        "wool blanket",
+        "winter night",
+        "snow outside",
+        "overstimulation"
+      ],
+      "camera": [
+        "warm tungsten",
+        "top down",
+        "close on tangled limbs"
+      ],
+      "acts": [
+        {
+          "name": "第一幕 · 被炉",
+          "beats": [
+            {
+              "type": "sensory",
+              "text": "被炉下面已经很暖了。{who}把橘子剥好放在小碟里，手指还带着一点果皮的辛味。窗外开始落雪，一片一片贴在玻璃上化成水痕。",
+              "tags": [
+                "kotatsu",
+                "peeled oranges",
+                "snow on window",
+                "warm lamp",
+                "cozy interior"
+              ]
+            },
+            {
+              "type": "dialogue",
+              "dialogue": [
+                "欸，别站门口呀，进来"
+              ],
+              "speaker": "auto",
+              "tags": [
+                "patting the blanket",
+                "soft smile"
+              ]
+            },
+            {
+              "type": "interior",
+              "text": "{pronA}很久没让人进过这个房间了。被炉是单人的，毛毯是旧的，能分享的东西不多——但都拿出来了。",
+              "tags": [
+                "single person kotatsu",
+                "old wool blanket",
+                "rare intimacy"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "第二幕 · 毛毯下",
+          "beats": [
+            {
+              "type": "action",
+              "text": "毛毯下面看不见的地方，手比眼睛先动。{pronA}的呼吸开始变得又长又浅，每次呼气都带一点鼻音。为了掩饰，{pronA}伸手去够那碟橘子——够到一半，手指就软了。",
+              "tags": [
+                "under blanket",
+                "slow breathing",
+                "reaching for orange",
+                "soft hands"
+              ]
+            },
+            {
+              "type": "pressure",
+              "text": "『慢一点……』{pronA}说了三次『慢一点』，每一次都比上一次更没底气。暖气片烤着后背，前面是热的，背后也是热的，{pronA}无处可退。",
+              "tags": [
+                "warm radiator",
+                "no escape",
+                "flushed skin",
+                "pleading eyes"
+              ]
+            },
+            {
+              "type": "dialogue",
+              "dialogue": [
+                "慢一点……真的，慢一点"
+              ],
+              "speaker": "auto",
+              "tags": [
+                "teary",
+                "holding wrist"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "第三幕 · 橘子",
+          "beats": [
+            {
+              "type": "climax",
+              "text": "毛毯被掀到一边，暖气片的热直接贴上来。{pronA}的身体软得不像话，汗把鬓发黏在脸上，还在小声地重复那句没用的话。橘子滚到榻榻米上，滚到墙角停下，没人去捡。",
+              "tags": [
+                "blanket pushed aside",
+                "sweaty hair on face",
+                "soft curvy body",
+                "overstimulated expression",
+                "orange rolling away"
+              ]
+            },
+            {
+              "type": "release",
+              "text": "{pronA}最后连声音都发不出来了，只是张着嘴喘，睫毛湿成一簇。",
+              "tags": [
+                "voiceless",
+                "wet lashes",
+                "exhausted"
+              ]
+            },
+            {
+              "type": "afterglow",
+              "text": "『橘子……都凉了。』{pronA}隔了很久才说出这么一句，然后自己笑了，笑得整个人都在抖。",
+              "tags": [
+                "laughing weakly",
+                "cold orange",
+                "warm room"
+              ]
+            }
+          ]
+        }
+      ],
+      "leadGender": "male",
+      "autoCast": [
+        "C11",
+        "C07"
+      ]
+    },
+    {
+      "id": "S14",
+      "title": "深夜便利店遇见",
+      "kinkFamily": "possessive-rescue",
+      "heatBase": 3,
+      "location": "便利店 · 后巷",
+      "mood": [
+        "护",
+        "冷",
+        "占有"
+      ],
+      "castHint": [
+        "C09",
+        "C08"
+      ],
+      "tags": [
+        "convenience store",
+        "fluorescent bright",
+        "back alley",
+        "rain",
+        "possessive"
+      ],
+      "camera": [
+        "bright fluorescent interior",
+        "alley neon",
+        "over shoulder"
+      ],
+      "acts": [
+        {
+          "name": "第一幕 · 关东煮",
+          "beats": [
+            {
+              "type": "sensory",
+              "text": "凌晨一点半的{loc}亮得像手术室。关东煮的汤在冒泡，收银台的提示音一下一下。{who}站在货架后面看了一会儿，才把手里那件外套递过去。",
+              "tags": [
+                "convenience store at 1am",
+                "bright fluorescent",
+                "oden steaming",
+                "handing over jacket"
+              ]
+            },
+            {
+              "type": "dialogue",
+              "dialogue": [
+                "上车。风大，抱紧点。"
+              ],
+              "speaker": "auto",
+              "tags": [
+                "gruff",
+                "looking away"
+              ]
+            },
+            {
+              "type": "interior",
+              "text": "{pronA}不会说『我担心你』。{pronA}只会把外套扔过来，然后站在门口等，等到人出来为止。",
+              "tags": [
+                "waiting at entrance",
+                "silent concern"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "第二幕 · 后巷",
+          "beats": [
+            {
+              "type": "action",
+              "text": "后巷的霓虹从积水里反上来，红一块绿一块。{who}把人堵在卷帘门与自己之间，一手撑在铁皮上，铁皮被雨打得冰凉。『以后这个点别自己出来。』",
+              "tags": [
+                "back alley",
+                "neon reflections in puddle",
+                "hand on shutter",
+                "rain",
+                "cornered"
+              ]
+            },
+            {
+              "type": "pressure",
+              "text": "{pronB}的呼吸落在额发上，很近。{target}抬头的时候正撞上{pronA}的下颌，下巴的短须擦过眉心——这个距离已经不能算『护着』了，两个人都知道。",
+              "tags": [
+                "very close",
+                "stubble brushing forehead",
+                "looking up",
+                "tension"
+              ]
+            },
+            {
+              "type": "dialogue",
+              "dialogue": [
+                "……行。听你的。"
+              ],
+              "speaker": "auto",
+              "tags": [
+                "low voice",
+                "hand on waist"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "第三幕 · 铁皮门",
+          "beats": [
+            {
+              "type": "climax",
+              "text": "护士服的扣子被雨打湿之后特别难解，{pronB}解得毫无耐心，最后干脆连衣摆一起推上去。手掌从腰侧绕到背后，整个人被按进怀里，力气大得让人喘不上气——不是粗暴，是怕丢。",
+              "tags": [
+                "wet nurse uniform",
+                "hands on waist",
+                "rough embrace",
+                "against shutter",
+                "rain soaked"
+              ]
+            },
+            {
+              "type": "release",
+              "text": "铁皮门被撞得哐当一响。楼上有人推开窗骂了一句，两个人缩在阴影里笑，谁也没敢出声。",
+              "tags": [
+                "shutter rattling",
+                "hiding in shadow",
+                "stifled laughter",
+                "rain"
+              ]
+            },
+            {
+              "type": "afterglow",
+              "text": "{pronA}把外套披回{B}身上，自己只穿一件背心淋着雨推车。『坐好。』这一次{B}没顶嘴。",
+              "tags": [
+                "jacket over shoulders",
+                "pushing motorcycle in rain",
+                "obedient nod"
+              ]
+            }
+          ]
+        }
+      ],
+      "leadGender": "male",
+      "autoCast": [
+        "C16",
+        "C08"
+      ]
+    },
+    {
+      "id": "S15",
+      "title": "器材室的三十七度",
+      "kinkFamily": "awkward-burn",
+      "heatBase": 3,
+      "location": "医院器材室",
+      "mood": [
+        "局促",
+        "闷热",
+        "笨拙"
+      ],
+      "castHint": [
+        "C08",
+        "C03"
+      ],
+      "tags": [
+        "supply room",
+        "shelves",
+        "muggy",
+        "awkward",
+        "first time"
+      ],
+      "camera": [
+        "cluttered shelves",
+        "tight framing",
+        "single ceiling bulb"
+      ],
+      "acts": [
+        {
+          "name": "第一幕 · 找东西",
+          "beats": [
+            {
+              "type": "sensory",
+              "text": "{loc}只有一盏吊灯，货架堆到顶，纸箱的边角都起了毛。空调外机在窗外轰轰地响。两个人都说要找东西，找了五分钟谁都没找到。",
+              "tags": [
+                "supply room",
+                "stacked shelves",
+                "single ceiling bulb",
+                "muggy air",
+                "pretending to search"
+              ]
+            },
+            {
+              "type": "dialogue",
+              "dialogue": [
+                "那个…!体温计，体温计我先放在这儿了……不是，我不是催你!"
+              ],
+              "speaker": "auto",
+              "tags": [
+                "holding a box",
+                "flustered",
+                "avoiding eye contact"
+              ]
+            },
+            {
+              "type": "interior",
+              "text": "{pronA}能听见自己的心跳，怀疑对方也能。货架之间的过道只够一个人侧身——这是个很糟糕的借口，也是个很好的借口。",
+              "tags": [
+                "narrow aisle",
+                "audible heartbeat",
+                "awkward silence"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "第二幕 · 撞",
+          "beats": [
+            {
+              "type": "action",
+              "text": "转身的时候撞上货架，一个纸箱晃了晃砸下来，被人单手接住。这一下之后两个人的姿势就再也自然不回去了：一只手撑在货架上，另一只手还举着箱子。",
+              "tags": [
+                "box falling",
+                "caught with one hand",
+                "trapped position",
+                "cluttered background"
+              ]
+            },
+            {
+              "type": "pressure",
+              "text": "『你……你先放我下来。』『我没抱你。』——两个人同时沉默。手到底放在哪里，这个问题在闷热的器材室里变得越来越难回答。",
+              "tags": [
+                "hands misplaced",
+                "muggy heat",
+                "flushed faces",
+                "dead silence"
+              ]
+            },
+            {
+              "type": "dialogue",
+              "dialogue": [
+                "呜……我手在抖，你别笑我嘛"
+              ],
+              "speaker": "auto",
+              "tags": [
+                "teary",
+                "trembling hands",
+                "pouting"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "第三幕 · 纸箱堆",
+          "beats": [
+            {
+              "type": "climax",
+              "text": "纸箱被推得摇摇欲坠，最后是两个人一起把它按住的。第一次谁都不熟练，中途停下来笑了两次，笑完又接着来。护士服的扣子崩开一颗，滚到货架底下，找了很久也没找到。",
+              "tags": [
+                "shaking cardboard boxes",
+                "unskilled first time",
+                "laughing mid act",
+                "popped button",
+                "shelves"
+              ]
+            },
+            {
+              "type": "release",
+              "text": "外机停了，房间里一下就静了。剩下的只有两个人的呼吸，和一个滚到角落的纽扣。",
+              "tags": [
+                "air conditioner stopping",
+                "sudden quiet",
+                "button in corner"
+              ]
+            },
+            {
+              "type": "afterglow",
+              "text": "『纽扣……』『我缝。』『你会?』『不会，但可以学。』",
+              "tags": [
+                "talking about button",
+                "earnest promise",
+                "warm ending"
+              ]
+            }
+          ]
+        }
+      ],
+      "leadGender": "male",
+      "autoCast": [
+        "C14",
+        "C03"
+      ]
+    },
+    {
+      "id": "S16",
+      "title": "跨年夜的最后一支舞",
+      "kinkFamily": "aftercare",
+      "heatBase": 2,
+      "location": "年会酒店 · 天台",
+      "mood": [
+        "暖",
+        "收尾",
+        "烟火"
+      ],
+      "castHint": [
+        "C02",
+        "C01",
+        "C05"
+      ],
+      "tags": [
+        "rooftop",
+        "fireworks",
+        "city night",
+        "slow dance",
+        "aftercare"
+      ],
+      "camera": [
+        "wide city background",
+        "warm string lights",
+        "slow dolly"
+      ],
+      "acts": [
+        {
+          "name": "第一幕 · 走音",
+          "beats": [
+            {
+              "type": "sensory",
+              "text": "楼下的乐队把一首老歌唱得走了音。天台的风把串灯吹得乱晃，{loc}边缘的城市灯火一直铺到看不见的地方。{who}手里那杯酒已经温了，一口没喝。",
+              "tags": [
+                "rooftop",
+                "string lights swaying",
+                "city lights",
+                "warm wine glass",
+                "off key music"
+              ]
+            },
+            {
+              "type": "dialogue",
+              "dialogue": [
+                "冷吗?……那就靠近一点，我又没说不许"
+              ],
+              "speaker": "auto",
+              "tags": [
+                "hand extended",
+                "half smile"
+              ]
+            },
+            {
+              "type": "interior",
+              "text": "一年里{pronA}说过的所有强硬的话，此刻都想收回。但收回是弱者的动作，{pronA}只是把手伸出去，让动作替{pronA}说。",
+              "tags": [
+                "extended hand",
+                "soft expression"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "第二幕 · 一支舞",
+          "beats": [
+            {
+              "type": "action",
+              "text": "没有伴奏，两个人自己数拍子。{pronA}跳得比想象中差，第三次踩到对方的鞋，索性不数了，整个人靠过去。西装外套披在两个人的肩上，盖不住谁。",
+              "tags": [
+                "slow dance",
+                "stepping on foot",
+                "leaning close",
+                "shared suit jacket"
+              ]
+            },
+            {
+              "type": "pressure",
+              "text": "胸口贴上来的时候，{pronA}忽然安静了。不是那种工作里的安静，是把重量交给别人之后的那种。手指在对方后背上一下一下地拍，没有节奏，也没停。",
+              "tags": [
+                "head on chest",
+                "hand patting back",
+                "silent",
+                "intimate"
+              ]
+            },
+            {
+              "type": "dialogue",
+              "dialogue": [
+                "我听你的——这次。"
+              ],
+              "speaker": "auto",
+              "tags": [
+                "closing eyes",
+                "trusting"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "第三幕 · 钟声",
+          "beats": [
+            {
+              "type": "climax",
+              "text": "酒店的钟声响到第七下的时候，烟火在两个人头顶炸开。{pronA}没有许愿，只是把脸埋进对方的颈窝。这个动作持续了整整一轮烟花，直到天空重新变黑。",
+              "tags": [
+                "fireworks overhead",
+                "face in neck",
+                "hugging",
+                "night sky",
+                "new year"
+              ]
+            },
+            {
+              "type": "release",
+              "text": "风把烟火的味道吹散，天台上只剩酒、烟和自己呼出来的白气。",
+              "tags": [
+                "smoke dissipating",
+                "breath visible",
+                "quiet rooftop"
+              ]
+            },
+            {
+              "type": "afterglow",
+              "text": "『明年……』{pronA}说到一半，被人打断。『明年还在。』于是{pronA}把后半句咽回去，点了点头。",
+              "tags": [
+                "interrupted sentence",
+                "nodding",
+                "warm ending",
+                "city lights"
+              ]
+            }
+          ]
+        }
+      ],
+      "leadGender": "male",
+      "autoCast": [
+        "C12",
+        "C02"
+      ]
+    }
+  ]
+}

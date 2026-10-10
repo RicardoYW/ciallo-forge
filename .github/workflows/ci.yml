@@ -1,0 +1,63 @@
+name: 自检
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  verify:
+    name: 四层自检（Node ${{ matrix.node }}）
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        node: ['20', '22']
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+
+      # 项目运行时零依赖，不需要 npm install
+      - name: 单元 + CLI + 前端测试
+        run: node --test test/engine.test.js test/cli.test.js test/web.test.js
+
+      - name: 内容自检（23 项）
+        run: node scripts/verify.js
+
+      - name: 界面接口自检（32 项）
+        run: node scripts/check-ui.js
+
+      - name: 上传报告
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: reports-${{ matrix.os }}-node${{ matrix.node }}
+          path: |
+            out/RUN-REPORT.md
+            out/UI-CHECK.md
+          if-no-files-found: ignore
+          retention-days: 7
+
+  render:
+    name: 浏览器渲染校验
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      # runner 上没有 Edge/Chrome，脚本会检测不到浏览器并优雅跳过
+      - name: 检查是否可用（不可用则跳过）
+        run: node -e "const {findBrowser}=require('./scripts/open-app');console.log('browser:', findBrowser() || '(none)')"
+
+      - name: 渲染校验（有浏览器时才有意义）
+        run: node scripts/check-render.js
+        continue-on-error: true

@@ -1,0 +1,121 @@
+{
+  "name": "ciallo-forge",
+  "version": "1.0.0",
+  "private": true,
+  "description": "夜织 · CialloForge — 成人虚构文本 + 绘图提示词双引擎（全员 18+，本地离线）",
+  "type": "commonjs",
+  "author": {
+    "name": "CialloForge"
+  },
+  "bin": {
+    "ciallo": "bin/ciallo.js"
+  },
+  "main": "electron/main.js",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "start": "node bin/ciallo.js",
+    "gui": "node bin/gui.js",
+    "gui:headless": "node bin/gui.js --no-open",
+    "desktop": "electron .",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder --win",
+    "dist:portable": "electron-builder --win portable",
+    "chars": "node bin/ciallo.js chars",
+    "scenes": "node bin/ciallo.js scenes",
+    "prompts": "node bin/ciallo.js prompt --char all --target all --out out/prompts-all.json",
+    "demo:story": "node bin/ciallo.js story --scene S01 --cast C11,C08 --heat 4 --words 900 --seed 7 --out out/demo.md",
+    "validate": "node bin/ciallo.js validate --gate",
+    "export": "node bin/ciallo.js export --out out/export",
+    "gallery": "node scripts/build-gallery.js",
+    "docs": "node scripts/build-docs-html.js",
+    "icon": "python scripts/make-icon.py",
+    "verify": "node scripts/verify.js",
+    "check:ui": "node scripts/check-ui.js",
+    "check:render": "node scripts/check-render.js",
+    "check:desktop": "node scripts/check-desktop.js",
+    "shoot": "node scripts/shoot-ui.js / --size 1600x980 --out out/screenshots/界面-创作页.png",
+    "test": "node --test test/engine.test.js test/cli.test.js test/web.test.js",
+    "test:all": "node --test test/engine.test.js test/cli.test.js test/web.test.js && node scripts/verify.js && node scripts/check-ui.js && node scripts/check-render.js"
+  },
+  "build": {
+    "appId": "com.ciallo.forge",
+    "productName": "夜织CialloForge",
+    "copyright": "Copyright © 2026 CialloForge",
+    "asar": true,
+    "compression": "maximum",
+    "directories": {
+      "output": "dist",
+      "buildResources": "assets"
+    },
+    "files": [
+      "electron/**/*",
+      "src/**/*",
+      "data/**/*",
+      "bin/**/*",
+      "scripts/**/*",
+      "assets/icon.ico",
+      "assets/icon.png",
+      "package.json",
+      "README.md",
+      "README.en.md",
+      "使用指南.md",
+      "场景配对表.md",
+      "开发手记.md",
+      "!scripts/_migrations/**",
+      "!**/*.map",
+      "!out/**",
+      "!dist/**"
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "assets/icon.ico",
+      "artifactName": "CialloForge-${version}-${arch}.${ext}"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "夜织 CialloForge",
+      "installerIcon": "assets/icon.ico",
+      "uninstallerIcon": "assets/icon.ico",
+      "installerHeaderIcon": "assets/icon.ico",
+      "deleteAppDataOnUninstall": false,
+      "artifactName": "CialloForge-Setup-${version}.${ext}"
+    },
+    "portable": {
+      "artifactName": "CialloForge-Portable-${version}.${ext}"
+    }
+  },
+  "keywords": [
+    "adult-fiction",
+    "18+",
+    "prompt-engineering",
+    "stable-diffusion",
+    "novelai",
+    "generator",
+    "offline",
+    "electron"
+  ],
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "electron": "^44.7.0",
+    "electron-builder": "^26.15.3"
+  }
+}

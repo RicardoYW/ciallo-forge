@@ -1,0 +1,33 @@
+# 统一换行符，避免不同系统互相覆盖
+* text=auto
+
+# Windows 批处理必须 CRLF，否则 cmd 解析异常
+*.bat text eol=crlf
+*.cmd text eol=crlf
+*.ps1 text eol=crlf
+
+# 其余文本统一 LF
+*.js text eol=lf
+*.mjs text eol=lf
+*.json text eol=lf
+*.md text eol=lf
+*.css text eol=lf
+*.html text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+
+# 二进制
+*.png binary
+*.jpg binary
+*.ico binary
+*.exe binary
+*.zip binary
+
+# 语言统计：把生成产物与文档排除，别让仓库看起来像纯 HTML
+out/showcase.html linguist-generated=true
+out/指南.html linguist-generated=true
+out/*.md linguist-documentation=true
+*.md linguist-documentation=true
+
+# diff 时不把大 JSON 当纯文本逐行比
+data/*.json -diff

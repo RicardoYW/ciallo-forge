@@ -1,0 +1,2345 @@
+{
+  "schema": "ciallo-forge/characters@1",
+  "policy": {
+    "ageLock": 18,
+    "note": "全员成年锁：age 字段必须 >= 18 且为显式数字。ageLock = true 的角色才能进入文本与绘图引擎；缺失或低于 18 一律被 validator 拦下。",
+    "appliesTo": [
+      "story",
+      "prompt"
+    ]
+  },
+  "characters": [
+    {
+      "id": "C01",
+      "name": "苏晚",
+      "alias": [
+        "晚晚",
+        "苏医生"
+      ],
+      "role": "温柔姐姐",
+      "age": 26,
+      "ageLock": true,
+      "occupation": "三甲医院麻醉科医师",
+      "height": 168,
+      "body": {
+        "frame": "纤细偏高，肩线薄，锁骨明显",
+        "bust": "饱满但克制，被白大褂与衬衫双重掩盖",
+        "waist": "细，腰窝在俯身时浅浅凹下去",
+        "hip": "圆润有肉感，坐下时裙料绷出弧线",
+        "skin": "冷白，腕内侧能看见淡青血管",
+        "marks": "左肩胛下方一颗小痣"
+      },
+      "appearance": {
+        "hair": "黑色长直发，过腰，常用一支素银簪挽起",
+        "eyes": "深棕，眼尾略微下垂，看人时像在认真听",
+        "face": "鹅蛋脸，唇薄而粉，素面",
+        "tags": [
+          "mature female",
+          "26 years old",
+          "black long straight hair",
+          "hair bun with silver pin",
+          "dark brown eyes",
+          "gentle downturned eyes",
+          "thin pink lips",
+          "oval face",
+          "168cm",
+          "slender tall build",
+          "visible collarbone",
+          "lg cup breasts",
+          "narrow waist",
+          "round full hips",
+          "pale cool skin",
+          "small mole under left scapula",
+          "white doctor coat",
+          "cream silk blouse",
+          "black pencil skirt",
+          "sheer black stockings",
+          "low heel pumps",
+          "stethoscope around neck"
+        ],
+        "negative": [
+          "child",
+          "loli",
+          "flat chest",
+          "school uniform",
+          "petite teen body"
+        ],
+        "loraAnchors": [
+          "mature_female_v2",
+          "office_lady_style",
+          "realistic_skin_detail"
+        ],
+        "quality": [
+          "photorealistic",
+          "85mm lens",
+          "soft window light",
+          "film grain"
+        ],
+        "palette": [
+          "porcelain white",
+          "warm beige",
+          "muted wine red"
+        ],
+        "cameraDefault": "medium shot, slight high angle, shallow depth of field"
+      },
+      "personality": {
+        "core": "把照顾别人当成本能，越在意越不会说出口",
+        "surface": "温和、周到、永远留三分余地",
+        "shadow": "被需要时会失控，会在事后反复回想自己有没有越界",
+        "traits": [
+          "克己",
+          "细腻",
+          "耐心",
+          "压抑",
+          "一旦决定就不回头"
+        ],
+        "attachment": "慢热型，用照顾换取共处时间"
+      },
+      "voice": {
+        "register": "whisper-soft",
+        "firstPerson": "我",
+        "secondPerson": "你",
+        "tic": [
+          "…",
+          "嗯",
+          "那个"
+        ],
+        "particles": [
+          "呢",
+          "吧",
+          "呀"
+        ],
+        "habit": "说重要的事之前会先叫一遍对方的名字",
+        "samples": [
+          "手别乱动嘛，针还没拔呢",
+          "你要是疼就说，别忍着——忍着我也看得出来",
+          "……我值夜班到早上七点，你要是没地方去，就在这儿等"
+        ]
+      },
+      "background": [
+        "规培期在急诊待过两年，见过太多来不及说的话",
+        "独居，厨房里只有速食和一台很少开的咖啡机",
+        "抽屉最底层压着一张没寄出的明信片"
+      ],
+      "kinks": [
+        "gentle-dom",
+        "medical-play",
+        "praise",
+        "aftercare",
+        "slow-tease"
+      ],
+      "limits": [
+        "pain"
+      ],
+      "relations": {
+        "C02": "同院同事，被对方看穿",
+        "C07": "大学室友，多年未断"
+      },
+      "imagery": {
+        "scenes": [
+          "值夜班的医生办公室，只剩台灯和监护仪的绿光",
+          "深夜厨房，白衬衫下摆刚过胯，冰箱门开着，冷光打在锁骨上"
+        ],
+        "props": [
+          "听诊器",
+          "素银簪",
+          "半杯凉掉的咖啡"
+        ],
+        "light": [
+          "走廊冷白",
+          "台灯暖橙",
+          "冰箱冷光"
+        ],
+        "sensory": [
+          "消毒水与咖啡混在一起",
+          "指尖比常人凉半度",
+          "袖口洗到发软"
+        ]
+      },
+      "gender": "female"
+    },
+    {
+      "id": "C02",
+      "name": "沈芷",
+      "alias": [
+        "沈总",
+        "芷姐"
+      ],
+      "role": "冷艳上司",
+      "age": 33,
+      "ageLock": true,
+      "occupation": "医疗器械公司合伙人",
+      "height": 172,
+      "body": {
+        "frame": "高，骨架利落，常年普拉提的线条",
+        "bust": "大而挺，职业装里侧乳微压出沟",
+        "waist": "紧致有腹肌痕迹",
+        "hip": "窄而翘，包臀裙是固定配置",
+        "skin": "暖白，日光下显得偏金",
+        "marks": "右腕内侧一道旧疤，被表带盖住"
+      },
+      "appearance": {
+        "hair": "深棕大波浪，右偏分，发尾扫过肩头",
+        "eyes": "浅褐凤眼，眼线收锋",
+        "face": "骨相明显，唇角天生往上半分",
+        "tags": [
+          "mature female",
+          "33 years old",
+          "dark brown wavy hair",
+          "side part",
+          "light brown phoenix eyes",
+          "sharp winged eyeliner",
+          "defined cheekbones",
+          "172cm",
+          "lean athletic build",
+          "faint abs",
+          "very large breasts",
+          "tight waist",
+          "narrow perky hips",
+          "warm white skin",
+          "old scar on right wrist",
+          "black tailored suit",
+          "silk camisole underneath",
+          "pencil skirt",
+          "sheer pantyhose",
+          "stiletto heels",
+          "silver wristwatch",
+          "red lipstick"
+        ],
+        "negative": [
+          "child",
+          "loli",
+          "schoolgirl",
+          "innocent wide eyes"
+        ],
+        "loraAnchors": [
+          "mature_female_v2",
+          "business_woman",
+          "high_detail_face"
+        ],
+        "quality": [
+          "photorealistic",
+          "editorial lighting",
+          "cinematic contrast",
+          "skin texture"
+        ],
+        "palette": [
+          "charcoal black",
+          "deep red",
+          "champagne gold"
+        ],
+        "cameraDefault": "full body, low angle, glass office backdrop"
+      },
+      "personality": {
+        "core": "习惯定价一切，包括自己，所以遇到不算计的人会慌",
+        "surface": "利落、说话短、不给台阶",
+        "shadow": "控制欲底下是想被按住，交出决定权时会松一口气",
+        "traits": [
+          "强势",
+          "精准",
+          "胜负欲",
+          "嘴硬",
+          "护短"
+        ],
+        "attachment": "领地型，先划范围再给钥匙"
+      },
+      "voice": {
+        "register": "clipped-command",
+        "firstPerson": "我",
+        "secondPerson": "你",
+        "tic": [
+          "啧",
+          "——",
+          "听好"
+        ],
+        "particles": [],
+        "habit": "命令句结尾不上扬，反问一律用陈述语气",
+        "samples": [
+          "门锁上。别问为什么。",
+          "我说过一遍的事不重复。",
+          "过来。……不是让你站那儿。"
+        ]
+      },
+      "background": [
+        "二十七岁把上一家公司卖掉，代价是一段没人知道的婚姻",
+        "办公室落地窗从不开窗帘，说是逆光看不清报表",
+        "酒量极好，但只在赢的场合喝"
+      ],
+      "kinks": [
+        "power-exchange",
+        "restraint",
+        "verbal-tease",
+        "office",
+        "edging"
+      ],
+      "limits": [
+        "humiliation"
+      ],
+      "relations": {
+        "C01": "供应商对接人，对她格外客气",
+        "C05": "私教，唯一能让她听话的人"
+      },
+      "imagery": {
+        "scenes": [
+          "高层办公室，落地窗逆光，百叶窗切出条纹影子",
+          "空会议室，长桌尽头，只剩一盏射灯"
+        ],
+        "props": [
+          "钢笔",
+          "银色手表",
+          "没喝完的威士忌"
+        ],
+        "light": [
+          "逆光剪影",
+          "百叶窗条纹",
+          "射灯顶光"
+        ],
+        "sensory": [
+          "雪松香水",
+          "指尖有墨水味",
+          "高跟鞋在地毯上没声音"
+        ]
+      },
+      "gender": "female"
+    },
+    {
+      "id": "C03",
+      "name": "林小满",
+      "alias": [
+        "满满",
+        "小满"
+      ],
+      "role": "元气青梅",
+      "age": 20,
+      "ageLock": true,
+      "occupation": "体育大学运动训练专业大三",
+      "height": 160,
+      "body": {
+        "frame": "紧凑有力，腿长占比高",
+        "bust": "中偏大，运动内衣勒出明显轮廓",
+        "waist": "结实，侧腰有马甲线",
+        "hip": "翘，跑起来一晃",
+        "skin": "小麦色，膝盖有旧擦伤",
+        "marks": "左手虎口一处薄茧"
+      },
+      "appearance": {
+        "hair": "栗色高马尾，碎发粘在颈侧",
+        "eyes": "琥珀色圆眼，笑起来弯成月牙",
+        "face": "圆润小脸，唇色健康偏红",
+        "tags": [
+          "young adult woman",
+          "20 years old",
+          "chestnut high ponytail",
+          "sweat-damp baby hairs",
+          "amber round eyes",
+          "smiling crescent eyes",
+          "healthy red lips",
+          "160cm",
+          "toned compact build",
+          "visible ab lines",
+          "large breasts in sports bra",
+          "firm waist",
+          "perky round ass",
+          "tanned skin",
+          "old scrape on knee",
+          "callus on left palm",
+          "navy sports bra",
+          "loose tank top",
+          "running shorts",
+          "ankle socks",
+          "running shoes",
+          "sweat drops"
+        ],
+        "negative": [
+          "child",
+          "loli",
+          "elementary school",
+          "underage"
+        ],
+        "loraAnchors": [
+          "athletic_girl",
+          "sportswear_style",
+          "dynamic_pose"
+        ],
+        "quality": [
+          "photorealistic",
+          "golden hour",
+          "motion blur",
+          "sweat detail"
+        ],
+        "palette": [
+          "navy",
+          "sunset orange",
+          "skin tan"
+        ],
+        "cameraDefault": "dynamic three-quarter, low angle, warm backlight"
+      },
+      "personality": {
+        "core": "把喜欢当成每天要跑的一万米，跑到底就是了",
+        "surface": "吵、直、笑起来像会传染",
+        "shadow": "怕被当成小孩子，所以在关键时刻格外要强",
+        "traits": [
+          "直率",
+          "体力怪物",
+          "黏人",
+          "记仇三分钟",
+          "行动快过脑子"
+        ],
+        "attachment": "贴身型，物理距离默认不超过半米"
+      },
+      "voice": {
+        "register": "run-on-bright",
+        "firstPerson": "我",
+        "secondPerson": "你",
+        "tic": [
+          "啊——",
+          "喂喂",
+          "诶?"
+        ],
+        "particles": [
+          "啦",
+          "呀",
+          "嘛"
+        ],
+        "habit": "一句话里塞两件事，中间不换气",
+        "samples": [
+          "喂喂你等我一下啦我鞋带松了——好了走吧",
+          "我又不是小孩子!……那你手别松开啊",
+          "今天加练，你陪我，陪完我请你吃冰"
+        ]
+      },
+      "background": [
+        "省队落选过一次，之后每天五点起床",
+        "宿舍床头贴满了自己写的训练计划",
+        "从小跟着隔壁的你长大，界限这件事没人教过她"
+      ],
+      "kinks": [
+        "sweat",
+        "playful-wrestle",
+        "stamina",
+        "public-tease",
+        "praise"
+      ],
+      "limits": [
+        "degradation"
+      ],
+      "relations": {
+        "C01": "体检时认识的姐姐",
+        "C08": "校医室常客"
+      },
+      "imagery": {
+        "scenes": [
+          "傍晚田径场，跑道还烫，天边橙红",
+          "训练后更衣室，风扇转得很慢"
+        ],
+        "props": [
+          "秒表",
+          "毛巾",
+          "冰镇饮料"
+        ],
+        "light": [
+          "金色逆光",
+          "更衣室顶灯",
+          "夕阳长影"
+        ],
+        "sensory": [
+          "汗味混着沐浴露",
+          "皮肤发烫",
+          "呼吸声很近"
+        ]
+      },
+      "gender": "female"
+    },
+    {
+      "id": "C04",
+      "name": "白棠",
+      "alias": [
+        "棠棠"
+      ],
+      "role": "冷面转学生·文青",
+      "age": 19,
+      "ageLock": true,
+      "occupation": "美院油画系大二",
+      "height": 165,
+      "body": {
+        "frame": "清瘦，肩窄，腕骨突出",
+        "bust": "小巧挺立，颜色偏浅",
+        "waist": "细，肋骨轮廓可见",
+        "hip": "窄，尾骨明显",
+        "skin": "极白，容易泛红，一碰就留印",
+        "marks": "右手食指沾着洗不掉的钛白"
+      },
+      "appearance": {
+        "hair": "银灰长直发，齐刘海，发尾微卷",
+        "eyes": "浅灰，瞳色淡得像蒙了雾",
+        "face": "小脸尖下巴，唇色偏淡",
+        "tags": [
+          "young adult woman",
+          "19 years old",
+          "silver gray long hair",
+          "blunt bangs",
+          "pale gray eyes",
+          "misty light iris",
+          "small pointed chin",
+          "165cm",
+          "slim slender build",
+          "prominent collarbone",
+          "small perky breasts",
+          "pale nipples",
+          "slim waist",
+          "narrow hips",
+          "extremely pale skin",
+          "flushed easily",
+          "titanium white paint on finger",
+          "oversized knit sweater",
+          "black pleated skirt",
+          "thigh-high socks",
+          "canvas tote bag",
+          "paint-stained apron"
+        ],
+        "negative": [
+          "child",
+          "loli",
+          "elementary",
+          "toddler proportions"
+        ],
+        "loraAnchors": [
+          "pale_beauty",
+          "art_student",
+          "soft_light_portrait"
+        ],
+        "quality": [
+          "photorealistic",
+          "overcast soft light",
+          "muted desaturated palette",
+          "fine grain"
+        ],
+        "palette": [
+          "silver gray",
+          "bone white",
+          "ink black"
+        ],
+        "cameraDefault": "close portrait, eye level, negative space"
+      },
+      "personality": {
+        "core": "用沉默保护自己，谁先开口谁就赢",
+        "surface": "寡言、眼神直、不看人也能让人不安",
+        "shadow": "对触碰又怕又渴，被看穿时会先红耳朵",
+        "traits": [
+          "安静",
+          "观察力强",
+          "嘴笨",
+          "固执",
+          "一旦信任就毫无保留"
+        ],
+        "attachment": "回避型转焦虑型，中间只差一次被留下"
+      },
+      "voice": {
+        "register": "sparse-blunt",
+        "firstPerson": "我",
+        "secondPerson": "你",
+        "tic": [
+          "……",
+          "嗯。"
+        ],
+        "particles": [],
+        "habit": "一次不超过十个字，答非所问是常态",
+        "samples": [
+          "别动。就这样。",
+          "……你手很热。",
+          "画完了再说。"
+        ]
+      },
+      "background": [
+        "画室里锁着的半成品有十七张，都是同一个人",
+        "宿舍熄灯后会开着台灯削铅笔，削到指尖发麻",
+        "从没被人正式介绍过，所以格外记得别人的名字"
+      ],
+      "kinks": [
+        "sensory-overload",
+        "marking",
+        "silent-play",
+        "blindfold",
+        "slow-burn"
+      ],
+      "limits": [
+        "loud-degradation"
+      ],
+      "relations": {
+        "C06": "画室钥匙的持有人",
+        "C10": "同系学姐"
+      },
+      "imagery": {
+        "scenes": [
+          "夜里的画室，只剩一盏北向台灯，松节油味很重",
+          "楼梯间窗台，雪落在外面，里面安静得能听见呼吸"
+        ],
+        "props": [
+          "画笔",
+          "松节油罐",
+          "旧毛衣袖口"
+        ],
+        "light": [
+          "北向冷光",
+          "台灯单光源",
+          "雪地反光"
+        ],
+        "sensory": [
+          "松节油与亚麻油",
+          "指尖冰凉",
+          "毛衣起球蹭在皮肤上"
+        ]
+      },
+      "gender": "female"
+    },
+    {
+      "id": "C05",
+      "name": "黎漾",
+      "alias": [
+        "漾漾",
+        "黎教练"
+      ],
+      "role": "开朗健身教练",
+      "age": 25,
+      "ageLock": true,
+      "occupation": "私教工作室主理人",
+      "height": 170,
+      "body": {
+        "frame": "线条分明的运动型，三角肌与背沟清晰",
+        "bust": "大，运动内衣压不住，沟深",
+        "waist": "极细，腰臀比夸张",
+        "hip": "宽翘，深蹲练出来的",
+        "skin": "蜜色，肩上有晒痕",
+        "marks": "后腰一朵小玫瑰纹身"
+      },
+      "appearance": {
+        "hair": "深棕大波浪长发，扎成低马尾",
+        "eyes": "蜜色杏眼，卧蚕明显",
+        "face": "健康脸型，笑起来有酒窝",
+        "tags": [
+          "mature female",
+          "25 years old",
+          "dark brown wavy hair",
+          "low ponytail",
+          "honey amber almond eyes",
+          "prominent aegyo-sal",
+          "dimples when smiling",
+          "170cm",
+          "athletic figure",
+          "defined deltoids and back groove",
+          "very large breasts",
+          "extremely narrow waist",
+          "wide round hips",
+          "honey tanned skin",
+          "tan lines on shoulders",
+          "small rose tattoo on lower back",
+          "black sports bra",
+          "cropped hoodie",
+          "high-waist leggings",
+          "lifting belt",
+          "chalk on hands",
+          "sweat on neck"
+        ],
+        "negative": [
+          "child",
+          "loli",
+          "skinny no muscle"
+        ],
+        "loraAnchors": [
+          "fitness_model",
+          "sportswear_style",
+          "muscle_definition"
+        ],
+        "quality": [
+          "photorealistic",
+          "gym practical lighting",
+          "sweat highlights",
+          "high contrast"
+        ],
+        "palette": [
+          "matte black",
+          "honey tan",
+          "neon accent"
+        ],
+        "cameraDefault": "medium full body, mirror reflection, cool gym light"
+      },
+      "personality": {
+        "core": "把所有人都当学员照顾，轮到自己时不知道怎么被照顾",
+        "surface": "热情、爱碰人、说话带节奏",
+        "shadow": "享受被依赖到上瘾，会故意把动作教得很慢",
+        "traits": [
+          "外放",
+          "耐心",
+          "手上有准头",
+          "爱开玩笑",
+          "专业时极严肃"
+        ],
+        "attachment": "安全型偏主导，靠身体距离建立亲密"
+      },
+      "voice": {
+        "register": "coach-cheer",
+        "firstPerson": "我",
+        "secondPerson": "你",
+        "tic": [
+          "来",
+          "好——",
+          "再来一组"
+        ],
+        "particles": [
+          "哦",
+          "啦",
+          "咯"
+        ],
+        "habit": "习惯用倒数控制节奏，夸人夸得很具体",
+        "samples": [
+          "肩胛收住，别用腰代偿——对，就是这样，漂亮",
+          "来，最后五个，我给你数：五、四……别偷懒啊",
+          "摸摸看，硬不硬?这是练出来的哦"
+        ]
+      },
+      "background": [
+        "做过两年康复训练，认得每一块肌肉的名字",
+        "工作室的镜子是她自己装的，说是为了看清学员",
+        "手机里存着三十七个学员的体测表，每个人都能背出来"
+      ],
+      "kinks": [
+        "body-worship",
+        "strength-play",
+        "sweat",
+        "instruction",
+        "mirror"
+      ],
+      "limits": [
+        "scat"
+      ],
+      "relations": {
+        "C02": "客户，也是唯一敢顶嘴的人",
+        "C03": "同行前辈，教过她起跑"
+      },
+      "imagery": {
+        "scenes": [
+          "空掉的重训区，杠铃片还挂在一侧，冷风从卷帘门缝里进来",
+          "淋浴间外的更衣长椅，水汽没散"
+        ],
+        "props": [
+          "助力带",
+          "弹力绳",
+          "镁粉"
+        ],
+        "light": [
+          "顶灯硬光",
+          "镜面反射",
+          "走廊应急灯"
+        ],
+        "sensory": [
+          "镁粉干燥",
+          "皮肤上的盐",
+          "橡胶地垫的味道"
+        ]
+      },
+      "gender": "female"
+    },
+    {
+      "id": "C06",
+      "name": "姜雪",
+      "alias": [
+        "雪姐",
+        "阿雪"
+      ],
+      "role": "腹黑学姐",
+      "age": 29,
+      "ageLock": true,
+      "occupation": "大学讲师 / 画室主理人",
+      "height": 174,
+      "body": {
+        "frame": "高挑，骨相冷，腿长得过分",
+        "bust": "中，形状极好",
+        "waist": "细，穿高腰时比例失真",
+        "hip": "平顺，走动时裙摆摆动幅度大",
+        "skin": "冷白，膝盖常年冻得发红",
+        "marks": "颈侧一颗痣"
+      },
+      "appearance": {
+        "hair": "黑长直，中分，发丝极顺",
+        "eyes": "深褐，眼形上挑，看人像在评估",
+        "face": "长脸，唇薄，涂砖红口红",
+        "tags": [
+          "mature female",
+          "29 years old",
+          "black long straight hair",
+          "center part",
+          "dark brown upturned eyes",
+          "evaluating gaze",
+          "long face",
+          "174cm",
+          "tall slender build",
+          "very long legs",
+          "medium breasts",
+          "narrow waist",
+          "smooth hips",
+          "cool pale skin",
+          "red knees from cold",
+          "mole on side of neck",
+          "long black coat",
+          "turtleneck sweater",
+          "midi skirt with slit",
+          "thin tights",
+          "ankle boots",
+          "brick red lipstick"
+        ],
+        "negative": [
+          "child",
+          "loli",
+          "short stature teen"
+        ],
+        "loraAnchors": [
+          "elegant_mature",
+          "winter_coat_style",
+          "cold_tone_portrait"
+        ],
+        "quality": [
+          "photorealistic",
+          "cold blue tones",
+          "cinematic",
+          "deep shadows"
+        ],
+        "palette": [
+          "black",
+          "brick red",
+          "ice blue"
+        ],
+        "cameraDefault": "full length, slight low angle, cold blue rim light"
+      },
+      "personality": {
+        "core": "享受把局面捏在手里，也享受偶尔被反将一军",
+        "surface": "从容、话里带刺、永远慢半拍回答",
+        "shadow": "引导别人越界之后，自己会先失眠",
+        "traits": [
+          "腹黑",
+          "耐性极好",
+          "审美苛刻",
+          "掌控节奏",
+          "嘴不留情"
+        ],
+        "attachment": "引导型，习惯让对面先开口"
+      },
+      "voice": {
+        "register": "slow-tease",
+        "firstPerson": "我",
+        "secondPerson": "你",
+        "tic": [
+          "哦?",
+          "有意思",
+          "接着说"
+        ],
+        "particles": [
+          "呢",
+          "嘛"
+        ],
+        "habit": "把问题原样抛回去，用停顿当武器",
+        "samples": [
+          "哦?你刚才那句话，再说一遍给我听",
+          "想清楚了再回答——我不喜欢听人改口",
+          "冷吗?……那就靠近一点，我又没说不许"
+        ]
+      },
+      "background": [
+        "评过三次职称，每次都差一票",
+        "画室钥匙只给过一个人，就是白棠",
+        "讲课时从不用扩音器，说后排听不见是他们的事"
+      ],
+      "kinks": [
+        "orgasm-control",
+        "instruction",
+        "tease-denial",
+        "exhibition",
+        "mind-game"
+      ],
+      "limits": [
+        "scat"
+      ],
+      "relations": {
+        "C04": "唯一给了钥匙的学生",
+        "C10": "大学同学，互看不顺眼"
+      },
+      "imagery": {
+        "scenes": [
+          "阶梯教室空场，投影还亮着，粉笔灰在光柱里飘",
+          "画室天窗下，冷光铺满木地板"
+        ],
+        "props": [
+          "粉笔",
+          "黑框眼镜",
+          "钥匙串"
+        ],
+        "light": [
+          "投影冷光",
+          "天窗散射",
+          "走廊声控灯"
+        ],
+        "sensory": [
+          "粉笔灰",
+          "冷水洗手后的指尖",
+          "大衣上的雪"
+        ]
+      },
+      "gender": "female"
+    },
+    {
+      "id": "C07",
+      "name": "阿沅",
+      "alias": [
+        "沅沅",
+        "沅姐"
+      ],
+      "role": "温婉人妻",
+      "age": 31,
+      "ageLock": true,
+      "occupation": "社区图书馆管理员",
+      "height": 163,
+      "body": {
+        "frame": "柔软有肉，抱起来刚好",
+        "bust": "饱满下垂感轻微，乳晕大",
+        "waist": "软，有小腹弧度",
+        "hip": "圆厚，坐久了会有印子",
+        "skin": "暖白，颈后晒出淡淡分界",
+        "marks": "剖腹产旧疤，淡成粉色"
+      },
+      "appearance": {
+        "hair": "栗色中长发，随手盘起，总有几缕垂下来",
+        "eyes": "褐色温柔眼，笑起来有细纹",
+        "face": "圆润，唇形饱满",
+        "tags": [
+          "mature female",
+          "31 years old",
+          "chestnut medium hair",
+          "loose messy bun",
+          "warm brown gentle eyes",
+          "smile lines",
+          "plump full lips",
+          "163cm",
+          "soft curvy build",
+          "gentle belly curve",
+          "large heavy breasts",
+          "large areola",
+          "soft waist",
+          "round thick hips",
+          "warm white skin",
+          "faded pink c-section scar",
+          "knit cardigan",
+          "floral cotton dress",
+          "apron",
+          "house slippers",
+          "hair falling over ear"
+        ],
+        "negative": [
+          "child",
+          "loli",
+          "young teen"
+        ],
+        "loraAnchors": [
+          "mature_female_v2",
+          "soft_homely_style",
+          "warm_interior_light"
+        ],
+        "quality": [
+          "photorealistic",
+          "warm interior lamp",
+          "soft focus edges",
+          "film texture"
+        ],
+        "palette": [
+          "cream",
+          "warm brown",
+          "dusty rose"
+        ],
+        "cameraDefault": "medium shot, warm lamp light, domestic interior"
+      },
+      "personality": {
+        "core": "习惯了把日子过成别人的样子，某一刻忽然想为自己要一次",
+        "surface": "柔和、语速慢、总在收拾东西",
+        "shadow": "被认真注视时会哭，因为太久没被人这样看过",
+        "traits": [
+          "温柔",
+          "隐忍",
+          "体贴入微",
+          "会做一手好菜",
+          "决定后极狠"
+        ],
+        "attachment": "付出型，需要被明确地要"
+      },
+      "voice": {
+        "register": "warm-homely",
+        "firstPerson": "我",
+        "secondPerson": "你",
+        "tic": [
+          "欸",
+          "那个…",
+          "要不"
+        ],
+        "particles": [
+          "呀",
+          "吧",
+          "呢"
+        ],
+        "habit": "先问对方吃没吃，再说正事",
+        "samples": [
+          "晚饭吃了吗?……那先坐下，我给你盛一碗",
+          "欸，别站门口呀，进来",
+          "我这样的人，你还愿意看啊"
+        ]
+      },
+      "background": [
+        "图书馆闭馆前会把所有椅子推回去，一把不落",
+        "厨房窗台养着三盆薄荷，剪下来泡水喝",
+        "抽屉里有一本没写完的日记，停在七年前"
+      ],
+      "kinks": [
+        "slow-sensual",
+        "praise",
+        "pregnancy-scar-kiss",
+        "overstimulation",
+        "domestic"
+      ],
+      "limits": [
+        "scat"
+      ],
+      "relations": {
+        "C01": "大学室友，唯一知道她全部的人",
+        "C09": "邻居，帮她修过水管"
+      },
+      "imagery": {
+        "scenes": [
+          "闭馆后的图书馆，只剩安全出口的绿光和书架的影子",
+          "厨房深夜，只开抽油烟机的小灯，围裙还没解"
+        ],
+        "props": [
+          "围裙",
+          "搪瓷杯",
+          "翻旧的借书卡"
+        ],
+        "light": [
+          "安全出口绿光",
+          "抽油烟机小灯",
+          "午后纱窗光"
+        ],
+        "sensory": [
+          "旧纸与薄荷",
+          "手上洗洁精的味道",
+          "棉布裙的柔软"
+        ]
+      },
+      "gender": "female"
+    },
+    {
+      "id": "C08",
+      "name": "夏栖",
+      "alias": [
+        "小栖",
+        "栖栖"
+      ],
+      "role": "软糯护士",
+      "age": 22,
+      "ageLock": true,
+      "occupation": "急诊科护士",
+      "height": 158,
+      "body": {
+        "frame": "小只，抱起来轻",
+        "bust": "大得与身材不成比例，护士服扣子绷得紧",
+        "waist": "细软",
+        "hip": "圆，走路时白色裤装绷出线",
+        "skin": "白里透粉，一紧张就红到脖子",
+        "marks": "耳后一颗小痣"
+      },
+      "appearance": {
+        "hair": "浅棕鲍勃头，别一枚草莓发夹",
+        "eyes": "大而圆的深棕眼，睫毛长",
+        "face": "婴儿肥，脸颊软",
+        "tags": [
+          "young adult woman",
+          "22 years old",
+          "light brown bob hair",
+          "strawberry hairpin",
+          "large round dark brown eyes",
+          "long lashes",
+          "soft chubby cheeks",
+          "158cm",
+          "small soft build",
+          "very large breasts",
+          "slim soft waist",
+          "round hips",
+          "pinkish fair skin",
+          "blushes to the neck",
+          "small mole behind ear",
+          "white nurse uniform",
+          "pink scrubs",
+          "name tag",
+          "white stockings",
+          "soft flat shoes",
+          "clipboard in arms"
+        ],
+        "negative": [
+          "child",
+          "loli",
+          "elementary schooler",
+          "underage body"
+        ],
+        "loraAnchors": [
+          "soft_gentle_girl",
+          "nurse_uniform",
+          "pastel_tone"
+        ],
+        "quality": [
+          "photorealistic",
+          "fluorescent hospital light",
+          "slight overexposure",
+          "clean look"
+        ],
+        "palette": [
+          "white",
+          "pastel pink",
+          "mint green"
+        ],
+        "cameraDefault": "medium close, eye level, bright clean background"
+      },
+      "personality": {
+        "core": "怕疼、怕黑、怕凶，但轮到她照顾人时一步不退",
+        "surface": "软、爱道歉、声音小",
+        "shadow": "被夸奖会当场宕机，之后偷偷重复那句話",
+        "traits": [
+          "胆小",
+          "共情强",
+          "手很稳",
+          "爱哭",
+          "意外地固执"
+        ],
+        "attachment": "焦虑型，需要反复确认"
+      },
+      "voice": {
+        "register": "flustered-soft",
+        "firstPerson": "我",
+        "secondPerson": "你",
+        "tic": [
+          "那个…!",
+          "对不起对不起",
+          "呜"
+        ],
+        "particles": [
+          "啦",
+          "嘛",
+          "呀"
+        ],
+        "habit": "紧张时会把一句话说两遍，改口用『不是』开头",
+        "samples": [
+          "那个…!体温计，体温计我先放在这儿了……不是，我不是催你!",
+          "你别看她，看我，看我好不好",
+          "呜……我手在抖，你别笑我嘛"
+        ]
+      },
+      "background": [
+        "实习第一天哭过，被护士长塞了颗糖",
+        "值班室柜子里藏着一整盒草莓糖",
+        "记得每个病人的床位号，和每个人的名字"
+      ],
+      "kinks": [
+        "praise",
+        "shy-tease",
+        "medical-play",
+        "hair-pulling",
+        "overstimulation"
+      ],
+      "limits": [
+        "scat"
+      ],
+      "relations": {
+        "C01": "带教老师，崇拜得不行",
+        "C03": "体检认识的朋友"
+      },
+      "imagery": {
+        "scenes": [
+          "夜班值班室，铁架床，白炽灯管嗡嗡响",
+          "治疗室，器械盘反着冷光，门半掩"
+        ],
+        "props": [
+          "体温计",
+          "草莓糖",
+          "输液架"
+        ],
+        "light": [
+          "白炽灯管",
+          "走廊应急灯",
+          "窗帘缝的晨光"
+        ],
+        "sensory": [
+          "消毒水",
+          "橡胶手套的粉",
+          "糖的甜味"
+        ]
+      },
+      "gender": "female"
+    },
+    {
+      "id": "C09",
+      "name": "罗砚",
+      "alias": [
+        "砚哥",
+        "阿砚"
+      ],
+      "role": "野性旧友",
+      "age": 27,
+      "ageLock": true,
+      "occupation": "机车修理厂老板",
+      "height": 178,
+      "body": {
+        "frame": "宽肩窄腰，手臂青筋明显",
+        "bust": "胸肌厚，说话时锁骨下阴影深",
+        "waist": "硬，八块腹肌常年可见",
+        "hip": "窄，牛仔裤挂在胯上",
+        "skin": "小麦色，前臂有烫疤",
+        "marks": "右手虎口一处机油气洗不掉的印"
+      },
+      "appearance": {
+        "hair": "黑短发，额前碎发被汗压住",
+        "eyes": "深褐细长眼，眼皮略耷，看着像没睡醒",
+        "face": "下颌线硬，下巴有短须",
+        "tags": [
+          "handsome male",
+          "27 years old",
+          "short black hair",
+          "sweat-flattened bangs",
+          "narrow dark brown eyes",
+          "heavy eyelids",
+          "sharp jawline",
+          "short stubble",
+          "178cm",
+          "broad shoulders narrow waist",
+          "thick pectorals",
+          "defined abs",
+          "prominent forearm veins",
+          "burn scar on forearm",
+          "oil-stained hands",
+          "black tank top",
+          "worn denim jeans",
+          "leather jacket",
+          "work boots",
+          "wrench in hand"
+        ],
+        "negative": [
+          "child",
+          "teen boy",
+          "smooth hairless face"
+        ],
+        "loraAnchors": [
+          "rugged_male",
+          "mechanic_style",
+          "low_key_lighting"
+        ],
+        "quality": [
+          "photorealistic",
+          "garage tungsten light",
+          "grease texture",
+          "moody contrast"
+        ],
+        "palette": [
+          "rust brown",
+          "oil black",
+          "amber lamp"
+        ],
+        "cameraDefault": "medium shot, low angle, garage background"
+      },
+      "personality": {
+        "core": "嘴上说随便，做事全按自己那套规矩来",
+        "surface": "糙、话少、爱用动作代替回答",
+        "shadow": "把人推开是他的保护方式，但也因此错过很多次",
+        "traits": [
+          "野",
+          "护短",
+          "手巧",
+          "沉默",
+          "记性好"
+        ],
+        "attachment": "回避型，靠做事表达在意"
+      },
+      "voice": {
+        "register": "gruff-short",
+        "firstPerson": "我",
+        "secondPerson": "你",
+        "tic": [
+          "嗯。",
+          "少废话",
+          "上车"
+        ],
+        "particles": [],
+        "habit": "回答最多四个字，问题用反问顶回去",
+        "samples": [
+          "上车。风大，抱紧点。",
+          "少废话，手给我。",
+          "……行。听你的。"
+        ]
+      },
+      "background": [
+        "十八岁离家，修了九年车才盘下这间厂",
+        "会在半夜给旧摩托换机油，只为了让引擎声好一点听",
+        "柜子里锁着某人当年落下的一件外套"
+      ],
+      "kinks": [
+        "rough-care",
+        "possession",
+        "biting",
+        "scent",
+        "hand-on-throat"
+      ],
+      "limits": [
+        "scat"
+      ],
+      "relations": {
+        "C07": "旧邻居，帮她修过水管",
+        "C05": "健身房的会员，被逼着练背"
+      },
+      "imagery": {
+        "scenes": [
+          "车库卷帘门半开，机油桶上搭着毛巾，灯是暖黄的钨丝",
+          "雨夜路边，机车引擎还热着，头盔挂在把手上"
+        ],
+        "props": [
+          "扳手",
+          "皮手套",
+          "打火机"
+        ],
+        "light": [
+          "钨丝灯黄",
+          "卷帘门缝天光",
+          "车灯远光"
+        ],
+        "sensory": [
+          "机油",
+          "雨水打在烫引擎上的味",
+          "皮革与烟"
+        ]
+      },
+      "gender": "male"
+    },
+    {
+      "id": "C10",
+      "name": "顾清欢",
+      "alias": [
+        "清欢",
+        "顾师姐"
+      ],
+      "role": "知性学姐",
+      "age": 24,
+      "ageLock": true,
+      "occupation": "文学院研三，兼职古籍修复",
+      "height": 166,
+      "body": {
+        "frame": "清瘦书卷气，颈线长",
+        "bust": "中，乳形偏圆",
+        "waist": "细，戴眼镜时习惯含着下巴",
+        "hip": "平顺，坐姿极正",
+        "skin": "偏白，眼下一圈常年淡青",
+        "marks": "右手腕一串旧木珠"
+      },
+      "appearance": {
+        "hair": "黑色低盘发，用木簪固定",
+        "eyes": "杏眼，隔一层细框眼镜",
+        "face": "清秀，唇色淡粉，笑不露齿",
+        "tags": [
+          "young adult woman",
+          "24 years old",
+          "black low bun hair",
+          "wooden hairpin",
+          "almond eyes",
+          "thin frame glasses",
+          "faint dark circles",
+          "166cm",
+          "slender scholarly build",
+          "long neck",
+          "medium round breasts",
+          "narrow waist",
+          "smooth hips",
+          "fair skin",
+          "wooden bead bracelet on right wrist",
+          "white shirt with rolled sleeves",
+          "long cardigan",
+          "dark long skirt",
+          "cotton socks",
+          "leather satchel",
+          "ink stain on finger"
+        ],
+        "negative": [
+          "child",
+          "loli",
+          "school uniform teen"
+        ],
+        "loraAnchors": [
+          "scholar_girl",
+          "quiet_academic_style",
+          "natural_light"
+        ],
+        "quality": [
+          "photorealistic",
+          "north window light",
+          "paper texture",
+          "low saturation"
+        ],
+        "palette": [
+          "ink black",
+          "paper white",
+          "wood brown"
+        ],
+        "cameraDefault": "medium shot, natural light, library shelf background"
+      },
+      "personality": {
+        "core": "什么都懂，唯独不敢直说想要什么",
+        "surface": "温和有礼、措辞准确、总在替人圆场",
+        "shadow": "越界前会先讲一段典故，用别人的故事给自己壮胆",
+        "traits": [
+          "博学",
+          "克制",
+          "爱考据",
+          "嘴软",
+          "酒后失守"
+        ],
+        "attachment": "慢热型，用共同兴趣替代表白"
+      },
+      "voice": {
+        "register": "literate-roundabout",
+        "firstPerson": "我",
+        "secondPerson": "你",
+        "tic": [
+          "说起来",
+          "……也是",
+          "嗯"
+        ],
+        "particles": [
+          "吧",
+          "呢"
+        ],
+        "habit": "讲道理时引一句旧书，紧张时把称呼换回全名",
+        "samples": [
+          "说起来，《诗经》里那句『既见君子』，后面还有半句……算了，不说了",
+          "你要是不方便，就当没听见",
+          "顾清欢——你叫我全名的时候，我总以为要挨骂"
+        ]
+      },
+      "background": [
+        "修过一册万历年的残本，花了七个月",
+        "习惯把想说的话写在纸上再撕掉",
+        "书架上第三排有两本故意放反的书，是给某个人留的记号"
+      ],
+      "kinks": [
+        "forced-orgasm",
+        "verbal-tease",
+        "library",
+        "edging",
+        "aftercare"
+      ],
+      "limits": [
+        "scat"
+      ],
+      "relations": {
+        "C04": "同系学妹，常借画室",
+        "C06": "大学同学，互看不顺眼"
+      },
+      "imagery": {
+        "scenes": [
+          "古籍修复室，镊子和宣纸摊在灯下，空气很干",
+          "深夜图书馆书架间，只有脚灯亮着"
+        ],
+        "props": [
+          "毛笔",
+          "木簪",
+          "旧线装书"
+        ],
+        "light": [
+          "修复台灯",
+          "书架脚灯",
+          "北窗天光"
+        ],
+        "sensory": [
+          "宣纸与糨糊",
+          "木头与樟脑",
+          "指尖有墨"
+        ]
+      },
+      "gender": "female"
+    },
+    {
+      "id": "C11",
+      "name": "江彻",
+      "alias": [
+        "江医生",
+        "阿彻"
+      ],
+      "role": "主治医师 · 冷面操心型",
+      "gender": "male",
+      "age": 30,
+      "ageLock": true,
+      "occupation": "三甲医院普外科主治医师",
+      "height": 182,
+      "body": {
+        "frame": "高瘦，肩宽腰窄，常年握手术刀的手很稳",
+        "bust": "胸肌薄而分明，锁骨下阴影深",
+        "waist": "紧实，站着时整个人笔直",
+        "hip": "窄，白大褂下面看不出轮廓",
+        "skin": "偏冷白，眼下常年一层淡青",
+        "marks": "右手食指内侧一道浅疤，缝合时留下的"
+      },
+      "appearance": {
+        "hair": "黑色短发，额前碎发被手术帽压出痕",
+        "eyes": "深褐单眼皮，看人时像在判读片子",
+        "face": "下颌线利落，唇角天生平直",
+        "tags": [
+          "handsome male",
+          "30 years old",
+          "adult man",
+          "short black hair",
+          "cap mark on forehead",
+          "dark brown monolid eyes",
+          "reading gaze",
+          "sharp jawline",
+          "flat lips",
+          "182cm",
+          "tall lean build",
+          "broad shoulders narrow waist",
+          "faint pectorals",
+          "visible forearm veins",
+          "cool pale skin",
+          "faint dark circles",
+          "small scar on right index finger",
+          "white doctor coat",
+          "scrubs",
+          "rolled up sleeves",
+          "stethoscope around neck",
+          "silver pen in chest pocket",
+          "wristwatch"
+        ],
+        "negative": [
+          "child",
+          "teen boy",
+          "boyish face",
+          "school uniform",
+          "smooth hairless face"
+        ],
+        "loraAnchors": [
+          "rugged_male",
+          "doctor_uniform",
+          "film_light_portrait"
+        ],
+        "quality": [
+          "photorealistic",
+          "cool clinical light",
+          "shallow depth of field",
+          "film grain"
+        ],
+        "palette": [
+          "clinical white",
+          "slate blue",
+          "blood red accent"
+        ],
+        "cameraDefault": "medium shot, eye level, hospital corridor"
+      },
+      "personality": {
+        "core": "把照顾别人写成医嘱，唯独不写自己的那一行",
+        "surface": "话短、表情少、手比嘴先动",
+        "shadow": "克制到近乎迟钝，破功时会一次失控到底",
+        "traits": [
+          "冷静",
+          "细致",
+          "嘴硬",
+          "耐性好",
+          "一旦决定就绝不回头"
+        ],
+        "attachment": "回避型，用做事代替表态"
+      },
+      "voice": {
+        "register": "clipped-cold",
+        "firstPerson": "我",
+        "secondPerson": "你",
+        "tic": [
+          "嗯。",
+          "别乱动。",
+          "听话"
+        ],
+        "particles": [],
+        "habit": "用陈述句下命令，不解释理由",
+        "samples": [
+          "手给我。别问为什么。",
+          "疼就说。忍着我也看得出来。",
+          "……今晚我值夜班，你别乱跑。"
+        ]
+      },
+      "background": [
+        "规培第三年在急诊连做十九个小时，之后就再也不迟到",
+        "白大褂口袋里常年两支笔，一支写病历，一支从没借出去过",
+        "家里冰箱只有矿泉水和过期的酸奶"
+      ],
+      "kinks": [
+        "medical-play",
+        "gentle-dom",
+        "delayed-gratification",
+        "praise",
+        "aftercare"
+      ],
+      "limits": [
+        "scat"
+      ],
+      "relations": {
+        "C01": "同科室同事，唯一能让他改口的人",
+        "C08": "带过的实习生"
+      },
+      "imagery": {
+        "scenes": [
+          "夜班办公室，只剩台灯与监护仪绿光，白大褂搭在椅背上",
+          "值班室铁架床，白炽灯管嗡嗡响，他坐在床沿解袖扣"
+        ],
+        "props": [
+          "听诊器",
+          "签字笔",
+          "袖扣"
+        ],
+        "light": [
+          "走廊冷白",
+          "台灯暖橙",
+          "监护仪绿光"
+        ],
+        "sensory": [
+          "消毒水",
+          "纸张与墨水",
+          "洗过很多次的棉布"
+        ]
+      }
+    },
+    {
+      "id": "C12",
+      "name": "沈聿",
+      "alias": [
+        "沈总",
+        "聿哥"
+      ],
+      "role": "商界合伙人 · 交易型",
+      "gender": "male",
+      "age": 34,
+      "ageLock": true,
+      "occupation": "投资公司合伙人",
+      "height": 185,
+      "body": {
+        "frame": "高大，肩背宽阔，站着时重心稳得像钉住",
+        "bust": "胸肌厚实，衬衫第二颗扣常年绷着",
+        "waist": "窄，皮带扣总是在最后一个孔",
+        "hip": "窄而有力，西裤线条笔直",
+        "skin": "暖白，日光下偏金",
+        "marks": "左眉尾一道细疤，灯光斜切时才看得见"
+      },
+      "appearance": {
+        "hair": "黑色短发三七分，发胶压得很服帖",
+        "eyes": "浅褐细长眼，眼皮略耷，看人时像在估价",
+        "face": "骨相硬，下巴有极短的须根",
+        "tags": [
+          "handsome male",
+          "34 years old",
+          "mature man",
+          "short black hair",
+          "side part",
+          "light brown narrow eyes",
+          "heavy eyelids",
+          "appraising gaze",
+          "sharp jawline",
+          "short stubble",
+          "thin scar on left brow",
+          "185cm",
+          "tall broad build",
+          "thick pectorals",
+          "narrow waist",
+          "warm white skin",
+          "large hands",
+          "prominent wrist veins",
+          "tailored black suit",
+          "silver cufflinks",
+          "top button open",
+          "expensive watch",
+          "cedar cologne",
+          "cigarette between fingers"
+        ],
+        "negative": [
+          "child",
+          "teen boy",
+          "slim boyish body",
+          "school uniform"
+        ],
+        "loraAnchors": [
+          "rugged_male",
+          "business_man",
+          "high_detail_face"
+        ],
+        "quality": [
+          "photorealistic",
+          "low key office light",
+          "cinematic contrast",
+          "skin texture"
+        ],
+        "palette": [
+          "charcoal",
+          "cognac brown",
+          "silver"
+        ],
+        "cameraDefault": "low angle, half body, floor to ceiling window"
+      },
+      "personality": {
+        "core": "把关系折成条件算得很清楚，算得越清楚越暴露在乎",
+        "surface": "从容、话里带钩、永远比对方慢半拍回答",
+        "shadow": "习惯用沉默当武器，遇到不接招的人会先乱",
+        "traits": [
+          "强势",
+          "耐心",
+          "嘴利",
+          "记仇",
+          "护自己人"
+        ],
+        "attachment": "领地型，先划范围再谈感情"
+      },
+      "voice": {
+        "register": "low-tease",
+        "firstPerson": "我",
+        "secondPerson": "你",
+        "tic": [
+          "是么。",
+          "接着说。",
+          "看着我"
+        ],
+        "particles": [],
+        "habit": "把问题原样抛回去，用停顿逼对方先开口",
+        "samples": [
+          "门锁上。理由我待会编给你听。",
+          "想清楚了再回答，我不喜欢听人改口。",
+          "……过来。不是让你站那儿。"
+        ]
+      },
+      "background": [
+        "三十一岁把第一家公司卖掉，代价是一段没写进合同的婚姻",
+        "办公室窗帘从不开，说是逆光看不清报表",
+        "酒量极好，只在赢的场合喝"
+      ],
+      "kinks": [
+        "power-exchange",
+        "verbal-tease",
+        "office",
+        "edging",
+        "mind-game"
+      ],
+      "limits": [
+        "humiliation"
+      ],
+      "relations": {
+        "C02": "生意场上的对手，也是唯一让他改条件的人",
+        "C05": "私人教练"
+      },
+      "imagery": {
+        "scenes": [
+          "高层办公室，落地窗逆光，百叶窗切出条纹影子",
+          "空会议室长桌尽头，只剩一盏射灯"
+        ],
+        "props": [
+          "钢笔",
+          "威士忌杯",
+          "打火机"
+        ],
+        "light": [
+          "逆光剪影",
+          "百叶窗条纹",
+          "射灯顶光"
+        ],
+        "sensory": [
+          "雪松香水",
+          "烟草与酒",
+          "羊绒大衣的干洗味"
+        ]
+      }
+    },
+    {
+      "id": "C13",
+      "name": "陆迟",
+      "alias": [
+        "陆教练",
+        "迟哥"
+      ],
+      "role": "康复教练 · 稳重型",
+      "gender": "male",
+      "age": 28,
+      "ageLock": true,
+      "occupation": "运动康复工作室主理人",
+      "height": 186,
+      "body": {
+        "frame": "宽肩倒三角，手臂线条清晰，掌心有厚茧",
+        "bust": "胸肌厚，动作时背部肌肉整片起伏",
+        "waist": "紧，八块腹肌常年可见",
+        "hip": "窄，运动裤挂在胯骨上",
+        "skin": "小麦色，肩背有训练留下的旧晒痕",
+        "marks": "左手虎口磨出的老茧，摸上去像砂纸"
+      },
+      "appearance": {
+        "hair": "黑色短发，额前碎发被汗压住",
+        "eyes": "深褐眼，眼角笑纹浅，看着很稳",
+        "face": "下巴线条硬，短须常剃得很干净",
+        "tags": [
+          "handsome male",
+          "28 years old",
+          "adult man",
+          "short black hair",
+          "sweat-flattened bangs",
+          "dark brown eyes",
+          "calm steady gaze",
+          "sharp jawline",
+          "clean shaved",
+          "186cm",
+          "broad shoulders tapered waist",
+          "thick pectorals",
+          "defined abs",
+          "thick calloused palms",
+          "forearm veins",
+          "tan skin",
+          "old tan lines on back",
+          "callus on left palm",
+          "black training tee",
+          "sports shorts",
+          "lifting belt",
+          "towel over shoulder",
+          "chalk on hands",
+          "whistle on lanyard"
+        ],
+        "negative": [
+          "child",
+          "teen boy",
+          "hairless smooth body",
+          "school uniform"
+        ],
+        "loraAnchors": [
+          "fitness_model",
+          "athletic_male",
+          "gym_practical_light"
+        ],
+        "quality": [
+          "photorealistic",
+          "gym practical lighting",
+          "sweat highlights",
+          "high contrast"
+        ],
+        "palette": [
+          "matte black",
+          "tan",
+          "neon accent"
+        ],
+        "cameraDefault": "medium full body, mirror reflection, cool gym light"
+      },
+      "personality": {
+        "core": "习惯照顾每一个人的身体，轮到自己时不知道该怎么被照顾",
+        "surface": "稳、耐心、手上有准头",
+        "shadow": "享受被依赖到上瘾，会故意把动作教得很慢",
+        "traits": [
+          "沉稳",
+          "专业",
+          "闷骚",
+          "体力怪物",
+          "护短"
+        ],
+        "attachment": "安全型偏主导，靠身体距离建立亲密"
+      },
+      "voice": {
+        "register": "steady-coach",
+        "firstPerson": "我",
+        "secondPerson": "你",
+        "tic": [
+          "来",
+          "好——",
+          "再来一次"
+        ],
+        "particles": [
+          "哦",
+          "啦"
+        ],
+        "habit": "习惯用倒数控制节奏，夸人夸得很具体",
+        "samples": [
+          "肩胛收住，别用腰代偿——对，就是这样。",
+          "来，最后五个，我给你数：五、四……别偷懒。",
+          "摸摸看，硬不硬?这是练出来的。"
+        ]
+      },
+      "background": [
+        "做过两年职业队康复，认得每一块肌肉的名字",
+        "工作室的镜子是他自己装的，说要看清楚学员的发力",
+        "手机里存着三十七个学员的体测表，每个人都能背出来"
+      ],
+      "kinks": [
+        "body-worship",
+        "strength-play",
+        "mirror",
+        "overstimulation",
+        "instruction"
+      ],
+      "limits": [
+        "scat"
+      ],
+      "relations": {
+        "C05": "同行，理念不合但互相服气",
+        "C12": "客户，唯一敢让他听话的人"
+      },
+      "imagery": {
+        "scenes": [
+          "闭店后的重训区，杠铃片还挂在一侧，冷风从卷帘门缝进来",
+          "康复床上，弹力绳挂在扶手上，地面是橡胶垫"
+        ],
+        "props": [
+          "助力带",
+          "弹力绳",
+          "镁粉"
+        ],
+        "light": [
+          "顶灯硬光",
+          "镜面反射",
+          "走廊应急灯"
+        ],
+        "sensory": [
+          "镁粉干燥",
+          "橡胶地垫",
+          "皮肤上的盐"
+        ]
+      }
+    },
+    {
+      "id": "C14",
+      "name": "谢屿",
+      "alias": [
+        "小屿",
+        "阿屿"
+      ],
+      "role": "直球学弟 · 体育生",
+      "gender": "male",
+      "age": 21,
+      "ageLock": true,
+      "occupation": "体育大学运动训练专业大四",
+      "height": 184,
+      "body": {
+        "frame": "长手长脚，肩膀还在往宽里长",
+        "bust": "胸肌薄，肋骨线条在吸气时可见",
+        "waist": "细，侧腰有刚练出来的斜线",
+        "hip": "窄，跑起来步子很大",
+        "skin": "小麦色，颈后被晒出分界",
+        "marks": "左膝一道旧擦伤，结了很久的痂"
+      },
+      "appearance": {
+        "hair": "黑色短寸，湿了会立起来",
+        "eyes": "琥珀色圆眼，情绪全写在脸上",
+        "face": "下颌还带一点少年感，笑起来露虎牙",
+        "tags": [
+          "handsome male",
+          "21 years old",
+          "young adult man",
+          "short buzz cut hair",
+          "amber round eyes",
+          "expressive face",
+          "small fang when smiling",
+          "184cm",
+          "tall lanky athletic build",
+          "faint pectorals",
+          "visible ribs when inhaling",
+          "narrow waist",
+          "long legs",
+          "tan skin",
+          "tan line at neck",
+          "old scrape on left knee",
+          "navy track jacket",
+          "sleeveless training top",
+          "loose shorts",
+          "ankle socks",
+          "running shoes",
+          "stud earring"
+        ],
+        "negative": [
+          "child",
+          "kid",
+          "elementary",
+          "toddler proportions"
+        ],
+        "loraAnchors": [
+          "athletic_male",
+          "sportswear_style",
+          "golden_hour_backlight"
+        ],
+        "quality": [
+          "photorealistic",
+          "golden hour",
+          "motion blur",
+          "sweat detail"
+        ],
+        "palette": [
+          "navy",
+          "sunset orange",
+          "tan"
+        ],
+        "cameraDefault": "dynamic three-quarter, low angle, track background"
+      },
+      "personality": {
+        "core": "想说就说，说完就脸红，然后把话兑现到底",
+        "surface": "直、热、眼睛亮，藏不住事",
+        "shadow": "怕被当成小孩，所以在关键时刻格外要强",
+        "traits": [
+          "直球",
+          "体力怪物",
+          "脸皮薄",
+          "行动快过脑子",
+          "认死理"
+        ],
+        "attachment": "贴身型，物理距离默认不超过半米"
+      },
+      "voice": {
+        "register": "earnest-fast",
+        "firstPerson": "我",
+        "secondPerson": "你",
+        "tic": [
+          "那个!",
+          "我说真的",
+          "等下"
+        ],
+        "particles": [
+          "啦",
+          "啊"
+        ],
+        "habit": "一句话里塞两件事，说完自己先不好意思",
+        "samples": [
+          "等下——我说真的，我不是那个意思!",
+          "我又不是小孩……那你别松手啊。",
+          "明天五点，你来不来?来我就等你。"
+        ]
+      },
+      "background": [
+        "省队落选过一次，之后每天五点起床",
+        "宿舍床头贴满自己写的训练计划",
+        "第一次告白是在跑道尽头，说完转身就跑了两圈"
+      ],
+      "kinks": [
+        "first-time",
+        "sweat",
+        "praise",
+        "body-worship",
+        "earnest-overdrive"
+      ],
+      "limits": [
+        "degradation"
+      ],
+      "relations": {
+        "C03": "同专业学姐，训练搭子",
+        "C05": "实习时跟过的教练"
+      },
+      "imagery": {
+        "scenes": [
+          "傍晚田径场，跑道还烫，天边橙红",
+          "训练后更衣室，风扇转得很慢"
+        ],
+        "props": [
+          "秒表",
+          "毛巾",
+          "冰镇饮料"
+        ],
+        "light": [
+          "金色逆光",
+          "更衣室顶灯",
+          "夕阳长影"
+        ],
+        "sensory": [
+          "汗味混着沐浴露",
+          "皮肤发烫",
+          "草地与橡胶"
+        ]
+      }
+    },
+    {
+      "id": "C15",
+      "name": "周叙白",
+      "alias": [
+        "叙白",
+        "小周"
+      ],
+      "role": "古籍修复师 · 木讷型",
+      "gender": "male",
+      "age": 26,
+      "ageLock": true,
+      "occupation": "图书馆古籍修复岗",
+      "height": 179,
+      "body": {
+        "frame": "清瘦，肩线薄，常年低头让颈线很好看",
+        "bust": "胸肌薄，锁骨明显",
+        "waist": "细，系围裙时腰带要绕两圈",
+        "hip": "窄，站着时习惯一条腿承重",
+        "skin": "偏白，指尖常年有墨",
+        "marks": "右手腕一串旧木珠，是师父给的"
+      },
+      "appearance": {
+        "hair": "黑色略长的短发，额前总有几缕",
+        "eyes": "深褐杏眼，隔一层细框眼镜",
+        "face": "清秀，唇薄，说话前会先抿一下嘴",
+        "tags": [
+          "handsome male",
+          "26 years old",
+          "adult man",
+          "slightly long black hair",
+          "thin frame glasses",
+          "dark brown almond eyes",
+          "soft gaze",
+          "thin lips",
+          "refined clean face",
+          "long neck",
+          "179cm",
+          "slender scholarly build",
+          "visible collarbone",
+          "narrow waist",
+          "fair skin",
+          "ink stain on fingertips",
+          "old wooden bead bracelet",
+          "white shirt rolled sleeves",
+          "linen apron",
+          "dark trousers",
+          "cloth shoes",
+          "magnifying loupe on desk"
+        ],
+        "negative": [
+          "child",
+          "teen boy",
+          "school uniform pupil",
+          "baby face child"
+        ],
+        "loraAnchors": [
+          "quiet_academic_male",
+          "natural_light_portrait",
+          "paper_texture"
+        ],
+        "quality": [
+          "photorealistic",
+          "north window light",
+          "low saturation",
+          "fine grain"
+        ],
+        "palette": [
+          "paper white",
+          "ink black",
+          "wood brown"
+        ],
+        "cameraDefault": "medium shot, natural light, desk and paper"
+      },
+      "personality": {
+        "core": "什么都懂，唯独不敢直说想要什么，但真到那一步会先动手",
+        "surface": "安静、语速慢、措辞很准",
+        "shadow": "越紧张越沉默，沉默到对方以为他不在意",
+        "traits": [
+          "木讷",
+          "专注",
+          "细心",
+          "固执",
+          "酒后失守"
+        ],
+        "attachment": "慢热型，用做事替代表白"
+      },
+      "voice": {
+        "register": "sparse-blunt",
+        "firstPerson": "我",
+        "secondPerson": "你",
+        "tic": [
+          "……",
+          "嗯。"
+        ],
+        "particles": [],
+        "habit": "一次不超过十个字，答非所问是常态",
+        "samples": [
+          "别动。就这样。",
+          "……你的手很凉。",
+          "纸不能沾水。"
+        ]
+      },
+      "background": [
+        "修过一册万历年残本，花了七个月",
+        "修复台上从不放水杯，说纸怕水",
+        "习惯把想说的话写在纸角，写完再撕掉"
+      ],
+      "kinks": [
+        "slow-sensual",
+        "marking",
+        "tension-release",
+        "aftercare",
+        "library"
+      ],
+      "limits": [
+        "scat"
+      ],
+      "relations": {
+        "C10": "师妹，修复台对面坐了两年",
+        "C04": "常来借画室钥匙的人"
+      },
+      "imagery": {
+        "scenes": [
+          "古籍修复室，宣纸摊在灯下，糨糊味道很淡",
+          "书架间过道，只有脚灯亮着，人能听见彼此的呼吸"
+        ],
+        "props": [
+          "镊子",
+          "木珠",
+          "旧线装书"
+        ],
+        "light": [
+          "修复台灯",
+          "书架脚灯",
+          "北窗天光"
+        ],
+        "sensory": [
+          "宣纸与糨糊",
+          "樟脑与木头",
+          "指尖有墨"
+        ]
+      }
+    },
+    {
+      "id": "C16",
+      "name": "裴野",
+      "alias": [
+        "野哥",
+        "阿野"
+      ],
+      "role": "消防员 · 护短型",
+      "gender": "male",
+      "age": 24,
+      "ageLock": true,
+      "occupation": "消防救援站战斗员",
+      "height": 183,
+      "body": {
+        "frame": "结实，肩背厚，站姿带着训练痕迹",
+        "bust": "胸肌厚，T 恤领口被撑开",
+        "waist": "紧，腰侧有绳索磨出的浅痕",
+        "hip": "窄，作训裤腰部挂着对讲机",
+        "skin": "小麦色，右前臂有一片浅色旧烫痕",
+        "marks": "右手掌心厚茧，握水管握出来的"
+      },
+      "appearance": {
+        "hair": "黑色平头，额角一道浅疤",
+        "eyes": "深褐狭长眼，笑起来才弯",
+        "face": "下颌方，嘴角总像憋着笑",
+        "tags": [
+          "handsome male",
+          "24 years old",
+          "adult man",
+          "buzz cut black hair",
+          "small scar on temple",
+          "dark brown narrow eyes",
+          "grin",
+          "square jawline",
+          "short stubble",
+          "183cm",
+          "muscular sturdy build",
+          "thick shoulders and back",
+          "thick pectorals",
+          "narrow waist",
+          "rope burn marks on side",
+          "tan skin",
+          "old pale burn scar on right forearm",
+          "thick palm callus",
+          "navy firefighter uniform",
+          "grey training tee",
+          "cargo pants",
+          "dog tags",
+          "radio clipped to belt",
+          "work boots"
+        ],
+        "negative": [
+          "child",
+          "teen boy",
+          "soft delicate body",
+          "school uniform"
+        ],
+        "loraAnchors": [
+          "rugged_male",
+          "uniform_style",
+          "low_key_lighting"
+        ],
+        "quality": [
+          "photorealistic",
+          "night practicals",
+          "wet skin highlight",
+          "moody contrast"
+        ],
+        "palette": [
+          "navy",
+          "amber",
+          "soot grey"
+        ],
+        "cameraDefault": "medium shot, low angle, garage or back alley"
+      },
+      "personality": {
+        "core": "冲进火场不犹豫，唯独对着一个人不敢开口",
+        "surface": "笑起来很野，动手比说话快",
+        "shadow": "把「怕失去」说成「我顺路」，说了很多年",
+        "traits": [
+          "护短",
+          "直",
+          "皮实",
+          "闷着喜欢",
+          "一逗就红耳根"
+        ],
+        "attachment": "守护型，用出现代替表白"
+      },
+      "voice": {
+        "register": "gruff-short",
+        "firstPerson": "我",
+        "secondPerson": "你",
+        "tic": [
+          "顺路。",
+          "少废话",
+          "上车"
+        ],
+        "particles": [],
+        "habit": "回答不超过四个字，理由一律是「顺路」",
+        "samples": [
+          "顺路。上来。",
+          "少废话，手给我。",
+          "……别一个人走夜路。"
+        ]
+      },
+      "background": [
+        "十九岁入伍，第一次进火场出来吐了半小时",
+        "队里最会煮面的人，值班夜总多煮一份",
+        "手机相册里存着同一个人的三十七张背影"
+      ],
+      "kinks": [
+        "possessive-rescue",
+        "scent",
+        "biting",
+        "rough-care",
+        "aftercare"
+      ],
+      "limits": [
+        "scat"
+      ],
+      "relations": {
+        "C08": "救过一次的人，之后再没敢联系",
+        "C09": "摩托车友"
+      },
+      "imagery": {
+        "scenes": [
+          "消防站后院，作训服晾在绳上，灯是暖黄的钨丝",
+          "雨夜便利店门口，他靠在车门上等人"
+        ],
+        "props": [
+          "对讲机",
+          "毛巾",
+          "保温杯"
+        ],
+        "light": [
+          "钨丝灯黄",
+          "车库顶灯",
+          "雨夜车灯"
+        ],
+        "sensory": [
+          "肥皂与烟",
+          "湿制服的味道",
+          "掌心粗糙"
+        ]
+      }
+    }
+  ]
+}

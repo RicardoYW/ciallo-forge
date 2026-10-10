@@ -1,0 +1,133 @@
+{
+  "schema": "ciallo-forge/config@1",
+  "project": {
+    "name": "ciallo-forge",
+    "zh": "夜织",
+    "version": "1.0.0",
+    "policy": "全员 18+；age 缺失或 <18 一律拒绝进入文本与绘图引擎"
+  },
+  "generation": {
+    "defaultHeat": 4,
+    "defaultWords": 1200,
+    "defaultPacing": "slow",
+    "minWords": 200,
+    "maxWords": 8000,
+    "paragraphJoin": "\n\n",
+    "dialoguePrefix": ""
+  },
+  "pacing": {
+    "slow": {
+      "label": "慢燃",
+      "proseRatio": 0.5,
+      "expand": 1.45,
+      "note": "铺垫长，破口短"
+    },
+    "balanced": {
+      "label": "均速",
+      "proseRatio": 0.4,
+      "expand": 1
+    },
+    "fast": {
+      "label": "快进",
+      "proseRatio": 0.25,
+      "expand": 0.7,
+      "note": "直给，少铺垫"
+    },
+    "pwp": {
+      "label": "直入",
+      "proseRatio": 0.15,
+      "expand": 0.5,
+      "note": "跳过第一幕的铺垫"
+    }
+  },
+  "prompt": {
+    "defaultTarget": "sdxl",
+    "defaultRating": "explicit",
+    "width": 832,
+    "height": 1216,
+    "hires": {
+      "enabled": true,
+      "scale": 1.5,
+      "denoise": 0.45,
+      "upscaler": "4x-UltraSharp"
+    },
+    "checkpoint": "auto",
+    "comfyBatch": 4,
+    "targets": [
+      "sdxl",
+      "novelai",
+      "midjourney",
+      "comfyui",
+      "generic"
+    ]
+  },
+  "safety": {
+    "ageLock": 18,
+    "requireAgeLock": true,
+    "minorCodeWords": [
+      "child",
+      "children",
+      "kid",
+      "kids",
+      "loli",
+      "lolicon",
+      "shota",
+      "toddler",
+      "infant",
+      "baby",
+      "elementary",
+      "primary school",
+      "kindergarten",
+      "middle school",
+      "high school",
+      "schoolgirl",
+      "schoolboy",
+      "学生服",
+      "小学生",
+      "中学生",
+      "高中生",
+      "初中",
+      "小学",
+      "幼儿园",
+      "未成年",
+      "萝莉",
+      "幼女",
+      "幼态",
+      "14岁",
+      "15岁",
+      "16岁",
+      "17岁",
+      "13岁",
+      "12岁",
+      "11岁",
+      "10岁",
+      "underage",
+      "minor",
+      "teen",
+      "teenager",
+      "petite teen",
+      "flat chest child"
+    ],
+    "adultCodeWords": [
+      "adult",
+      "mature female",
+      "mature male",
+      "18 years old",
+      "20 years old",
+      "21 years old",
+      "22 years old",
+      "23 years old",
+      "24 years old",
+      "25 years old",
+      "26 years old",
+      "27 years old",
+      "29 years old",
+      "31 years old",
+      "33 years old",
+      "young adult woman",
+      "成年",
+      "18+"
+    ],
+    "note": "ageLock 优先于造型词：成年角色 + 娇小/白发/幼态妆 = 造型选择，不算 minor-coded；只有年龄字段为未成年或年龄缺失且幼态体型词占主导时才拦。"
+  }
+}

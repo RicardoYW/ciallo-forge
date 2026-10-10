@@ -1,0 +1,1251 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>夜织 CialloForge · 说明书</title>
+<style>
+  :root{--bg:#0e0d12;--panel:#17161d;--line:#2c2937;--txt:#e8e4f0;--dim:#9b93ad;--accent:#c9a6ff}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--txt);font:15.5px/1.85 "Noto Sans SC","Microsoft YaHei",system-ui,sans-serif}
+  header{padding:30px 26px 20px;border-bottom:1px solid var(--line);background:radial-gradient(800px 280px at 15% -20%,#2a1f3d,transparent 70%)}
+  h1{margin:0;font-size:24px;letter-spacing:.05em}
+  header p{margin:8px 0 0;color:var(--dim);font-size:13.5px}
+  nav{padding:12px 26px;border-bottom:1px solid var(--line);display:flex;gap:10px;flex-wrap:wrap;font-size:13px;position:sticky;top:0;background:rgba(14,13,18,.95);backdrop-filter:blur(8px);z-index:5}
+  nav a{color:var(--dim);text-decoration:none;padding:5px 12px;border:1px solid var(--line);border-radius:20px}
+  nav a:hover{color:var(--accent);border-color:var(--accent)}
+  main{max-width:1000px;margin:0 auto;padding:8px 26px 60px}
+  section{padding:26px 0;border-bottom:1px solid var(--line)}
+  h2{font-size:20px;margin:0 0 14px;color:var(--accent);letter-spacing:.04em}
+  h3{font-size:16.5px;margin:26px 0 10px;color:#dcd3f0}
+  h4,h5,h6{font-size:15px;margin:20px 0 8px;color:#c8bfe0}
+  p{margin:0 0 12px}
+  a{color:var(--accent)}
+  code{background:#12111a;border:1px solid var(--line);padding:1px 5px;border-radius:4px;font-size:13px;font-family:ui-monospace,Consolas,monospace;color:#c9a6ff}
+  pre{background:#12111a;border:1px solid var(--line);border-radius:8px;padding:14px;overflow:auto;font-size:12.5px;line-height:1.7;font-family:ui-monospace,Consolas,monospace;color:#b9b1cd}
+  pre code{background:none;border:none;padding:0;color:inherit}
+  ul{margin:0 0 12px;padding-left:22px}
+  li{margin:4px 0}
+  ul.num{list-style:decimal}
+  blockquote{margin:0 0 12px;padding:8px 14px;border-left:3px solid #3b3350;color:#bfb3d8;background:#141320;border-radius:0 6px 6px 0}
+  table{border-collapse:collapse;width:100%;margin:8px 0 16px;font-size:13.5px}
+  th,td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top}
+  th{background:#1b1a22;color:#cfc6e6;font-weight:600}
+  hr{border:none;border-top:1px solid var(--line);margin:22px 0}
+  .top{position:fixed;right:20px;bottom:20px;background:#1b1a22;border:1px solid var(--line);color:var(--dim);border-radius:50%;width:42px;height:42px;display:grid;place-items:center;text-decoration:none;font-size:18px}
+  .top:hover{color:var(--accent);border-color:var(--accent)}
+  footer{padding:22px 26px;text-align:center;color:var(--dim);font-size:12.5px;border-top:1px solid var(--line)}
+</style>
+</head>
+<body>
+<header>
+  <h1>夜织 CialloForge · 说明书</h1>
+  <p>成人虚构文本 + 绘图提示词双引擎 · 全员成年锁 18+ · 本地离线 · 零依赖 · 生成时间 2026/10/10 00:54:10</p>
+</header>
+<nav>
+<a href="#readme-md">项目说明 README</a>
+<a href="#readme-en-md">English Overview</a>
+<a href="#-----md">使用指南</a>
+<a href="#-----md">开发手记（真 bug + 已知限制）</a>
+<a href="#------md">场景 × 卡司配对表（男女向）</a>
+<a href="#out-run-report-md">运行报告（体检实证）</a>
+</nav>
+<main>
+<section id="readme-md">
+<h2>项目说明 README <span style="font-size:12.5px;color:#6f6880">README.md</span></h2>
+<h2>夜织 · CialloForge</h2>
+<blockquote>成人虚构文本 + 绘图提示词双引擎 · 16 张原创成年角色卡（♂7 / ♀9）· <b>默认男女向配对</b> · 年龄锁 18+ · 纯 Node 零依赖 · 全本地离线</blockquote>
+<p>一个把「角色卡 → 分幕 beat → 正文」和「角色卡 × 场景 → SD/NovelAI/MJ/ComfyUI 提示词」</p>
+<p>两条流水线打通的生成工厂。所有随机都由 seed 驱动，同 seed 逐字节复现；所有角色卡</p>
+<p>必须显式声明 <code>age &gt;= 18</code> 且 <code>ageLock: true</code>，否则校验器与引擎同时拒收。</p>
+<p>16 个场景每个都带 <code>autoCast</code>（A 主导方 / B 对方）与 <code>leadGender</code>，不带参数直接跑就是男女向；</p>
+<p>想换成同性或调换主次，见 <a href="场景配对表.md" target="_blank" rel="noopener">场景配对表.md</a>。</p>
+<hr>
+<h3>项目简介</h3>
+<p><b>夜织 CialloForge</b> 是一个面向成人向创作的本地生成工具，把两条流水线打通：</p>
+<ul>
+<li><b>文本</b>：角色卡 → 分幕 beat → 热度分级词库 → 声线改写 → 成稿（Markdown，含角色卡与配图提示词附录）</li>
+<li><b>绘图提示词</b>：角色 × 场景 × 六种目标格式（SDXL / Pony / NovelAI / Midjourney / ComfyUI / 通用包）</li>
+</ul>
+<p><b>四条设计原则</b></p>
+<ul class="num">
+<li><b>全员成年锁 18+</b> —— 角色卡必须显式声明 <code>age &gt;= 18</code> 且 <code>ageLock: true</code>，</li>
+</ul>
+<p>   卡层 / 引擎层 / 文本层三道闸拦截；提示词负向固定包含幼态排除词。</p>
+<p>   规则是「ageLock 优先于造型词」：成年角色写娇小、白发、幼态妆属于造型选择，放行；</p>
+<p>   只有年龄字段未成年、或年龄缺失且幼态体型词占主导时才拒收。</p>
+<ul class="num">
+<li><b>零依赖全离线</b> —— 只用 Node 内置模块（<code>http</code> / <code>fs</code> / <code>child_process</code>），</li>
+</ul>
+<p>   无任何网络请求，<code>node_modules</code> 不存在也能跑，断网可用。</p>
+<ul class="num">
+<li><b>可复现</b> —— 同一输入（场景 / 卡司 / 热度 / 节奏 / 种子）逐字节一致，</li>
+</ul>
+<p>   这也是它能写回归测试的前提。</p>
+<ul class="num">
+<li><b>界面与命令行同源</b> —— 后端端点直接调用引擎，不复制任何生成逻辑，</li>
+</ul>
+<p>   所以图形界面与 CLI 的输出必然一致（自检里有一条专门验证：同一输入 3753 字符完全相同）。</p>
+<p><b>规模</b></p>
+<table><thead><tr><th>项</th><th>数量</th></tr></thead><tbody>
+<tr><td>原创成年角色卡</td><td>16 张（♂7 / ♀9，19-34 岁）</td></tr>
+<tr><td>场景 / beat</td><td>16 个 / 148 个</td></tr>
+<tr><td>声线寄存器</td><td>14 种改写管线</td></tr>
+<tr><td>绘图标签</td><td>354 条</td></tr>
+<tr><td>散文池</td><td>8 族 × 5 档热度</td></tr>
+<tr><td>本地 HTTP 端点</td><td>19 条（另有流式生成、文件读取等 3 条特殊分支）</td></tr>
+</tbody></table>
+<p><b>交付形态</b></p>
+<ul>
+<li>双击 <code>启动界面.bat</code> → 图形界面（七个页签：创作 / 角色 / 场景 / 提示词 / 画廊 / 校验 / 设置）</li>
+<li>双击 <code>启动.bat</code> → 中文命令行菜单</li>
+<li>直接命令行调用 → 批量生成、导出、接入脚本</li>
+</ul>
+<p><b>验证</b>：51 项测试 + 23 项内容自检 + 32 项界面接口自检 + 7 项真浏览器渲染校验，四层全绿；</p>
+<p>明细见 <a href="out/RUN-REPORT.md" target="_blank" rel="noopener">out/RUN-REPORT.md</a>、<a href="out/UI-CHECK.md" target="_blank" rel="noopener">out/UI-CHECK.md</a>、<a href="out/UI-RENDER.md" target="_blank" rel="noopener">out/UI-RENDER.md</a>。</p>
+<p>开发过程中的 12 个真 bug 与已知限制记录在 <a href="开发手记.md" target="_blank" rel="noopener">开发手记.md</a>。</p>
+<blockquote>English introduction: <a href="README.en.md" target="_blank" rel="noopener">README.en.md</a></blockquote>
+<hr>
+<pre>ciallo-forge/
+├── 启动界面.bat              ← 双击这个：图形界面（推荐）
+├── 启动.bat                  ← 双击这个：全中文命令行菜单
+├── bin/
+│   ├── ciallo.js             CLI 入口
+│   └── gui.js                界面启动入口（起服务 + 开窗口）
+├── src/
+│   ├── engine/
+│   │   ├── datastore.js      数据访问 + 结构校验 + 统计
+│   │   ├── tokens.js         {A}/{body}/{prop} 分级 token 解析器
+│   │   ├── prompt.js         绘图提示词编译器（6 种目标格式）
+│   │   ├── story.js          分幕叙事引擎（beat 规划 + 字数控制）
+│   │   ├── voice.js          声线寄存器改写管线
+│   │   └── validate.js       年龄锁把关 + 文本扫描 + 提示词合规
+│   ├── server/               界面后端（node:http，零依赖）
+│   │   ├── server.js         服务与请求体解析
+│   │   ├── routes.js         路由表 + NDJSON 流式生成
+│   │   ├── api.js            端点实现（直接调 engine，不复制逻辑）
+│   │   └── static.js         静态资源 + 路径穿越防护
+│   ├── web/                  界面前端（原生 HTML/CSS/JS，无框架无 CDN）
+│   │   ├── index.html        七页签外壳
+│   │   ├── app.css           暗紫主题 · 响应式
+│   │   └── app.js            状态 / 渲染 / 流式接收 / 快捷键
+│   └── util/                 Rng（splitmix32）· text · io
+├── data/
+│   ├── characters.json       16 张成年角色卡（♂7 / ♀9）
+│   ├── scenes.json           16 个场景 / 148 个 beat（含 autoCast 配对）
+│   ├── prose.json            8 族散文池 · 5 档热度词库 + 中性声线侧写
+│   ├── voice-registers.json  14 种声线改写管线
+│   └── config.json           默认参数 + 安全词表
+├── test/                     51 项测试（引擎 37 + CLI 8 + 前端 6）
+├── scripts/
+│   ├── verify.js             内容自检（23 项）→ out/RUN-REPORT.md
+│   ├── check-ui.js           界面/接口自检（32 项）→ out/UI-CHECK.md
+│   ├── check-render.js       真浏览器渲染校验（7 项）→ out/UI-RENDER.md
+│   ├── shoot-ui.js           无头截图（CDP，改界面后重拍图片）
+│   ├── open-app.js           Edge/Chrome --app 窗口启动器
+│   ├── build-gallery.js      成果画廊 → out/showcase.html
+│   ├── build-docs-html.js    说明书 HTML → out/指南.html
+│   ├── check-html.js         HTML 结构自检
+│   ├── normalize-eol.js      行尾规范化（bat 用 CRLF）
+│   ├── smoke.js              快速冒烟
+│   └── _migrations/          数据迁移与治理工具（幂等，可选）
+├── 使用指南.md
+├── 场景配对表.md             16 场景 × 卡司配对表 + 换配方法
+├── 开发手记.md               真 bug 的成因与修法 + 已知限制
+├── README.en.md              English introduction / overview
+└── out/                      产物（画廊 / 说明书 / 导出包 / 报告）</pre>
+<hr>
+<h3>怎么打开它（Windows 双击党）</h3>
+<p><b>方式零：桌面版 exe</b> ← 最省事，对方什么都不用装</p>
+<table><thead><tr><th>文件</th><th>说明</th></tr></thead><tbody>
+<tr><td><code>dist\CialloForge-Setup-1.0.0.exe</code></td><td>安装包（约 107 MB）：可选安装目录、建桌面与开始菜单快捷方式、可在控制面板卸载</td></tr>
+<tr><td><code>dist\CialloForge-Portable-1.0.0.exe</code></td><td>便携版（约 106 MB）：双击即用，不写注册表</td></tr>
+<tr><td><code>dist\win-unpacked\夜织CialloForge.exe</code></td><td>免安装目录版（调试/自用）</td></tr>
+</tbody></table>
+<p>自己打一份：双击 <code>打包桌面版.bat</code>（有快速/完整/只出便携版/验证四档），</p>
+<p>或者命令行 <code>npm run dist</code>。图标重生成：<code>python scripts/make-icon.py</code>。</p>
+<blockquote>⚠️ 未做代码签名。别人第一次运行会看到 <b>Windows SmartScreen「已保护你的电脑」</b>提示，</blockquote>
+<blockquote>需要点「更多信息 → 仍要运行」。想消掉这个提示得买代码签名证书（一年几百到上千元）。</blockquote>
+<blockquote>另外部分杀软对未签名的 Electron 打包程序会误报，可加白名单解决。</blockquote>
+<p><b>方式一：双击 <code>启动界面.bat</code></b> ← 图形界面（需要对方装 Node 18+）</p>
+<p>弹出一个<b>独立窗口</b>（Edge 应用模式，无地址栏无标签页，看起来就是个桌面软件），</p>
+<p>七个页签：创作 / 角色 / 场景 / 提示词 / 画廊 / 校验 / 设置。关窗即停服务，零依赖不联网。</p>
+<p><b>方式二：双击 <code>启动.bat</code></b> —— 全中文命令行菜单</p>
+<pre>[U] 打开图形界面（推荐）      [5] 生成一篇正文（命令行交互版）
+[1] 看数据规模               [6] 编译绘图提示词
+[2] 看角色卡（16 张）         [7] 导出全套（16 卡 + 1536 提示词 + 16 篇样例）
+[3] 看场景库（16 场景）       [8] 跑测试（51 项）
+[4] 校验年龄锁               [9] 跑全量自检（23 项）   [C] 跑界面自检（32 项）
+[G] 打开成果画廊  [H] 打开说明书  [O] 打开成果文件夹  [0] 退出</pre>
+<p><b>方式二：直接看成果（不用跑任何命令）</b></p>
+<table><thead><tr><th>双击这个</th><th>看到什么</th></tr></thead><tbody>
+<tr><td><a href="out/showcase.html" target="_blank" rel="noopener">out/showcase.html</a></td><td><b>成果画廊</b>：16 篇样章全文预览 + 热度筛选 + 搜索 + 每篇的 SDXL 配图提示词</td></tr>
+<tr><td><a href="out/指南.html" target="_blank" rel="noopener">out/指南.html</a></td><td>README + 使用指南 + 开发手记 + 运行报告，排版好的网页版</td></tr>
+<tr><td><a href="out/export/INDEX.md" target="_blank" rel="noopener">out/export/INDEX.md</a></td><td>导出包索引（10 卡 / 960 提示词 / 16 篇故事）</td></tr>
+<tr><td><a href="out/gallery" target="_blank" rel="noopener">out/gallery</a></td><td>16 篇样章的 Markdown 原文</td></tr>
+<tr><td><a href="out/RUN-REPORT.md" target="_blank" rel="noopener">out/RUN-REPORT.md</a></td><td>23 项体检实证报告</td></tr>
+</tbody></table>
+<p>画廊或说明书删了也能重建：</p>
+<pre>node scripts/build-gallery.js      # 重建 out/showcase.html
+node scripts/build-docs-html.js    # 重建 out/指南.html</pre>
+<p><b>方式三：命令行（想批量或嵌进脚本时）</b></p>
+<pre>cd ciallo-forge
+node bin/gui.js --no-open                     # 只起界面服务，手动用浏览器开
+node bin/ciallo.js stats
+node bin/ciallo.js story --scene S12 --cast C15,C04 --heat 4 --words 2000 --out out/试读.md
+node bin/ciallo.js prompt --char C12 --scene S11 --target all --heat 5 --out out/p12.json</pre>
+<hr>
+<h3>图形界面</h3>
+<p>界面是<b>本地 Web UI</b>：Node 内置 http 起服务（只绑 <code>127.0.0.1</code>），前端原生 HTML/CSS/JS，</p>
+<p>无框架、无构建步骤、无 CDN 请求。Edge 的 <code>--app=</code> 模式把它包成独立窗口；</p>
+<p>机器上没 Edge/Chrome 时自动回退系统默认浏览器。</p>
+<table><thead><tr><th>页签</th><th>能干什么</th></tr></thead><tbody>
+<tr><td><b>创作</b></td><td>左：卡池（♂♀ 筛选、搜索、点选 A/B 位）；中：场景 + 主导方/对方 + 热度滑杆 + 节奏/字数/种子 + 快捷键；右：<b>流式</b>刷出的正文预览（逐段出现，带字数与耗时）</td></tr>
+<tr><td><b>角色</b></td><td>16 张卡：定位/表层/阴影、台词种子、癖好、绘图标签；一键「用它创作」/「配图提示词」/「复制绘图标签」</td></tr>
+<tr><td><b>场景</b></td><td>每个场景可就地换配对并「存为默认」（写回 <code>data/scenes.json</code> 的 autoCast），同性组合会被拦</td></tr>
+<tr><td><b>提示词</b></td><td>单条或全矩阵编译，六种目标格式，逐条校验状态，复制正向/负向/MJ 命令/NAI payload/ComfyUI workflow，导出 json+md+csv</td></tr>
+<tr><td><b>画廊</b></td><td>浏览 out/gallery 的样章，搜索 + 全文阅读</td></tr>
+<tr><td><b>校验</b></td><td>一键跑年龄锁三道闸 + 门禁演练 + 结构校验，逐项着色</td></tr>
+<tr><td><b>设置</b></td><td>默认热度/字数/节奏、运行信息、重建导出包、重载数据文件</td></tr>
+</tbody></table>
+<p>快捷键：<code>Ctrl+Enter</code> 生成 · <code>Ctrl+S</code> 存盘 · <code>Esc</code> 停止/关弹层 · <code>/</code> 聚焦搜索。</p>
+<p><b>API 一览</b>（界面与 CLI 共用同一套引擎，结果逐字节一致）：</p>
+<table><thead><tr><th>方法</th><th>路径</th><th>说明</th></tr></thead><tbody>
+<tr><td>GET</td><td><code>/api/health</code> <code>/api/stats</code> <code>/api/characters</code> <code>/api/scenes</code> <code>/api/kinks</code> <code>/api/prose</code></td><td>数据与统计</td></tr>
+<tr><td>GET</td><td><code>/api/validate</code> <code>/api/gallery</code> <code>/api/out</code> <code>/api/file?p=</code></td><td>校验 / 样章 / 产物 / 读文件（防越界）</td></tr>
+<tr><td>POST</td><td><code>/api/story</code> <code>/api/story/plan</code> <code>/api/story/stream</code> <code>/api/story/save</code></td><td>生成 / 预演 / <b>流式生成</b> / 存盘</td></tr>
+<tr><td>POST</td><td><code>/api/prompt</code> <code>/api/prompt/export</code></td><td>编译 / 导出提示词</td></tr>
+<tr><td>POST</td><td><code>/api/scene/pairing</code> <code>/api/settings</code> <code>/api/export</code></td><td>改默认配对 / 设置 / 重建导出包</td></tr>
+</tbody></table>
+<p>自检：<code>node scripts/check-ui.js</code>（32 项，起真服务打真接口）、</p>
+<p><code>node scripts/check-render.js</code>（7 项，无头浏览器渲染后校验 DOM 里真有数据）、</p>
+<p><code>node --test test/web.test.js</code>（6 项，假 DOM 里真跑 app.js）。</p>
+<p>界面截图（<code>node scripts/shoot-ui.js</code> 自动生成）：<a href="out/screenshots/界面-创作页.png" target="_blank" rel="noopener">创作页</a> ·</p>
+<p><a href="out/screenshots/界面-已生成.png" target="_blank" rel="noopener">已生成</a> · <a href="out/screenshots/界面-角色页.png" target="_blank" rel="noopener">角色页</a> ·</p>
+<p><a href="out/screenshots/界面-场景页.png" target="_blank" rel="noopener">场景页</a> · <a href="out/screenshots/界面-提示词页.png" target="_blank" rel="noopener">提示词页</a> ·</p>
+<p><a href="out/screenshots/界面-校验页.png" target="_blank" rel="noopener">校验页</a></p>
+<hr>
+<h3>桌面版（Electron）</h3>
+<p>同一个界面可以打成 Windows 桌面程序，对方<b>不需要装 Node</b>：双击 exe 就开窗口。</p>
+<p><b>技术形态</b>：Electron 主进程起本地 http 服务（随机端口，只绑 <code>127.0.0.1</code>），</p>
+<p><code>BrowserWindow</code> 载入该地址。用 http 而不是 <code>file://</code>，是为了让前端的 <code>fetch(&#39;/api/...&#39;)</code></p>
+<p>与流式生成原样可用 —— 界面代码一行没改。</p>
+<p><b>数据放在哪</b>（这是打包最容易踩的坑：程序目录通常只读）</p>
+<table><thead><tr><th>运行形态</th><th>数据目录</th><th>产物目录</th></tr></thead><tbody>
+<tr><td>桌面版（Electron）</td><td><code>%APPDATA%\ciallo-forge\data</code></td><td><code>%APPDATA%\ciallo-forge\out</code></td></tr>
+<tr><td>开发 / 命令行</td><td>项目内 <code>data/</code></td><td>项目内 <code>out/</code></td></tr>
+<tr><td>便携模式（exe 旁放 <code>portable.marker</code>）</td><td>exe 同级 <code>data/</code></td><td>exe 同级 <code>out/</code></td></tr>
+</tbody></table>
+<p>首次运行会把内置的 5 个 JSON（角色卡/场景/词库/声线/配置）释放到数据目录；</p>
+<p>升级或重装程序不会覆盖用户数据，卸载时也保留（<code>deleteAppDataOnUninstall: false</code>）。</p>
+<p><b>原生能力</b>：菜单栏（打开数据目录 / 产物目录 / 缩放 / 全屏 / 帮助文档）、</p>
+<p>系统剪贴板（<code>Ctrl+C</code> 复制提示词走原生通道）、单实例锁（再点一次聚焦已有窗口）、</p>
+<p>外链交给系统浏览器、窗口图标。</p>
+<p><b>验证</b>：<code>node scripts/check-desktop.js</code>（15 项）会真的启动打包后的 exe，</p>
+<p>读它的自检 JSON，断言窗口开起来、界面拿到 16 卡、桌面标识点亮、数据目录落在用户目录、</p>
+<p>内置数据已释放、图标已加载、产物目录可写。报告 → <a href="out/DESKTOP-CHECK.md" target="_blank" rel="noopener">out/DESKTOP-CHECK.md</a>。</p>
+<p><b>已知限制</b>：桌面版目前<b>不暴露命令行入口</b>（asar 里带了 <code>bin/ciallo.js</code>，但没做控制台 shim）——</p>
+<p>需要批量生成请在开发机用 CLI。打包体积约 107 MB（Electron + Chromium 就是这个量级）。</p>
+<hr>
+<h3>快速开始</h3>
+<pre>cd ciallo-forge
+
+node bin/gui.js                              # 图形界面（推荐）
+node bin/ciallo.js stats                     # 看规模
+node bin/ciallo.js chars --verbose           # 看卡池
+node bin/ciallo.js scenes                    # 看场景库
+node bin/ciallo.js validate --gate           # 年龄锁校验 + 门禁演练
+
+# 出正文（写到文件）
+node bin/ciallo.js story --scene S05 --lead male --heat 5 --words 2000 --pacing fast --out out/gym.md
+
+# 出绘图提示词
+node bin/ciallo.js prompt --char C12 --scene S11 --target all --heat 5 --out out/p12.json
+
+# 一键导出全套
+node bin/ciallo.js export --out out/export
+
+# 自检（四层）
+node --test test/engine.test.js test/cli.test.js test/web.test.js
+node scripts/verify.js
+node scripts/check-ui.js
+node scripts/check-render.js</pre>
+<hr>
+<h3>两条流水线</h3>
+<h4>一、文本流水线</h4>
+<pre>场景(scene) ─→ 幕(act) ─→ beat(type + 模板) ─→ token 解析 ─→ 声线改写 ─→ Markdown
+                                  ↑
+                          角色卡(cast) / 热度(heat) / 节奏(pacing) / seed</pre>
+<ul>
+<li><b>beat 类型</b>：<code>sensory</code> 感官 / <code>action</code> 动作 / <code>pressure</code> 施压 / <code>climax</code> 高潮 /</li>
+</ul>
+<p>  <code>release</code> 释放 / <code>afterglow</code> 余韵 / <code>interior</code> 内心 / <code>dialogue</code> 台词</p>
+<ul>
+<li><b>热度 1-5</b>：1 克制 → 3 缠绵（身体描写，无器官名词）→ 5 露骨（全词库开放）。</li>
+</ul>
+<p>  池子里每条词带 <code>min</code> 字段，低于该热度不会被选中；无候选时只放宽到该池最低档，</p>
+<p>  <b>绝不回退到全池</b>（这条是早期 bug 的教训）</p>
+<ul>
+<li><b>节奏档</b>：<code>slow</code> 慢燃 / <code>balanced</code> 均速 / <code>fast</code> 快进 / <code>pwp</code> 直入，</li>
+</ul>
+<p>  用 word 数倍率 + 铺垫 beat 跳过率控制</p>
+<ul>
+<li><b>字数控制</b>：目标字数 × 节奏倍率，不足时循环补 <code>pressure/action/climax/afterglow/sensory</code></li>
+<li><b>声线</b>：台词种子经过寄存器管线改写 —— <code>truncate</code> 压短 / <code>stutter</code> 结巴 /</li>
+</ul>
+<p>  <code>particle</code> 助词 / <code>echo</code> 口气词前插 / <code>breath</code> 停顿符 / <code>terminal</code> 收束。</p>
+<p>  同一句「你要是疼就说，别忍着」在 10 个角色口中是 10 种写法</p>
+<h4>二、提示词流水线</h4>
+<pre>角色卡(appearance.tags + body + negative + loraAnchors)
+   × 场景(tags + camera) × 姿势(heat × kinkFamily) × 评级(safe/suggestive/nsfw/explicit)
+   → SDXL / Pony / NovelAI / Midjourney / ComfyUI / 通用包</pre>
+<p>输出内容：正向前缀（评级）→ 质量词 → 年龄锚点 → 造型标签 → 身体细节 → 场景 →</p>
+<p>姿势 → 双人标记 → 自定义 → LoRA 权重；负向固定含基础瑕疵词 + 幼态排除词 + 角色专属负向。</p>
+<hr>
+<h3>命令参考</h3>
+<table><thead><tr><th>命令</th><th>关键参数</th><th>说明</th></tr></thead><tbody>
+<tr><td><code>chars</code></td><td><code>--verbose</code></td><td>列卡池，逐卡校验状态</td></tr>
+<tr><td><code>scenes</code></td><td><code>--verbose</code></td><td>列场景库，含幕结构与卡司提示</td></tr>
+<tr><td><code>prompt</code></td><td>`--char C01\</td><td>all<code>、</code>--scene S01<code>、</code>--target sdxl\</td><td>pony\</td><td>novelai\</td><td>midjourney\</td><td>comfyui\</td><td>generic\</td><td>all<code>、</code>--heat 1-5<code>、</code>--rating<code>、</code>--extra &quot;a;b&quot;<code>、</code>--out`</td><td>编译提示词；<code>--out</code> 同时写 json + md</td></tr>
+<tr><td><code>story</code></td><td><code>--scene S01,S02</code>、<code>--cast C01,C08</code>、<code>--heat</code>、<code>--words</code>、<code>--pacing</code>、<code>--seed 7,8</code>、<code>--out</code>、<code>--print</code></td><td>单篇写文件；多篇写目录 + INDEX.md</td></tr>
+<tr><td><code>validate</code></td><td><code>--gate</code>、<code>--json out/r.json</code></td><td>年龄锁 + 结构校验；<code>--gate</code> 附门禁演练</td></tr>
+<tr><td><code>export</code></td><td><code>--out out/export</code>、<code>--char</code>、<code>--heat</code></td><td>卡 + 提示词(json/md/csv) + 16 篇样例故事 + INDEX</td></tr>
+<tr><td><code>stats</code></td><td>—</td><td>规模统计</td></tr>
+<tr><td><code>help</code></td><td>—</td><td>帮助</td></tr>
+</tbody></table>
+<hr>
+<h3>年龄锁机制（三道闸）</h3>
+<ul class="num">
+<li><b>卡层</b>：<code>age</code> 必须是数字且 <code>&gt;= 18</code>，<code>ageLock</code> 必须为 <code>true</code>。缺失或不达标 → 校验失败</li>
+<li><b>引擎层</b>：<code>compilePrompt</code> 遇到未成年卡直接 <code>throw</code>；<code>gateCharacter</code> 供外部复用</li>
+<li><b>文本层</b>：<code>scanText</code> 扫幼态词表。规则是 <b>ageLock 优先于造型词</b> ——</li>
+</ul>
+<p>   成年角色写「娇小 / 白发 / 幼态妆 / 150cm」只是造型选择，放行并标记 <code>review</code>；</p>
+<p>   只有「年龄字段是未成年」或「无成年锚点且幼态体型词占主导」才 <code>reject</code></p>
+<p><code>validate --gate</code> 会现场构造一张 17 岁卡与一段幼态文本，验证两处都被拦下。</p>
+<hr>
+<h3>扩展</h3>
+<p><b>加角色</b>：往 <code>data/characters.json</code> 的 <code>characters</code> 数组追加一张卡，字段照着现有卡写。</p>
+<p><code>voice.register</code> 必须已存在于 <code>voice-registers.json</code>，否则校验报错。</p>
+<p><b>加场景</b>：往 <code>data/scenes.json</code> 追加，<code>acts[].beats[].type</code> 用 8 种类型之一。</p>
+<p>beat 模板里可用 token：</p>
+<table><thead><tr><th>token</th><th>含义</th></tr></thead><tbody>
+<tr><td><code>{A}</code> <code>{B}</code> / <code>{who}</code> <code>{target}</code></td><td>主导方 / 对方的名字</td></tr>
+<tr><td><code>{loc}</code> <code>{prop}</code> <code>{sensory}</code> <code>{light}</code></td><td>场景地点 / 道具 / 气味 / 光源</td></tr>
+<tr><td><code>{body}</code> <code>{garment}</code> <code>{fluid}</code> <code>{verb}</code></td><td>身体部位 / 衣物 / 体液 / 动作词（按热度分级）</td></tr>
+<tr><td><code>{reaction}</code> <code>{aftermath}</code> <code>{intent}</code> <code>{intensityWord}</code></td><td>反应 / 余韵 / 内心 / 强度词（按热度分级）</td></tr>
+<tr><td><code>{voice}</code> <code>{line}</code></td><td>声线侧写 / 当前台词</td></tr>
+<tr><td><code>{mood}</code> <code>{moodColor}</code> <code>{kink}</code></td><td>氛围词 / 氛围注脚 / 癖好注脚</td></tr>
+</tbody></table>
+<p><b>加热度档 / 词库</b>：<code>data/prose.json</code> 里改 <code>heat</code>、<code>bodyPart</code>、<code>fluid</code>、<code>reaction</code> 等族，</p>
+<p>每条带 <code>min</code>（生效最低热度）与 <code>weight</code>（抽样权重）。</p>
+<p><b>嵌入代码</b>：</p>
+<pre>const forge = require(&#39;./src/index&#39;);
+
+// 提示词
+const p = forge.prompt.compilePrompt({
+  character: forge.datastore.characterById(&#39;C02&#39;),
+  scene: forge.datastore.sceneById(&#39;S02&#39;),
+  heat: 5, rating: &#39;explicit&#39;, target: &#39;novelai&#39;, seed: 7,
+});
+console.log(p.positive, p.nai);
+
+// 正文
+const md = new forge.story.Story({ scene: &#39;S07&#39;, cast: [&#39;C07&#39;], heat: 3, words: 3000, pacing: &#39;slow&#39;, seed: 12 }).markdown();</pre>
+<hr>
+<h3>实证</h3>
+<p><code>node scripts/verify.js</code> 会跑 23 项体检并写出 <code>out/RUN-REPORT.md</code>：</p>
+<ul>
+<li>1536 条提示词全矩阵编译并逐条校验（16 卡 × 16 场景 × 6 目标）</li>
+<li>16 场景 × 5 热度档 = 80 篇正文，token 残留 0 处</li>
+<li>复现性：同 seed 逐字节一致</li>
+<li>热度分级：低热 0 漏词 / 高热命中直白词库</li>
+<li>节奏档字数单调：<code>pwp ≤ fast ≤ balanced ≤ slow</code></li>
+<li>声线：同一句种子多角色不同改写；台词侧写不串声线</li>
+<li>代词治理：数据层无裸代词、抽样段 0 泄漏</li>
+<li>文本质量：重复段 0、短残句 0、无空插槽</li>
+<li>配对：16 场景自动配对全部为男女向，A 位符合 leadGender</li>
+<li>CLI 退出码、导出包完整性</li>
+</ul>
+<p><code>node --test test/engine.test.js test/cli.test.js</code> → 45 项全绿。</p>
+<p>开发过程中踩的真 bug（token 只解析一层、heat 掉默认值、池子回退整池、</p>
+<p>补写循环复用旧句、命名空间 token 查不到键、性别代词打架、场景服饰与性别绑死等）</p>
+<p>与已知限制记录在 <a href="开发手记.md" target="_blank" rel="noopener">开发手记.md</a>。</p>
+<hr>
+<h3>约定</h3>
+<ul>
+<li>生成内容全部为成年角色的虚构创作，角色为原创设定（非真实人物）</li>
+<li>项目不联网、不调用任何外部服务、不引入任何依赖</li>
+<li>提示词负向固定排除幼态特征，导出包内每条都带 <code>validation</code> 字段</li>
+<li>本地项目，自行取用</li>
+</ul>
+</section>
+<section id="readme-en-md">
+<h2>English Overview <span style="font-size:12.5px;color:#6f6880">README.en.md</span></h2>
+<h2>CialloForge · 夜织</h2>
+<blockquote>A local, offline generator for <b>adult fiction</b> and <b>image-generation prompts</b>.</blockquote>
+<blockquote>16 original adult characters · age-locked 18+ · <b>zero dependencies</b> · pure Node.js · no network access.</blockquote>
+<blockquote>⚠️ <b>18+ only.</b> This tool is built for adult creative writing. All characters are original</blockquote>
+<blockquote>fictional adults (ages 19-34). It does not generate or fetch images — it produces text and prompts.</blockquote>
+<hr>
+<h3>What it is</h3>
+<p>CialloForge joins two pipelines behind one character database:</p>
+<ul>
+<li><b>Text</b> — character card → act/beat plan → heat-tiered phrase library → voice-register rewriting → a finished story (Markdown, with character sheets and prompt appendices)</li>
+<li><b>Image prompts</b> — character × scene × six target formats (SDXL / Pony / NovelAI / Midjourney / ComfyUI / generic)</li>
+</ul>
+<p>No LLM is involved. Text is assembled programmatically from structured templates, a</p>
+<p>heat-graded phrase library, and per-character speech registers. That is what makes it</p>
+<p>offline, deterministic and testable — and it is also why long-form repetition needs</p>
+<p>explicit management (documented in the known-limitations section).</p>
+<hr>
+<h3>Design principles</h3>
+<ul class="num">
+<li><b>Adult age lock (18+)</b> — every character card must declare <code>age &gt;= 18</code> and <code>ageLock: true</code>.</li>
+</ul>
+<p>   Three gates enforce it: card validation, engine refusal, and text scanning. Prompt negatives</p>
+<p>   always include minor-coded exclusion tags.</p>
+<p>   The rule is *ageLock beats styling words*: an adult character described as petite, white-haired</p>
+<p>   or with a youthful makeup style is a styling choice and passes; only an underage age field, or a</p>
+<p>   missing age combined with child-coded body terms, is rejected.</p>
+<ul class="num">
+<li><b>Zero dependencies, fully offline</b> — Node built-ins only (<code>http</code>, <code>fs</code>, <code>child_process</code>).</li>
+</ul>
+<p>   No network requests. Runs with no <code>node_modules</code> directory at all.</p>
+<ul class="num">
+<li><b>Reproducible</b> — the same inputs (scene / cast / heat / pacing / seed) produce byte-identical</li>
+</ul>
+<p>   output. This is what makes regression tests possible in the first place.</p>
+<ul class="num">
+<li><b>One engine, two front ends</b> — the HTTP endpoints call the engine directly and duplicate no</li>
+</ul>
+<p>   generation logic, so the GUI and the CLI cannot disagree. A self-check asserts it: the same</p>
+<p>   input produced 3753 identical characters through both paths.</p>
+<hr>
+<h3>Scale</h3>
+<table><thead><tr><th>Item</th><th>Count</th></tr></thead><tbody>
+<tr><td>Original adult character cards</td><td>16 (7 male / 9 female, ages 19-34)</td></tr>
+<tr><td>Scenes / beats</td><td>16 / 148</td></tr>
+<tr><td>Voice registers</td><td>14 rewriting pipelines</td></tr>
+<tr><td>Image tags</td><td>354</td></tr>
+<tr><td>Prose pools</td><td>8 families × 5 heat tiers</td></tr>
+<tr><td>Local HTTP endpoints</td><td>19 (+ 3 special branches: streaming, file read, gallery file)</td></tr>
+</tbody></table>
+<hr>
+<h3>How to run it</h3>
+<p><b>Windows, no terminal needed</b></p>
+<table><thead><tr><th>Double-click</th><th>What you get</th></tr></thead><tbody>
+<tr><td><code>启动界面.bat</code></td><td>Graphical interface — a standalone window (Edge <code>--app=</code> mode, no address bar), seven tabs</td></tr>
+<tr><td><code>启动.bat</code></td><td>Chinese-language console menu</td></tr>
+<tr><td><code>启动.bat</code> → <code>G</code></td><td>The showcase gallery (16 sample chapters)</td></tr>
+</tbody></table>
+<p><b>Command line</b></p>
+<pre>node bin/gui.js --no-open                       # start the GUI server only, open the URL yourself
+node bin/ciallo.js story --scene S09 --words 2000 --out out/story.md
+node bin/ciallo.js prompt --char C12 --scene S11 --target all --heat 5 --out out/prompts.json
+node bin/ciallo.js export --out out/export      # full bundle: cards + prompts (json/md/csv) + samples</pre>
+<p>Node 18+ is required. Nothing else.</p>
+<hr>
+<h3>The interface</h3>
+<p>A local web UI: Node&#39;s built-in <code>http</code> serves on <code>127.0.0.1</code> only, and the front end is plain</p>
+<p>HTML/CSS/JS — no framework, no build step, no CDN requests. Edge&#39;s <code>--app=</code> mode wraps it into a</p>
+<p>standalone window; if no Chromium browser is found it falls back to the system default browser.</p>
+<table><thead><tr><th>Tab</th><th>What it does</th></tr></thead><tbody>
+<tr><td><b>Create</b></td><td>Character pool (gender filter, search, click to assign slot A/B), scene selector with default pairing, heat slider (5 tiers), pacing / word count / seed, and a <b>streaming</b> story preview that fills in paragraph by paragraph</td></tr>
+<tr><td><b>Characters</b></td><td>All 16 cards: personality layers, sample lines, kinks, image tags; one-click &quot;use for writing&quot; / &quot;compile prompt&quot; / &quot;copy tags&quot;</td></tr>
+<tr><td><b>Scenes</b></td><td>Change any scene&#39;s default pairing in place and save it back to the data file; same-gender pairs are rejected</td></tr>
+<tr><td><b>Prompts</b></td><td>Compile one or the full matrix, six target formats, per-item validation status, copy positive/negative/MJ command/NAI payload/ComfyUI workflow, export json+md+csv</td></tr>
+<tr><td><b>Gallery</b></td><td>Browse generated sample chapters</td></tr>
+<tr><td><b>Validate</b></td><td>Age-lock checks, gate drill (a synthetic 17-year-old card must be rejected), structural checks</td></tr>
+<tr><td><b>Settings</b></td><td>Default heat/words/pacing, runtime info, rebuild the export bundle, reload data files</td></tr>
+</tbody></table>
+<p>Keyboard: <code>Ctrl+Enter</code> generate · <code>Ctrl+S</code> save · <code>Esc</code> stop · <code>/</code> focus search.</p>
+<hr>
+<h3>Text pipeline in more detail</h3>
+<pre>scene (16, each with acts → beats)
+  → beat type: sensory / action / pressure / climax / release / afterglow / interior / dialogue
+  → token resolution ({A} {B} {body} {prop} {garment} {reaction} …)
+  → heat filtering  (every library entry carries a `min` tier; entries above the current
+                     heat are physically unreachable, and no fallback ever widens the pool)
+  → voice register  (truncate → stutter → particle → echo → breath → terminal)
+  → Markdown</pre>
+<p><b>Heat tiers</b>: 1 restrained · 2 suggestive · 3 sensual (body description, no anatomical nouns) ·</p>
+<p>4 explicit (anatomical nouns, penetration, rhythm) · 5 graphic.</p>
+<p><b>Pacing</b>: <code>slow</code> / <code>balanced</code> / <code>fast</code> / <code>pwp</code>, controlling word multiplier and how many</p>
+<p>setup beats get skipped. Measured on the same scene and seed: <code>504 ≤ 712 ≤ 1006 ≤ 1452</code> characters.</p>
+<p><b>Voice registers</b>: the same dialogue seed comes out differently per character. 「你要是疼就说，别忍着」</p>
+<p>becomes a soft trailing whisper for the gentle doctor, clipped commands for the cold executive,</p>
+<p>and an eight-character answer for the laconic restorer.</p>
+<hr>
+<h3>Image prompt pipeline</h3>
+<pre>character (tags + body + negatives + LoRA anchors)
+  × scene (tags + camera) × pose (heat × kink family) × rating (safe/suggestive/nsfw/explicit)
+  → SDXL / Pony / NovelAI / Midjourney / ComfyUI / generic markdown</pre>
+<p>Partner tags follow the cast: male lead → <code>1boy, 1girl, hetero, handsome male</code>;</p>
+<p>female/female → <code>2girls, yuri</code>; solo → <code>solo male</code> / <code>solo female</code>.</p>
+<p>Negatives always carry base quality terms, the character&#39;s own negatives, and minor-coded</p>
+<p>exclusions.</p>
+<hr>
+<h3>Verification</h3>
+<pre>Layer 1  node --test test/{engine,cli,web}.test.js   → 51/51
+Layer 2  node scripts/verify.js                      → 23/23   content self-check  → out/RUN-REPORT.md
+Layer 3  node scripts/check-ui.js                    → 32/32   API self-check      → out/UI-CHECK.md
+Layer 4  node scripts/check-render.js                → 7/7     headless browser    → out/UI-RENDER.md</pre>
+<p>Layer 3 starts a real server on a random port and exercises every endpoint, including path-traversal</p>
+<p>rejection, malformed JSON, streaming event ordering, and the byte-identical CLI/GUI comparison.</p>
+<p>Layer 4 renders the page in headless Edge and asserts the DOM actually contains the backend data.</p>
+<p>The development log (<code>开发手记.md</code>, in Chinese) documents 12 real bugs found during the build —</p>
+<p>token recursion, heat values silently falling back to a default, pool fallback widening the tier</p>
+<p>filter, duplicate paragraphs in the fill loop, pronoun attribution across mixed-gender casts, and</p>
+<p>four more — plus the known limitations.</p>
+<hr>
+<h3>Extending it</h3>
+<table><thead><tr><th>To change</th><th>Edit</th><th>Applies after</th></tr></thead><tbody>
+<tr><td>Character settings / looks / lines</td><td><code>data/characters.json</code></td><td>Settings tab → reload data</td></tr>
+<tr><td>Scene text, act structure, default pairing</td><td><code>data/scenes.json</code></td><td>same (or via the Scenes tab)</td></tr>
+<tr><td>Phrase library, heat tiers, mood notes</td><td><code>data/prose.json</code></td><td>same</td></tr>
+<tr><td>How a character speaks</td><td><code>data/voice-registers.json</code></td><td>same</td></tr>
+<tr><td>Default parameters</td><td>Settings tab, or <code>data/config.json</code></td><td>immediately</td></tr>
+</tbody></table>
+<p>Placing any character into any scene gives 16 × 16 = 256 combinations; each pairing reads</p>
+<p>differently because both the voice registers and the scene&#39;s tone note change.</p>
+<hr>
+<h3>Notes</h3>
+<ul>
+<li>Everything generated is fiction about original adult characters. Nothing here is a real person.</li>
+<li>The tool produces prompts; it never generates images and never contacts an image service.</li>
+<li>The bundle is <code>UNLICENSED</code> — no license analysis has been made on your behalf for whatever you</li>
+</ul>
+<p>  do with the output.</p>
+</section>
+<section id="-----md">
+<h2>使用指南 <span style="font-size:12.5px;color:#6f6880">使用指南.md</span></h2>
+<h2>夜织 CialloForge · 使用指南</h2>
+<p>照着抄就能跑。所有命令在 <code>ciallo-forge</code> 目录下执行。</p>
+<blockquote><b>想要图形界面</b>：双击 <code>启动界面.bat</code> → 弹出独立窗口，七个页签点着用。</blockquote>
+<blockquote><b>不想碰命令行</b>：双击 <code>启动.bat</code>，出来中文菜单按数字选（按 <code>U</code> 也能开界面）。</blockquote>
+<blockquote><b>只想看成果</b>：双击 <code>out/showcase.html</code>（16 篇样章画廊）或 <code>out/指南.html</code>（本文的网页版）。</blockquote>
+<hr>
+<h3>界面速览（启动界面.bat）</h3>
+<table><thead><tr><th>页签</th><th>怎么用</th></tr></thead><tbody>
+<tr><td><b>创作</b></td><td>左侧点两个角色（第一个自动进 A 主导位，第二个进 B）；中间选场景、拖热度、填字数；点<b>生成正文</b>，右侧逐段刷出。<code>Ctrl+Enter</code> 生成、<code>Ctrl+S</code> 存盘、<code>Esc</code> 停止</td></tr>
+<tr><td><b>角色</b></td><td>卡片式浏览 16 张卡；「用它创作」直接带过去，「配图提示词」跳到提示词页</td></tr>
+<tr><td><b>场景</b></td><td>每个场景右下的两个下拉就是配对；改完点<b>存为默认</b>写回数据文件（同性组合会被拦）</td></tr>
+<tr><td><b>提示词</b></td><td>选角色/场景/格式 → <b>编译</b>；单条复制正向、负向、MJ 命令、NAI payload、ComfyUI workflow；<b>导出</b>写 json+md+csv</td></tr>
+<tr><td><b>画廊</b></td><td>浏览 out/gallery 的样章全文</td></tr>
+<tr><td><b>校验</b></td><td>一键跑年龄锁与结构体检（含门禁演练）</td></tr>
+<tr><td><b>设置</b></td><td>默认热度/字数/节奏；重建导出包；重载数据文件</td></tr>
+</tbody></table>
+<p>界面和命令行<b>共用同一个引擎</b>，所以同一输入的结果逐字节相同（自检里有一条就是验这个）。</p>
+<hr>
+<h3>0. 三十秒上手</h3>
+<pre>node bin/gui.js                               # 图形界面
+node bin/ciallo.js stats                      # 我有什么
+node bin/ciallo.js validate --gate            # 年龄锁是否正常
+node bin/ciallo.js story --scene S01 --words 1500 --out out/a.md   # 出一篇
+node bin/ciallo.js prompt --char C11 --target all --out out/p.json # 出提示词</pre>
+<p>或者直接双击 <code>启动界面.bat</code>（界面）／<code>启动.bat</code> → 按 <code>5</code> 生成一篇 → 按 <code>G</code> 打开画廊看效果。</p>
+<hr>
+<h3>1. 出正文</h3>
+<h4>基本形态</h4>
+<pre>node bin/ciallo.js story --scene S05 --cast C05 --heat 5 --words 2000 --pacing fast --out out/gym.md</pre>
+<table><thead><tr><th>参数</th><th>取值</th><th>不填会怎样</th></tr></thead><tbody>
+<tr><td><code>--scene</code></td><td><code>S01</code> … <code>S16</code>，逗号分隔多个</td><td>全部 16 个场景</td></tr>
+<tr><td><code>--cast</code></td><td><code>C01,C08</code>，也可写名字/别名（<code>晚晚</code>、<code>沈总</code>）</td><td>按场景 <code>castHint</code> 自动配</td></tr>
+<tr><td><code>--heat</code></td><td><code>1</code>-<code>5</code></td><td>用场景自带 <code>heatBase</code></td></tr>
+<tr><td><code>--words</code></td><td>200-8000</td><td>1500</td></tr>
+<tr><td><code>--pacing</code></td><td><code>slow</code> / <code>balanced</code> / <code>fast</code> / <code>pwp</code></td><td><code>slow</code></td></tr>
+<tr><td><code>--seed</code></td><td>任意字符串或数字，逗号分隔多 seed</td><td>20250101</td></tr>
+<tr><td><code>--out</code></td><td>单篇→文件；多篇→目录 + INDEX.md</td><td>只打印摘要</td></tr>
+<tr><td><code>--print</code></td><td>直接打到终端</td><td>关</td></tr>
+</tbody></table>
+<h4>节奏档差别</h4>
+<p>同一场景同 seed 下字数关系严格单调：</p>
+<pre>pwp (510)  ≤  fast (729)  ≤  balanced (1017)  ≤  slow (1468)</pre>
+<ul>
+<li><code>slow</code>：铺垫拉满，破口很短，适合长文</li>
+<li><code>balanced</code>：默认手感</li>
+<li><code>fast</code>：砍掉大部分内心戏</li>
+<li><code>pwp</code>：几乎跳过前两幕，直奔主题</li>
+</ul>
+<h4>出多篇</h4>
+<pre>node bin/ciallo.js story --scene S03,S04 --seed 1,2,3 --words 800 --out out/batch</pre>
+<p>生成 <code>out/batch/S03-seed1.md</code> … 加一份 <code>INDEX.md</code> 索引。</p>
+<h4>正文长什么样</h4>
+<p>每篇 Markdown 包含：</p>
+<ul class="num">
+<li>标题 + 一行元信息（年龄锁声明、场景、热度、节奏、seed）</li>
+<li>卡司表（带年龄）</li>
+<li>场景 + 氛围 + 基调注脚</li>
+<li>分幕正文（幕标题 = 场景里定义的 <code>acts[].name</code>）</li>
+<li>附录 A：出场角色卡（定位/表层/阴影/声线/癖好）</li>
+<li>附录 B：配图提示词（正向 + 负向 + 参数）</li>
+</ul>
+<hr>
+<h3>2. 出绘图提示词</h3>
+<h4>单目标</h4>
+<pre>node bin/ciallo.js prompt --char C02 --scene S02 --target sdxl --heat 5 --out out/c02.json</pre>
+<p><code>--out</code> 会同时写 <code>.json</code>（结构化，含 params 与 validation）和 <code>.md</code>（可直接复制）。</p>
+<h4>全目标</h4>
+<pre>node bin/ciallo.js prompt --char C01 --target all</pre>
+<p>六个目标一次出齐：</p>
+<table><thead><tr><th>target</th><th>输出形态</th></tr></thead><tbody>
+<tr><td><code>sdxl</code></td><td>逗号分隔正/负向 + 参数块，A1111 / Forge / reForge 直接粘</td></tr>
+<tr><td><code>pony</code></td><td>自动加 <code>score_9, score_8_up…</code> 前缀与评分负向</td></tr>
+<tr><td><code>novelai</code></td><td>完整 NAI API payload（含 <code>characterPrompts</code> 逐角色提示、<code>ucPreset</code>、<code>sampler</code>）</td></tr>
+<tr><td><code>midjourney</code></td><td>单行 <code>--ar --style raw --v 6.1 --q 2</code> 命令，自动去 LoRA、按比例算 <code>--ar</code></td></tr>
+<tr><td><code>comfyui</code></td><td>可直接导入的 workflow JSON（KSampler + CLIPTextEncode + SaveImage）</td></tr>
+<tr><td><code>generic</code></td><td>markdown 提示词包，给人看的</td></tr>
+</tbody></table>
+<h4>加私货</h4>
+<pre>node bin/ciallo.js prompt --char C01 --extra &quot;rain, wet hair, neon reflection;night&quot;</pre>
+<p>分号分隔，逐条追加到正向尾部。</p>
+<h4>评级控制</h4>
+<pre>node bin/ciallo.js prompt --char C01 --heat 2 --rating suggestive</pre>
+<table><thead><tr><th>rating</th><th>效果</th></tr></thead><tbody>
+<tr><td><code>safe</code></td><td>全年龄；负向自动加 <code>nsfw/explicit/nude/nipples…</code>，姿势池只用 1-2 档</td></tr>
+<tr><td><code>suggestive</code></td><td>撩但不露；负向加 <code>nude/genitalia/penetration</code></td></tr>
+<tr><td><code>nsfw</code></td><td>半褪、露胸、手在腿间</td></tr>
+<tr><td><code>explicit</code></td><td>全裸、进入、体液、失神表情、事后痕迹</td></tr>
+</tbody></table>
+<p>heat 与 rating 独立：<code>--heat 5 --rating safe</code> 合法（姿势池按 1 档，词库按 heat 5 过滤）。</p>
+<hr>
+<h3>3. 一键导出</h3>
+<pre>node bin/ciallo.js export --out out/export</pre>
+<p>产物：</p>
+<table><thead><tr><th>文件</th><th>内容</th></tr></thead><tbody>
+<tr><td><code>characters.json</code></td><td>10 张卡 + 逐卡校验结果</td></tr>
+<tr><td><code>prompts.json</code></td><td>960 条提示词（10 卡 × 16 场景 × 6 目标），每条含 validation</td></tr>
+<tr><td><code>prompts.md</code></td><td>其中 SDXL 那 160 条的排版版</td></tr>
+<tr><td><code>prompts.csv</code></td><td>表格版，Excel 直接开，方便筛选排序</td></tr>
+<tr><td><code>stories/</code></td><td>16 篇样例故事（每场景一篇，1200 字）</td></tr>
+<tr><td><code>INDEX.md</code></td><td>索引</td></tr>
+</tbody></table>
+<p>单角色导出：<code>export --char C02</code></p>
+<hr>
+<h3>4. 校验与门禁</h3>
+<pre>node bin/ciallo.js validate            # 逐卡 + 逐场景
+node bin/ciallo.js validate --gate     # 附加门禁演练
+node bin/ciallo.js validate --json out/report.json</pre>
+<p>三道闸：</p>
+<ul class="num">
+<li><b>卡层</b>：<code>age</code> 必须数字且 ≥18，<code>ageLock</code> 必须 <code>true</code></li>
+<li><b>引擎层</b>：<code>compilePrompt</code> 拿到未成年卡直接抛 <code>[age-gate]</code></li>
+<li><b>文本层</b>：<code>scanText</code> 扫词表 —— 成年锚点在就先放行（标记 <code>review</code>），否则 <code>reject</code></li>
+</ul>
+<p><code>--gate</code> 输出示例：</p>
+<pre>门禁演练：构造一张 17 岁卡，验证是否被拦
+ ✔ 门禁生效：age=17 小于 18
+ ✔ 文本扫描生效：出现幼态词且缺少成年锚点：child、loli、小学生、小学</pre>
+<hr>
+<h3>5. 自检与测试</h3>
+<pre>node scripts/verify.js                                   # 23 项体检 → out/RUN-REPORT.md
+node --test test/engine.test.js test/cli.test.js         # 37 项测试
+node scripts/smoke.js                                    # 快速冒烟，看样例输出
+node scripts/_migrations/read-through.js                 # 抽 4 篇通读，核对代词</pre>
+<p>体检覆盖：960 条提示词矩阵 / 80 篇正文残留扫描 / 复现性 / 热度分级 / 节奏单调性 /</p>
+<p>声线分化度 / 代词治理 / 文本质量指标 / CLI 退出码 / 导出包完整性。</p>
+<h4>代词约定（改场景前必读）</h4>
+<p>场景 <code>beat.text</code> 里<b>不要写死「他/她」</b>，用 token：</p>
+<table><thead><tr><th>写法</th><th>输出</th><th>什么时候用</th></tr></thead><tbody>
+<tr><td><code>{A}</code> / <code>{B}</code></td><td>角色名字</td><td><b>首选</b>，任何组合都不会歧义</td></tr>
+<tr><td><code>{who}</code> / <code>{target}</code></td><td>同上（场景语义别名）</td><td>场景模板里已有大量使用</td></tr>
+<tr><td><code>{pronA}</code> / <code>{pronB}</code></td><td>按 <code>gender</code> 出「她/他」</td><td>一句里名字已出现过、需要代词避免重复时</td></tr>
+</tbody></table>
+<p>散文池（<code>prose.json</code>）里<b>一律用 <code>{A}</code>/<code>{B}</code></b>，不用代词 —— 池子条目会被任意卡司复用。</p>
+<p>改完跑 <code>node --test test/engine.test.js</code>，其中两项会直接检查数据层与输出层有没有裸代词。</p>
+<hr>
+<h3>6. 自定义数据</h3>
+<h4>6.1 加一张角色卡</h4>
+<p>打开 <code>data/characters.json</code>，把现有卡复制一份改字段。必填：</p>
+<pre>{
+  &quot;id&quot;: &quot;C11&quot;, &quot;name&quot;: &quot;名字&quot;, &quot;alias&quot;: [&quot;别名&quot;], &quot;role&quot;: &quot;定位&quot;,
+  &quot;age&quot;: 27, &quot;ageLock&quot;: true, &quot;occupation&quot;: &quot;职业&quot;, &quot;height&quot;: 168,
+  &quot;body&quot;: { &quot;frame&quot;: &quot;…&quot;, &quot;bust&quot;: &quot;…&quot;, &quot;waist&quot;: &quot;…&quot;, &quot;hip&quot;: &quot;…&quot;, &quot;skin&quot;: &quot;…&quot;, &quot;marks&quot;: &quot;…&quot; },
+  &quot;appearance&quot;: {
+    &quot;hair&quot;: &quot;…&quot;, &quot;eyes&quot;: &quot;…&quot;, &quot;face&quot;: &quot;…&quot;,
+    &quot;tags&quot;: [&quot;mature female&quot;, &quot;27 years old&quot;, &quot;…（至少 8 条，全英文绘图标签）&quot;],
+    &quot;negative&quot;: [&quot;child&quot;, &quot;loli&quot;, &quot;…&quot;],
+    &quot;loraAnchors&quot;: [&quot;mature_female_v2&quot;, &quot;…&quot;],
+    &quot;quality&quot;: [&quot;photorealistic&quot;, &quot;…&quot;],
+    &quot;palette&quot;: [&quot;…&quot;], &quot;cameraDefault&quot;: &quot;medium shot, …&quot;
+  },
+  &quot;personality&quot;: { &quot;core&quot;: &quot;…&quot;, &quot;surface&quot;: &quot;…&quot;, &quot;shadow&quot;: &quot;…&quot;, &quot;traits&quot;: [&quot;…&quot;], &quot;attachment&quot;: &quot;…&quot; },
+  &quot;voice&quot;: {
+    &quot;register&quot;: &quot;slow-tease&quot;,   // 必须是 voice-registers.json 里已有的键
+    &quot;firstPerson&quot;: &quot;我&quot;, &quot;secondPerson&quot;: &quot;你&quot;,
+    &quot;tic&quot;: [&quot;哦?&quot;], &quot;particles&quot;: [&quot;呢&quot;], &quot;habit&quot;: &quot;…&quot;,
+    &quot;samples&quot;: [&quot;台词种子1&quot;, &quot;台词种子2&quot;]
+  },
+  &quot;background&quot;: [&quot;…&quot;], &quot;kinks&quot;: [&quot;…&quot;], &quot;limits&quot;: [&quot;…&quot;], &quot;relations&quot;: {},
+  &quot;imagery&quot;: { &quot;scenes&quot;: [&quot;…&quot;], &quot;props&quot;: [&quot;…&quot;], &quot;light&quot;: [&quot;…&quot;], &quot;sensory&quot;: [&quot;…&quot;] }
+}</pre>
+<p>改完跑 <code>node bin/ciallo.js validate</code> 确认没红。</p>
+<h4>6.2 加一个场景</h4>
+<p>往 <code>data/scenes.json</code> 追加：</p>
+<pre>{
+  &quot;id&quot;: &quot;S17&quot;, &quot;title&quot;: &quot;标题&quot;, &quot;kinkFamily&quot;: &quot;自定义族名&quot;,
+  &quot;heatBase&quot;: 4, &quot;location&quot;: &quot;地点&quot;, &quot;mood&quot;: [&quot;氛围词&quot;],
+  &quot;castHint&quot;: [&quot;C01&quot;, &quot;C02&quot;], &quot;tags&quot;: [&quot;english tag&quot;], &quot;camera&quot;: [&quot;low angle&quot;],
+  &quot;acts&quot;: [
+    { &quot;name&quot;: &quot;第一幕 · 名字&quot;, &quot;beats&quot;: [
+      { &quot;type&quot;: &quot;sensory&quot;, &quot;text&quot;: &quot;模板文本，{who}在{loc}，{prop}就在手边。{sensory}的味道很重。&quot;, &quot;tags&quot;: [&quot;…&quot;] },
+      { &quot;type&quot;: &quot;dialogue&quot;, &quot;dialogue&quot;: [&quot;台词种子&quot;], &quot;speaker&quot;: &quot;auto&quot;, &quot;tags&quot;: [&quot;…&quot;] },
+      { &quot;type&quot;: &quot;climax&quot;, &quot;text&quot;: &quot;&quot;, &quot;tags&quot;: [&quot;…&quot;] }
+    ]}
+  ]
+}</pre>
+<ul>
+<li><code>text</code> 留空 → 引擎从 <code>prose.json</code> 对应类型的池子里抽</li>
+<li><code>speaker: &quot;auto&quot;</code> → 在多卡司场景里随机挑一个开口</li>
+<li>beat 少于 6 个会有 warn</li>
+</ul>
+<h4>6.3 加词库</h4>
+<p><code>data/prose.json</code>：</p>
+<ul>
+<li><code>pool.&lt;beatType&gt;</code>：句子模板数组，可含任意 token</li>
+<li><code>bodyPart</code> / <code>fluid</code> / <code>garment</code> / <code>verb</code>：带 <code>{ &quot;min&quot;: 4, &quot;weight&quot;: 3, &quot;text&quot;: &quot;…&quot; }</code></li>
+<li><code>min</code> = 生效最低热度</li>
+<li><code>weight</code> = 抽样权重（越大越常出现）</li>
+<li><code>reaction</code> / <code>intent</code> / <code>afterglow</code> 等按热度分键：<code>{ &quot;3&quot;: [...], &quot;4&quot;: [...], &quot;5&quot;: [...] }</code></li>
+<li><code>dialogueVoice.&lt;register&gt;</code>：按声线寄存器给台词配侧写</li>
+<li><code>kinkNote.&lt;kinkFamily&gt;</code>：场景基调注脚</li>
+<li><code>moodColor.&lt;氛围词&gt;</code>：氛围注脚</li>
+</ul>
+<h4>6.4 加声线寄存器</h4>
+<p><code>data/voice-registers.json</code> 里加一个键：</p>
+<pre>&quot;my-register&quot;: {
+  &quot;label&quot;: &quot;显示名&quot;,
+  &quot;pipeline&quot;: [&quot;truncate&quot;, &quot;particle&quot;, &quot;breath&quot;, &quot;terminal&quot;],
+  &quot;particles&quot;: [&quot;啊&quot;, &quot;呢&quot;],
+  &quot;terminal&quot;: [&quot;。&quot;, &quot;！&quot;],
+  &quot;breathRate&quot;: 0.4,
+  &quot;pauseMark&quot;: &quot;，&quot;,
+  &quot;dropRate&quot;: 0.2,
+  &quot;note&quot;: &quot;风格说明&quot;
+}</pre>
+<p>管线可用的级：<code>truncate</code> <code>stutter</code> <code>particle</code> <code>echo</code> <code>breath</code> <code>terminal</code>，按数组顺序执行。</p>
+<hr>
+<h3>7. 当代码库用</h3>
+<pre>const forge = require(&#39;./src/index&#39;);
+
+// ① 提示词
+const { prompt } = forge.prompt.compilePrompt({
+  character: forge.datastore.characterById(&#39;C05&#39;),
+  scene: forge.datastore.sceneById(&#39;S05&#39;),
+  heat: 4, rating: &#39;explicit&#39;, target: &#39;comfyui&#39;, seed: 42,
+});
+require(&#39;fs&#39;).writeFileSync(&#39;wf.json&#39;, JSON.stringify(prompt.workflow, null, 2));
+
+// ② 正文
+const story = new forge.story.Story({
+  scene: &#39;S12&#39;, cast: [&#39;C04&#39;, &#39;C10&#39;], heat: 4, words: 4000, pacing: &#39;slow&#39;, seed: 2025,
+});
+console.log(story.markdown());
+console.log(story.json().meta);       // { heat, words, cast, seed, … }
+
+// ③ 批量
+const all = forge.story.generateBatch({ scenes: [&#39;S01&#39;, &#39;S02&#39;], cast: [&#39;C01&#39;], seeds: [1, 2, 3], words: 600 });
+
+// ④ 校验
+forge.validate.validateAll();          // 全库
+forge.validate.gateCharacter(card);    // 单卡门禁（不合格抛错）
+forge.validate.scanText(&#39;文本&#39;, { hasAgeLock: true });</pre>
+<hr>
+<h3>8. 常见问题</h3>
+<p><b>Q：为什么 low heat 的正文里没有直白词？</b></p>
+<p>A：<code>prose.json</code> 里每条带 <code>min</code> 字段，低于该热度不入选。设计如此，不是 bug。</p>
+<p>想让 heat 2 更露，把对应条目的 <code>min</code> 调低。</p>
+<p><b>Q：同 seed 会不会重复？</b></p>
+<p>A：同 seed 逐字节一致（这是可复现性的前提）。想要变化就换 seed，或者用</p>
+<p><code>--seed 1,2,3</code> 批量出多篇。</p>
+<p><b>Q：字数总是超出目标？</b></p>
+<p>A：目标是下限，引擎按 beat 逐段累加到超过即停，最后一拍可能冲过头。</p>
+<p>要更贴近就把 <code>--words</code> 调小，或者用 <code>pwp</code> 档。</p>
+<p><b>Q：角色卡能写真实人物吗？</b></p>
+<p>A：不建议。现有 10 张全是原创设定，改写时保持原创。</p>
+<p><b>Q：支持哪些绘图模型？</b></p>
+<p>A：SD1.5/SDXL/Pony/Illustrious 系（<code>sdxl</code>/<code>pony</code>）、NovelAI V3/V4（<code>novelai</code>）、</p>
+<p>Midjourney v6+（<code>midjourney</code>）、ComfyUI 任意底模（<code>comfyui</code>，改 <code>params.model</code> 即可）。</p>
+<p>Flux 系把 <code>sdxl</code> 目标里的质量词换成自然语言短句即可，标签结构仍可用。</p>
+</section>
+<section id="-----md">
+<h2>开发手记（真 bug + 已知限制） <span style="font-size:12.5px;color:#6f6880">开发手记.md</span></h2>
+<h2>开发手记 · 夜织 CialloForge</h2>
+<p>记录这次从零到 23/23 自检通过、45 项测试全绿的过程，重点是<b>踩过的坑</b>。都是实测出来的，不是设计时想到的。</p>
+<hr>
+<h3>1. 交付形态是怎么定的</h3>
+<p>需求是一句话：「按你的想法做一个完整的项目」。所以项目必须能独立跑、能验收、能被别人接手改。</p>
+<p>选了三条硬约束：</p>
+<table><thead><tr><th>约束</th><th>理由</th></tr></thead><tbody>
+<tr><td>零依赖纯 Node</td><td>不装包、不联网、<code>node bin/ciallo.js</code> 就能跑</td></tr>
+<tr><td>seed 全驱动</td><td>同 seed 逐字节复现，否则没法写回归测试</td></tr>
+<tr><td>年龄锁走三道闸</td><td>卡层 / 引擎层 / 文本层，任一层漏了都能被测试抓到</td></tr>
+</tbody></table>
+<p>文本引擎没有调用任何 LLM —— 走的是「模板 + 分级词库 + 声线寄存器」的程序化路线。</p>
+<p>好处是离线、确定、可测；代价是长文的重复度需要专门治理（见第 4 节）。</p>
+<hr>
+<h3>2. 十个真 bug 与修法</h3>
+<h4>2.1 token 只解析一层，变量名漏进正文</h4>
+<p><code>{A}</code>、<code>{prop}</code> 这类 token 出现在<b>池子条目内部</b>（例如 <code>{loc}的光线只剩{prop}那一处</code>），</p>
+<p>第一层解析把池子条目填进去之后，里面的 token 就不再处理了。正文里直接出现 <code>{A}</code>。</p>
+<p>更坑的是 <code>sanitize()</code> 里那句「清理残留 token」的兜底正则 <code>[{][^{}]*[}]</code> —— 它把</p>
+<p><code>{A}</code> 当成残留一并删掉，于是正文变成「把翻过去，从后面重新压上来」这种缺主语的句子，</p>
+<p><b>看起来像文笔问题，其实是解析问题</b>。</p>
+<p>修法两条：</p>
+<ul class="num">
+<li><code>resolve()</code> 改成循环解析（最多 6 轮，收敛即停）</li>
+<li>残留清理只认<b>多字符</b> token（<code>[{][^{}]{2,}[}]</code>），单字母变量不碰</li>
+</ul>
+<h4>2.2 <code>{A}</code> / <code>{B}</code> 没有注册解析器</h4>
+<p><code>RESOLVERS</code> 里有 <code>who</code> / <code>target</code>，却漏了 <code>A</code> / <code>B</code>。未知 token 被原样保留，</p>
+<p>所以 <code>{A}</code> 一路活到输出。补上两个键即可 —— 这类 bug 的特征是「有的句子正常、有的缺名字」，</p>
+<p>因为只有走池子分支的句子才会碰到。</p>
+<h4>2.3 heat 在递归解析时掉回默认值</h4>
+<p><code>resolve()</code> 早期版本在递归时会 <code>makeScope({ rng: val })</code> —— 传进去的是个字符串，</p>
+<p>但函数签名已经改成对象解构，于是 <code>heat</code> 取了默认值 3。</p>
+<p>后果：给 heat 2 的场景生成了 <code>{body} → 甬道深处</code> 这种 5 级词库内容。</p>
+<p>这个 bug 危险在于<b>不出错、只出错内容</b>。抓到它靠的是那条「heat 2 不出现器官名词」的断言。</p>
+<h4>2.4 池子无候选时回退整池</h4>
+<p>分级过滤写成了：</p>
+<pre>let cands = pool.filter(x =&gt; x.min &lt;= heat);
+if (!cands.length) cands = pool;   // ← 毒药</pre>
+<p>当某热度档一条都没有时（例如 heat 2 对上全是 min≥3 的词库），直接放开整个池子，</p>
+<p>高热词全线漏出。改成「只放宽到该池的最低档」，永远不会跨档。</p>
+<h4>2.5 补写循环整段复用旧句</h4>
+<p>字数不够时会循环补 beat。但 <code>uniqueKey</code> 的去重集合是每次 <code>makeBeatScope</code> 新建的，</p>
+<p>循环里每次都是新的 Set，于是同一句被抽出来好几次，正文出现连续重复段。</p>
+<p>修法：</p>
+<ul>
+<li>把「已用句子」集合提升到整篇作用域（<code>ctx.usedGlobal</code>），逐 beat 继承</li>
+<li>句子抽空就返回空串，循环靠 <code>emptyStreak</code> 退出，不再空转</li>
+</ul>
+<p>顺带把池子从 6-8 条扩到 12-16 条，保证 2000 字量级不会中途枯竭。</p>
+<h4>2.6 命名空间 token 查不到键</h4>
+<p>词库里写了 <code>{heat:intensityWord}</code>（带命名空间前缀），但解析器只拿冒号前的部分查表 ——</p>
+<p><code>heat</code> 不是解析器，于是整个 token 保留，最后被残留清理删掉，输出变成</p>
+<p>「节奏从试探变成，旧毛衣袖口被撞得挪了位置」。句子里那个空位是<b>读得出来的伤</b>。</p>
+<p>修法：查表时先试完整名，再退回冒号后的名字。同时给测试加了「空插槽」检查</p>
+<p>（<code>变成，</code> / <code>，。</code> / 段首标点 / 连续空格），这类伤以后会被自动抓到。</p>
+<blockquote>附带经验：断言不能写太宽。第一版空插槽检查把 <code>的，</code> 也列进黑名单，</blockquote>
+<blockquote>结果「练出来的哦，」这种正常中文全部报错 —— 断言要盯<b>结构特征</b>，不能盯常见字串。</blockquote>
+<h4>2.7 性别代词在混合卡司下打架</h4>
+<p>场景模板里写死了「她」。当场景主角是男性角色（罗砚）时，输出变成</p>
+<p>「她的手从膝盖一路往上……她说这话的时候」，而这段描写的其实是男性角色。</p>
+<p>治理过程分三步，前两步都是错的：</p>
+<ul class="num">
+<li><b>全局正则替换</b>：把所有「她」换成 <code>{pronA}</code> —— 会误伤指代对方的代词</li>
+<li><b>按出现顺序判定</b>：默认第一个代词归 A、其余归 B —— 遇到「她（=对方）」开头的句子就错</li>
+<li><b>按子句归属判定（最终方案）</b>：</li>
+<li>先做 beat 级投票：整段文本与 A/B 的特征词表比对，命中权重大的一方拥有多数代词</li>
+<li>再做代词级修正：某个代词所在子句明显偏向另一方（差值 ≥ 6）时单独改判</li>
+<li>子句无判别信息时，男女搭配按性别匹配，同性别沿用段级判定</li>
+<li>剩 2 处启发式确实无法判断的，写进显式修正表（带注释说明理由）</li>
+</ul>
+<p>同时把<b>散文池里的代词全部换成 <code>{A}</code>/<code>{B}</code></b>（出名字，永不歧义），</p>
+<p>并把「作者手写模板的代词」与「引擎抽样段的代词」区分开测试：</p>
+<p>前者是创作意图，后者是泄漏。</p>
+<h4>2.8 场景把服饰和性别绑死了</h4>
+<p>场景模板里写死的「高跟鞋」「铅笔裙」，在男女向配对下会出现在男性角色身上</p>
+<p>（「沈聿的高跟鞋停在原地」）。同类的还有「沈芷的乳肉把沈聿咬得很紧」这种归属错位 ——</p>
+<p><code>{body}</code> / <code>{garment}</code> 默认属于「对方」，但模板写成了「{A} 的动作 + 无归属的部位」。</p>
+<p>修法：</p>
+<ul class="num">
+<li>服饰词中性化（高跟鞋 → 鞋跟），场景模板一律不写性别绑定服饰</li>
+<li>部位/服饰归属显式化：<code>{A}把{garment}解开</code> → <code>{A}把{B}身上{garment}解开</code></li>
+<li>加了一个审计脚本 <code>fix-pool-attribution.js</code>，用「动作直接落在未标归属的部位上」判定错位，</li>
+</ul>
+<p>   并把语义正确的句子放进白名单 —— 否则每跑一次都要人工重看一遍</p>
+<h4>2.9 台词侧写串了声线</h4>
+<p>台词 beat 的侧写取自「当前角色」的声线池，但早期实现里 A（主导方）和说话人是同一个变量。</p>
+<p>男女向配对下 B 开口时，就会写出「沈芷：『啧，安静点。』把问题原样抛回去，用停顿逼对方先开口」——</p>
+<p>后半句是沈聿的声线描述。</p>
+<p>修法：把「说话人」独立成 <code>{V}</code> 与 <code>scope.V</code>，A/B 保持主导关系不变；</p>
+<p>当说话人不是 A 时，侧写改从中性池 <code>dialogueNeutral</code> 抽，不再借用别人的口癖。</p>
+<h4>2.10 换成男女向后加的角色与配对</h4>
+<p>原卡池 10 张里只有 1 个男性，场景配对也全是女女。为了让「男女向」成为默认体验：</p>
+<ul>
+<li>新增 6 张男性卡（C11 江彻 / C12 沈聿 / C13 陆迟 / C14 谢屿 / C15 周叙白 / C16 裴野），</li>
+</ul>
+<p>  每人独立声线寄存器（新增 <code>clipped-cold</code> / <code>low-tease</code> / <code>earnest-fast</code> / <code>steady-coach</code>）</p>
+<ul>
+<li>每个场景补两个字段：<code>leadGender</code>（A 位性别）+ <code>autoCast</code>（默认两人配对）</li>
+<li>引擎按 <code>autoCast</code> 组装卡司；显式 <code>--cast</code> 时顺序即 A/B，不被覆盖；<code>--lead</code> 可临时换主导性别</li>
+<li>画廊脚本加了启动自检：卡司必须存在、互不相同、<b>必须是男女组合</b>、A 位性别必须等于 <code>leadGender</code>，</li>
+</ul>
+<p>  任一不满足直接抛错 —— 让「又变回女同」这种回归跑不起来</p>
+<hr>
+<h3>2b. 图形化（方案 A：本地 Web UI + Edge 应用窗）</h3>
+<p>需求是「做成像软件一样有界面有 UI」。先探环境：机器上有 Edge（<code>Program Files (x86)</code>），</p>
+<p>没有 Electron/Tauri/WebView2 包装器。于是选了零依赖路线：</p>
+<pre>Node 内置 http 起服务（只绑 127.0.0.1）
+   ↓
+原生 HTML/CSS/JS 前端（无框架 / 无构建 / 无 CDN）
+   ↓
+Edge --app=http://127.0.0.1:PORT  ← 无地址栏无标签页，外观就是个桌面软件
+   ↓
+窗口关闭 → 服务自动停（不残留进程）</pre>
+<p>七页签：创作（流式生成）/ 角色 / 场景（就地改配对）/ 提示词 / 画廊 / 校验 / 设置。</p>
+<p>后端端点<b>直接调既有 engine</b>，所以界面与 CLI 结果逐字节一致 —— 自检里专门有一条验这个。</p>
+<h4>这一轮踩的坑</h4>
+<p><b>a) <code>target: &#39;all&#39;</code> 没被展开。</b> 前端传 <code>target=all</code> 表示「六种格式都要」，但</p>
+<p><code>compilePrompts</code> 把它当成一个目标名去查表，查不到就静默跳过 → 返回 <code>undefined</code>，</p>
+<p>自检里「单条（6 目标）」当场报 <code>Cannot read properties of undefined (reading &#39;count&#39;)</code>。</p>
+<p>修法：目标与场景都支持 <code>all</code> 展开，未知名字显式抛 400。</p>
+<p><b>b) 前端初始化跑在数据到达之前。</b> <code>initCreateView()</code> 在脚本顶层就执行，而 <code>S.scenes</code></p>
+<p>要等 <code>bootstrap()</code> 的 fetch 回来才有值 —— 首屏直接</p>
+<p><code>Cannot read properties of undefined (reading &#39;id&#39;)</code>，界面白屏。</p>
+<p>修法：所有 <code>init*View()</code> 挪进 <code>bootstrap()</code> 成功分支，先有数据再建视图。</p>
+<p><b>c) 用假 DOM 真跑前端来抓这类 bug。</b> 手点浏览器太慢，而「HTML 里没这个 id」这类错</p>
+<p>肉眼审查最容易漏。于是写了 <code>test/web.test.js</code>：</p>
+<ul>
+<li>从 <code>index.html</code> 抓所有 <code>id</code>、从 <code>app.js</code> 抓所有 <code>$(&#39;#x&#39;)</code> 引用，<b>做集合比对</b></li>
+<li>最小假 DOM（<code>querySelector</code>/<code>classList</code>/<code>addEventListener</code>/<code>innerHTML</code>）在 <code>vm</code> 里真执行 <code>app.js</code>，</li>
+</ul>
+<p>  断言启动不抛异常、确实请求了 stats/characters/scenes</p>
+<ul>
+<li>断言 fetch 全失败时也不产生未处理的 Promise 拒绝（离线不崩）</li>
+<li>断言七个页签容器存在、CSS 无远程 <code>@import</code></li>
+</ul>
+<p>六条测试 600ms 跑完，比开浏览器点一遍快得多。</p>
+<p><b>d) 窗口启动验证的坑。</b> <code>wmic</code> 在 Win11 上没了，用它枚举进程直接失败；而且</p>
+<p><code>open-app.js</code> 按设计保持子进程存活（窗口关闭才退出），在测试脚本里 <code>require</code> 它会把测试挂住</p>
+<p>—— 第一轮就这么卡了 180 秒。改用 <code>Get-CimInstance Win32_Process</code> 查命令行，</p>
+<p>并先删掉临时 profile 目录（复用坏掉的 profile 会让 Edge 起不来），最终实测：</p>
+<pre>服务监听 8793: True
+Edge 进程带 8793: 1
+  &quot;...msedge.exe&quot; --app=http://127.0.0.1:8793 --user-data-dir=...\ciallo-forge-profile ...
+[OK] 已用应用窗口打开</pre>
+<h4>界面层自检（32 项）</h4>
+<p><code>node scripts/check-ui.js</code> 起一个<b>真服务</b>（随机空闲端口），跑：</p>
+<table><thead><tr><th>组</th><th>项数</th><th>内容</th></tr></thead><tbody>
+<tr><td>静态资源</td><td>4</td><td>index/css/js 可达、路径穿越拿不到源码</td></tr>
+<tr><td>只读端点</td><td>6</td><td>health/stats/characters（含筛选）/scenes（校验男女配对）/prose/gallery</td></tr>
+<tr><td>生成端点</td><td>6</td><td>预演配对、出稿无残留、热度夹取、未知场景回退、<b>流式事件序列</b>、存盘落位与空内容拒绝</td></tr>
+<tr><td>提示词端点</td><td>4</td><td>六目标结构、批量 256 条全通过、未知角色 404、未知目标 400、导出三份</td></tr>
+<tr><td>校验配对设置</td><td>5</td><td>全库+门禁四项、改配对即时生效并还原、拒绝同性/同一人、设置往返、读文件越界 403</td></tr>
+<tr><td>健壮性</td><td>3</td><td>未知 API 404、非法 JSON 400、重建导出包</td></tr>
+<tr><td>一致性</td><td>1</td><td><b>同一输入 API 与 CLI 引擎输出逐字节相同</b></td></tr>
+</tbody></table>
+<hr>
+<h3>2c. 桌面版（Electron 打包）</h3>
+<p>需求是「真软件体验」。选了 Electron（原生窗口 + 图标 + 无控制台 + 可安装卸载），</p>
+<p>代价是体积 107 MB 且打包需要联网装依赖。三处关键改动：</p>
+<p><b>a) 数据目录必须搬家。</b> 原来 <code>data/</code>、<code>out/</code> 都挂在项目目录内部（<code>io.js</code> 里</p>
+<p><code>ROOT = path.resolve(__dirname, &#39;..&#39;, &#39;..&#39;)</code>）。打包后代码在只读的 asar 里，</p>
+<p>用户把程序装到 <code>C:\Program Files\</code> 就写不进去 —— 设置、存稿、导出会全部失败，</p>
+<p>报错还很难懂。于是加了 <code>src/util/datapath.js</code> 做四级解析：</p>
+<pre>CIALLO_DATA_DIR 环境变量 → Electron userData → exe 旁有 portable.marker → 项目目录</pre>
+<p><code>io.js</code> 拆成「只读内置资源」与「可写用户数据」两套路径；引擎读数据时</p>
+<p><code>readJSONAnywhere()</code> 先看用户目录、没有再退回内置（asar 内也能读）。</p>
+<p><b>b) 界面代码一行没改。</b> 主进程起本地 http 服务、<code>BrowserWindow</code> 载入该地址 ——</p>
+<p>不用 <code>file://</code>，前端 <code>fetch(&#39;/api/...&#39;)</code> 和流式生成就原样可用。这是当初把界面做成</p>
+<p>「本地 Web UI」而不是「直接操作 DOM 的桌面应用」换来的好处。</p>
+<p><b>c) 自检模式。</b> Electron 的窗口状态在命令行里看不到。于是加了 <code>CIALLO_SELFTEST=1</code>：</p>
+<p>启动 2.5 秒后把窗口标题、URL、渲染层查询结果（<code>.pool-item</code> 数量、顶栏文字、页签数）</p>
+<p>打成一行 JSON 到 stdout 再退出。<code>check-desktop.js</code> 就靠这行 JSON 断言打包后的程序真能用，</p>
+<p>而不是只检查文件存在。</p>
+<h4>这一轮踩的坑</h4>
+<p><b><code>ELECTRON_RUN_AS_NODE</code> 从环境继承。</b> 第一次 <code>electron .</code> 直接崩：</p>
+<p><code>TypeError: Cannot read properties of undefined (reading &#39;isPackaged&#39;)</code> ——</p>
+<p>这个变量存在时 electron.exe 会退化成纯 Node 模式，<code>require(&#39;electron&#39;)</code> 拿不到 API，</p>
+<p><code>app</code> 就是 undefined。测试脚本与打包脚本都要显式清掉。</p>
+<p><b>npm 的 postinstall 没跑。</b> <code>npm install electron</code> 装好了包，但 <code>dist/electron.exe</code></p>
+<p>是 0 字节、<code>path.txt</code> 不存在 —— 二进制根本没下（<code>ignore-scripts</code> 查出来是 false，</p>
+<p>更像是那次脚本阶段静默失败）。手动 <code>node node_modules/electron/install.js</code></p>
+<p>配上 <code>ELECTRON_MIRROR</code> 才把 234.9 MB 拉下来。<b>装完必须验 <code>dist/electron.exe</code> 体积</b>，</p>
+<p>只看 package.json 的版本号会以为装好了。</p>
+<p><b><code>npm.ps1</code> 被执行策略拦住。</b> 这台机器上 <code>npm install</code> 直接报「禁止运行脚本」，</p>
+<p>绕过方式是 <code>node D:\node_modules\npm\bin\npm-cli.js install ...</code>，不碰 .ps1 包装。</p>
+<p><b>签名 ≠ 有证书。</b> 构建日志里一串 <code>signing with signtool.exe</code>，但没配证书时只是走个过场；</p>
+<p>产物仍是未签名的，别人首次运行会撞 SmartScreen。</p>
+<h4>桌面版自检（15 项）</h4>
+<p><code>node scripts/check-desktop.js</code>：打包产物完整性（asar 内容、exe、安装包、便携版）→</p>
+<p>真启动打包后的 exe 读自检 JSON → 断言窗口/渲染层/数据目录/释放逻辑/图标/可写性 →</p>
+<p>最后验一遍同一 seed 的引擎输出一致。报告 → <code>out/DESKTOP-CHECK.md</code>。</p>
+<hr>
+<h3>3. 测试是怎么设计的</h3>
+<p>51 项测试，按「能被违反的方式」而不是「代码结构」组织：</p>
+<table><thead><tr><th>组</th><th>项数</th><th>抓什么</th></tr></thead><tbody>
+<tr><td>年龄锁</td><td>7</td><td>17 岁卡、无年龄卡、引擎抛错、幼态词扫描、成年+幼态造型词放行</td></tr>
+<tr><td>提示词</td><td>6</td><td>结构完整、6 目标格式、safe 清词、批量笛卡尔积、同 seed 复现、性别与配对标记</td></tr>
+<tr><td>文本引擎</td><td>8</td><td>字数、残留 token、复现性、16 场景全覆盖、热度分级、节奏单调</td></tr>
+<tr><td>代词与质量</td><td>4</td><td>数据层无裸代词、抽样段无泄漏、重复段 0、短残句 0、无空插槽</td></tr>
+<tr><td>男女向配对</td><td>6</td><td>卡池性别双全、每场景 autoCast 为男女且 A 位达标、自动出稿即男女向、显式顺序不被覆盖、--lead 生效、台词不串声线</td></tr>
+<tr><td>前端</td><td>6</td><td>id 集合比对、假 DOM 启动、启动即拉数据、离线不崩、页签齐全、无远程资源</td></tr>
+<tr><td>CLI</td><td>11</td><td>退出码、文件产物、CSV 表头、批量目录 + INDEX、性别筛选</td></tr>
+<tr><td>工具</td><td>3</td><td>RNG 序列、CJK 计数、寄存器注册完整性</td></tr>
+</tbody></table>
+<p>三条经验：</p>
+<ul>
+<li><b>断言要写成「属性」而不是「快照」</b>。比如「heat 2 不出现器官名词」比「输出等于某段文本」耐用得多 —— 后者每改一个词库就红。</li>
+<li><b>质量指标要输出成数据</b>。<code>duplicateParagraphs</code> / <code>shortParagraphs</code> / <code>genderPronounParagraphs</code> 直接进 meta，自检和测试都读它，不用人工比对文本。</li>
+<li><b>前端也要能自动化测</b>。假 DOM + 集合比对，把「ID 拼错」「启动顺序错」这类白屏级 bug 挡在提交前，不用靠手点。</li>
+</ul>
+<hr>
+<h3>4. 已知限制</h3>
+<p>诚实地列出来，都是设计取舍或还没做到位的：</p>
+<ul class="num">
+<li><b>长文重复度</b>：池子总量决定了单篇的上限。目标 2000 字以内很干净；冲到 5000 字以上，</li>
+</ul>
+<p>   压力/高潮两族的句子会用完，此时引擎停止补写而不是复用 —— 字数会不足目标。</p>
+<p>   解法是继续扩池子，不是改逻辑。</p>
+<ul class="num">
+<li><b>身体部位归属</b>：<code>{body}</code> 抽出来的部位默认属于「对方」（B）。遇到「A 含住 B 的 X」</li>
+</ul>
+<p>   这类句式正确，但遇到反向动作（B 对 A 做）会错位。目前靠模板措辞规避。</p>
+<ul class="num">
+<li><b>地点名与介词搭配</b>：<code>{loc}</code> 直接内插，S14 的「便利店 · 后巷」会产出「便利店 · 后巷里那点空气」这种稍生硬的表达。</li>
+<li><b>同性别卡司</b>：两位女性角色的场景里，代词无法区分，只能靠名字。</li>
+</ul>
+<p>   这是中文的固有限制，不是 bug。</p>
+<ul class="num">
+<li><b>热度 5 的搭配</b>：词库是按「部位 × 动作」独立抽样的，偶发不自然的组合（例如某些体位词组）。</li>
+</ul>
+<p>   缓解方式是加权重，或把这类句式拆成更小的单元。</p>
+<ul class="num">
+<li><b>文本引擎不接 LLM</b>：所有文字来自模板组合。想要真正的长程连贯性需要接模型，</li>
+</ul>
+<p>   引擎已经把 <code>{line}</code> / <code>{voice}</code> 这类接口留好了。</p>
+<hr>
+<h3>5. 验证方式（可复现）</h3>
+<pre>node --test test/engine.test.js test/cli.test.js test/web.test.js   # 51 项 → 全绿
+node scripts/verify.js                              # 23 项内容体检 → out/RUN-REPORT.md
+node scripts/check-ui.js                            # 32 项界面体检 → out/UI-CHECK.md
+node bin/gui.js                                     # 起界面（独立窗口）
+node bin/ciallo.js validate --gate                  # 门禁演练
+node bin/ciallo.js export --out out/export          # 1536 提示词 + 16 篇样例
+node scripts/_migrations/read-through.js            # 抽取 4 篇人工通读</pre>
+<p><code>out/RUN-REPORT.md</code> 与 <code>out/UI-CHECK.md</code> 里带完整证据：提示词条数、文本篇数字数、</p>
+<p>token 残留计数、复现性结论、热度分级结论、节奏单调性数据、CLI 退出码、导出包清单、</p>
+<p>文件体积表；界面侧则覆盖静态资源、只读/生成/提示词/配对/设置各端点、</p>
+<p>路径穿越与非法 JSON 的拒绝，以及「API 与 CLI 输出逐字节一致」。</p>
+<hr>
+<h3>6. 时间线（实际执行顺序）</h3>
+<ul class="num">
+<li>环境确认（Node v24.13.1，零依赖可用）→ 脚手架</li>
+<li>角色卡 10 张（含绘图标签 215 条、声线寄存器 10 种）</li>
+<li>场景库 16 个 / 148 beats</li>
+<li>散文池 8 族 / 5 档热度</li>
+<li>token 解析器 → 提示词编译器 → 故事引擎（冒烟测试抓出 2.1-2.3）</li>
+<li>校验器 + CLI</li>
+<li>测试套件 33 项（抓出 2.4）</li>
+<li>自检脚本 20 项</li>
+<li>文档</li>
+<li>成品质量抽查 → 抓出 2.5（补写复用）、2.6（空插槽）、2.7（性别代词）→ 修复 + 回归</li>
+<li>需求变更：改成男女向 → 加 6 张男性卡 + 场景配对字段 + 引擎换位逻辑（2.8-2.10）→ 回归</li>
+<li>需求变更：做成图形界面 → 方案对比后选零依赖本地 Web UI（2b）→ 服务骨架 → 前端七页签 →</li>
+</ul>
+<p>    流式生成 → 提示词/画廊/校验/配对 → 角色/设置 → 三层自检（51 / 23 / 32）全绿</p>
+<ul class="num">
+<li>收尾：脚本归档、文档校正</li>
+</ul>
+<p>两个关键点：</p>
+<ul>
+<li>第 10 步 <b>只看测试全绿会以为完事了，真正的问题是在读成品时发现的</b></li>
+<li>第 12 步 <b>前端也必须能自动化验证</b>，否则「ID 拼错&quot;&quot;启动顺序错」这类白屏级问题只能靠手点发现</li>
+</ul>
+</section>
+<section id="------md">
+<h2>场景 × 卡司配对表（男女向） <span style="font-size:12.5px;color:#6f6880">场景配对表.md</span></h2>
+<h2>场景 × 卡司配对表</h2>
+<p>全部 16 个场景的默认配对都是<b>男女向</b>，A（主导方，正文里的 <code>{who}</code>）= 表中左列，B（对方，<code>{target}</code>）= 右列。</p>
+<p>数据源：<code>data/scenes.json</code> 的 <code>autoCast</code> 与 <code>leadGender</code>；改这两个字段就能换配对。</p>
+<table><thead><tr><th>场景</th><th>标题</th><th>主题族</th><th>主导方 A</th><th>对方 B</th><th>热度</th><th>一句话</th></tr></thead><tbody>
+<tr><td>S01</td><td>夜班查房之后</td><td>medical-play</td><td>♂ 江彻 30 主治医师</td><td>♀ 夏栖 22 护士</td><td>4</td><td>听诊器焐热了才贴上去，之后就没有再拿下</td></tr>
+<tr><td>S02</td><td>落地窗前的契约</td><td>power-exchange</td><td>♀ 沈芷 33 冷艳上司</td><td>♂ 沈聿 34 合伙人</td><td>5</td><td>她是唯一敢跟他改条件的人</td></tr>
+<tr><td>S03</td><td>终点线之后</td><td>sweat</td><td>♂ 谢屿 21 体育生</td><td>♀ 林小满 20 元气学姐</td><td>4</td><td>一百五十下的心跳收不住，也不肯收</td></tr>
+<tr><td>S04</td><td>松节油与台灯</td><td>sensory-overload</td><td>♂ 周叙白 26 修复师</td><td>♀ 白棠 19 美院生</td><td>4</td><td>用沾着钛白的手指给她打底</td></tr>
+<tr><td>S05</td><td>镜子是给我看的</td><td>body-worship</td><td>♂ 陆迟 28 康复教练</td><td>♀ 黎漾 25 健身教练</td><td>4</td><td>「看镜子，别看我」</td></tr>
+<tr><td>S06</td><td>学姐的规矩</td><td>orgasm-control</td><td>♂ 沈聿 34 合伙人</td><td>♀ 姜雪 29 学姐</td><td>5</td><td>数到三十九，规则由她定，破例也只能由她</td></tr>
+<tr><td>S07</td><td>闭馆之后</td><td>slow-sensual</td><td>♂ 裴野 24 消防员</td><td>♀ 阿沅 31 图书馆</td><td>3</td><td>他把「我顺路」说了很多年</td></tr>
+<tr><td>S08</td><td>草莓糖的协议</td><td>shy-tease</td><td>♂ 江彻 30 主治医师</td><td>♀ 夏栖 22 护士</td><td>3</td><td>一句话说两遍，第二遍用「不是」开头</td></tr>
+<tr><td>S09</td><td>雨夜引擎</td><td>rough-care</td><td>♂ 罗砚 27 修车行</td><td>♀ 阿沅 31 图书馆</td><td>4</td><td>粗鲁的手势底下全是护住的动作</td></tr>
+<tr><td>S10</td><td>古籍修复室的午后</td><td>tension-release</td><td>♂ 周叙白 26 修复师</td><td>♀ 顾清欢 24 古籍修复</td><td>4</td><td>「纸不能沾水」——她最后一句清醒的话</td></tr>
+<tr><td>S11</td><td>走廊尽头的声控灯</td><td>public-tease</td><td>♂ 沈聿 34 合伙人</td><td>♀ 沈芷 33 冷艳上司</td><td>5</td><td>声控灯只给三十秒，两个人都没出声</td></tr>
+<tr><td>S12</td><td>毕业画室的最后一夜</td><td>marking</td><td>♂ 周叙白 26 修复师</td><td>♀ 白棠 19 美院生</td><td>4</td><td>赭石抹在身上，明天也洗不掉</td></tr>
+<tr><td>S13</td><td>冬夜的暖炉与毛毯</td><td>overstimulation</td><td>♂ 江彻 30 主治医师</td><td>♀ 阿沅 31 图书馆</td><td>3</td><td>前面是热的，背后也是热的，无处可退</td></tr>
+<tr><td>S14</td><td>深夜便利店遇见</td><td>possessive-rescue</td><td>♂ 裴野 24 消防员</td><td>♀ 夏栖 22 护士</td><td>3</td><td>救过一次的人，之后再没敢联系</td></tr>
+<tr><td>S15</td><td>器材室的三十七度</td><td>awkward-burn</td><td>♂ 谢屿 21 体育生</td><td>♀ 林小满 20 元气学姐</td><td>3</td><td>笨拙不减分，反而让每一秒都像第一次</td></tr>
+<tr><td>S16</td><td>跨年夜的最后一支舞</td><td>aftercare</td><td>♂ 沈聿 34 合伙人</td><td>♀ 沈芷 33 冷艳上司</td><td>2</td><td>收尾比开场重要</td></tr>
+</tbody></table>
+<p>热度：1 克制 / 2 暧昧 / 3 缠绵 / 4 直白 / 5 露骨。</p>
+<hr>
+<h3>男性卡池（7 张，全部成年锁 18+）</h3>
+<table><thead><tr><th>ID</th><th>名字</th><th>年龄</th><th>定位</th><th>声线</th><th>擅长的场景族</th></tr></thead><tbody>
+<tr><td>C09</td><td>罗砚</td><td>27</td><td>机车修理厂老板 · 野性旧友</td><td>gruff-short</td><td>rough-care / possession</td></tr>
+<tr><td>C11</td><td>江彻</td><td>30</td><td>主治医师 · 冷面操心型</td><td>clipped-cold</td><td>medical-play / delayed-gratification</td></tr>
+<tr><td>C12</td><td>沈聿</td><td>34</td><td>投资合伙人 · 交易型</td><td>low-tease</td><td>power-exchange / office / mind-game</td></tr>
+<tr><td>C13</td><td>陆迟</td><td>28</td><td>康复教练 · 稳重型</td><td>steady-coach</td><td>body-worship / strength-play / mirror</td></tr>
+<tr><td>C14</td><td>谢屿</td><td>21</td><td>体育生 · 直球学弟</td><td>earnest-fast</td><td>first-time / sweat</td></tr>
+<tr><td>C15</td><td>周叙白</td><td>26</td><td>古籍修复师 · 木讷型</td><td>sparse-blunt</td><td>slow-sensual / marking</td></tr>
+<tr><td>C16</td><td>裴野</td><td>24</td><td>消防员 · 护短型</td><td>gruff-short</td><td>possessive-rescue / aftercare</td></tr>
+</tbody></table>
+<h3>女性卡池（9 张，全部成年锁 18+）</h3>
+<table><thead><tr><th>ID</th><th>名字</th><th>年龄</th><th>定位</th><th>声线</th></tr></thead><tbody>
+<tr><td>C01</td><td>苏晚</td><td>26</td><td>温柔姐姐 · 麻醉科医师</td><td>whisper-soft</td></tr>
+<tr><td>C02</td><td>沈芷</td><td>33</td><td>冷艳上司 · 公司合伙人</td><td>clipped-command</td></tr>
+<tr><td>C03</td><td>林小满</td><td>20</td><td>元气青梅 · 体育大学</td><td>run-on-bright</td></tr>
+<tr><td>C04</td><td>白棠</td><td>19</td><td>冷面文青 · 美院油画</td><td>sparse-blunt</td></tr>
+<tr><td>C05</td><td>黎漾</td><td>25</td><td>开朗健身教练</td><td>coach-cheer</td></tr>
+<tr><td>C06</td><td>姜雪</td><td>29</td><td>腹黑学姐 · 大学讲师</td><td>slow-tease</td></tr>
+<tr><td>C07</td><td>阿沅</td><td>31</td><td>温婉人妻 · 图书馆</td><td>warm-homely</td></tr>
+<tr><td>C08</td><td>夏栖</td><td>22</td><td>软糯护士 · 急诊科</td><td>flustered-soft</td></tr>
+<tr><td>C10</td><td>顾清欢</td><td>24</td><td>知性学姐 · 古籍修复</td><td>literate-roundabout</td></tr>
+</tbody></table>
+<hr>
+<h3>怎么换配对</h3>
+<pre># 直接指定顺序：第一个是主导方 A，第二个是对方 B
+node bin/ciallo.js story --scene S07 --cast C16,C05 --heat 5 --words 2000 --out out/x.md
+
+# 只给一个人：引擎按场景 autoCast 补一个异性
+node bin/ciallo.js story --scene S11 --cast C02 --words 1500 --out out/y.md
+
+# 不想用场景默认的主导性别：用 --lead 覆盖
+node bin/ciallo.js story --scene S09 --lead female --words 1500 --out out/z.md
+
+# 永久改默认配对：编辑 data/scenes.json 里该场景的 autoCast / leadGender</pre>
+<p><code>autoCast</code> = <code>[A, B]</code>（必须是男女组合，启动时的自检会拦住同性组合），</p>
+<p><code>leadGender</code> = A 位的性别。两者不一致时以显式 <code>--cast</code> 为准。</p>
+</section>
+<section id="out-run-report-md">
+<h2>运行报告（体检实证） <span style="font-size:12.5px;color:#6f6880">out/RUN-REPORT.md</span></h2>
+<h2>夜织 CialloForge · 运行报告</h2>
+<ul>
+<li>生成时间：2026-10-09T16:53:48.245Z</li>
+<li>Node：v24.13.1（win32 x64）</li>
+<li>项目版本：1.0.0</li>
+<li>项目路径：E:\harness 破甲\ciallo-forge</li>
+</ul>
+<h3>1. 数据体检</h3>
+<table><thead><tr><th>项</th><th>值</th></tr></thead><tbody>
+<tr><td>角色卡</td><td>16 张（19-34 岁）</td></tr>
+<tr><td>场景</td><td>16 个 / 148 beats</td></tr>
+<tr><td>绘图标签</td><td>354 条</td></tr>
+<tr><td>声线寄存器</td><td>14 种</td></tr>
+<tr><td>散文池</td><td>8 族 / 热度 5 档</td></tr>
+<tr><td>癖好族</td><td>46 个</td></tr>
+</tbody></table>
+<ul>
+<li>✅ 数据文件全部可解析 — characters / scenes / prose / voice-registers / config</li>
+<li>✅ 结构校验无 error 级问题 — 0 error / 0 warn</li>
+<li>✅ 年龄锁校验全部通过 — 16/16 卡 · 16/16 场景 · 最小年龄 19</li>
+<li>✅ 门禁拒绝 17 岁卡 — age=17 小于 18</li>
+<li>✅ 门禁拒绝无年龄卡 — age 不是数字（undefined）</li>
+<li>✅ 扫描器拒绝幼态词无锚点文本 — 出现幼态词且缺少成年锚点：child、loli、elementary、flat chest child</li>
+<li>✅ 扫描器放行「成年 + 幼态造型词」组合 — review · 命中造型类词（幼态），但存在成年锚点，判定为造型选择</li>
+<li>✅ 引擎对未成年卡抛错 — [age-gate] 角色 X 的 age=15，未满 18 不可进入绘图引擎</li>
+</ul>
+<h3>2. 绘图提示词全矩阵</h3>
+<ul>
+<li>✅ 编译 16 卡 × 16 场景 × 6 目标 — 1536 条全部通过校验</li>
+<li>✅ 提示词 token 量达标（&gt;=25 正向 / &gt;=15 负向） — 正向 70 / 负向 41</li>
+</ul>
+<h3>3. 全文生成（16 场景 × 5 热度档）</h3>
+<ul>
+<li>✅ 16 场景 × 5 热度档全部出稿，无 token 残留 — 80 篇 / 合计 73063 字 / 平均 913 字</li>
+<li>✅ 复现性：同 seed 逐字节一致 — 4717 字符逐字节相同</li>
+<li>✅ 热度分级生效：heat2 无器官名词 / heat5 有直白词 — 低热 0 漏词 · 高热命中 乳尖、花心、湿意、甬道深处、腿根、臀肉、穴口</li>
+<li>✅ 节奏档位生效：pwp &lt; fast &lt; balanced &lt; slow — 518 ≤ 713 ≤ 1006 ≤ 1452</li>
+<li>✅ 声线寄存器生效：同一句种子在不同角色口中不同 — 15/10 种不同改写</li>
+</ul>
+<h3>3b. 代词治理与文本质量</h3>
+<ul>
+<li>✅ 数据层：beat.text 与散文池无裸性别代词 — 全部令牌化为 {pronA}/{pronB}/{A}/{B}</li>
+<li>✅ 输出层：抽样段不泄漏裸代词（4 组混合卡司 × 4 seed） — pool 抽样段 0 泄漏（作者手写模板的代词按设定保留）</li>
+<li>✅ 文本质量：重复段 0 / 短残句 0 — 16 篇 / 592 段，重复 0、短残句 0</li>
+</ul>
+<h3>4. CLI 端到端</h3>
+<ul>
+<li>✅ CLI validate --gate 退出码 0 — exit=0</li>
+<li>✅ CLI stats 退出码 0 — exit=0</li>
+<li>✅ CLI chars 退出码 0 — exit=0</li>
+<li>✅ CLI unknown → 2 退出码 2 — exit=2</li>
+</ul>
+<h3>5. 产物</h3>
+<ul>
+<li>✅ export 导出包生成 — 16 卡 / 1536 提示词 / 16 篇故事</li>
+</ul>
+<h4>项目文件清单</h4>
+<table><thead><tr><th>类型</th><th>文件数</th><th>体积</th></tr></thead><tbody>
+<tr><td>.exe</td><td>20</td><td>709285.5 KB</td></tr>
+<tr><td>.pak</td><td>116</td><td>127086.6 KB</td></tr>
+<tr><td>.dll</td><td>21</td><td>88282.5 KB</td></tr>
+<tr><td>.html</td><td>8</td><td>39823.4 KB</td></tr>
+<tr><td>.js</td><td>3498</td><td>21686.1 KB</td></tr>
+<tr><td>.dat</td><td>2</td><td>21240.3 KB</td></tr>
+<tr><td>.pdb</td><td>5</td><td>13858.1 KB</td></tr>
+<tr><td>.json</td><td>429</td><td>8212.8 KB</td></tr>
+<tr><td>.node</td><td>9</td><td>7110.2 KB</td></tr>
+<tr><td>.map</td><td>882</td><td>6964.2 KB</td></tr>
+<tr><td>.ts</td><td>1431</td><td>6872.3 KB</td></tr>
+<tr><td>.md</td><td>507</td><td>4010.5 KB</td></tr>
+<tr><td>.bin</td><td>4</td><td>2169.9 KB</td></tr>
+<tr><td>.cjs</td><td>12</td><td>1831.4 KB</td></tr>
+<tr><td>.png</td><td>22</td><td>1585.0 KB</td></tr>
+<tr><td>.py</td><td>59</td><td>1466.0 KB</td></tr>
+<tr><td>.asar</td><td>2</td><td>755.7 KB</td></tr>
+<tr><td>.cub</td><td>1</td><td>678.5 KB</td></tr>
+<tr><td>.csv</td><td>1</td><td>459.8 KB</td></tr>
+<tr><td>.mjs</td><td>38</td><td>454.1 KB</td></tr>
+<tr><td>.ico</td><td>2</td><td>412.8 KB</td></tr>
+<tr><td>(none)</td><td>345</td><td>352.5 KB</td></tr>
+<tr><td>.icns</td><td>1</td><td>225.9 KB</td></tr>
+<tr><td>.lock</td><td>2</td><td>195.6 KB</td></tr>
+<tr><td>.blockmap</td><td>1</td><td>115.7 KB</td></tr>
+<tr><td>.nsh</td><td>18</td><td>89.1 KB</td></tr>
+<tr><td>.yml</td><td>58</td><td>80.8 KB</td></tr>
+<tr><td>.coffee</td><td>3</td><td>73.5 KB</td></tr>
+<tr><td>.gif</td><td>2</td><td>44.5 KB</td></tr>
+<tr><td>.tiff</td><td>1</td><td>36.4 KB</td></tr>
+<tr><td>.flow</td><td>25</td><td>31.8 KB</td></tr>
+<tr><td>.keychain</td><td>1</td><td>23.9 KB</td></tr>
+<tr><td>.ps1</td><td>29</td><td>23.1 KB</td></tr>
+<tr><td>.sh</td><td>5</td><td>21.3 KB</td></tr>
+<tr><td>.txt</td><td>20</td><td>17.5 KB</td></tr>
+<tr><td>.tsbuildinfo</td><td>1</td><td>16.3 KB</td></tr>
+<tr><td>.css</td><td>1</td><td>15.6 KB</td></tr>
+<tr><td>.markdown</td><td>5</td><td>12.4 KB</td></tr>
+<tr><td>.xml</td><td>4</td><td>11.4 KB</td></tr>
+<tr><td>.cts</td><td>4</td><td>10.9 KB</td></tr>
+<tr><td>.mts</td><td>6</td><td>10.2 KB</td></tr>
+<tr><td>.apache</td><td>1</td><td>9.9 KB</td></tr>
+<tr><td>.cmd</td><td>29</td><td>9.3 KB</td></tr>
+<tr><td>.bat</td><td>4</td><td>8.8 KB</td></tr>
+<tr><td>.cs</td><td>1</td><td>7.7 KB</td></tr>
+<tr><td>.log</td><td>1</td><td>7.6 KB</td></tr>
+<tr><td>.com</td><td>1</td><td>7.5 KB</td></tr>
+<tr><td>.h</td><td>1</td><td>6.0 KB</td></tr>
+<tr><td>.gypi</td><td>1</td><td>5.8 KB</td></tr>
+<tr><td>.nsi</td><td>2</td><td>5.1 KB</td></tr>
+<tr><td>.yaml</td><td>2</td><td>4.6 KB</td></tr>
+<tr><td>.tpl</td><td>4</td><td>4.5 KB</td></tr>
+<tr><td>.plist</td><td>7</td><td>3.0 KB</td></tr>
+<tr><td>.toml</td><td>1</td><td>2.9 KB</td></tr>
+<tr><td>.nuspectemplate</td><td>2</td><td>2.6 KB</td></tr>
+<tr><td>.bnf</td><td>4</td><td>2.5 KB</td></tr>
+<tr><td>.wxs</td><td>1</td><td>2.1 KB</td></tr>
+<tr><td>.cc</td><td>2</td><td>1.6 KB</td></tr>
+<tr><td>.bsd</td><td>1</td><td>1.3 KB</td></tr>
+<tr><td>.config</td><td>2</td><td>1.3 KB</td></tr>
+<tr><td>.svg</td><td>1</td><td>0.6 KB</td></tr>
+<tr><td>.list</td><td>1</td><td>0.3 KB</td></tr>
+<tr><td>.ninja</td><td>1</td><td>0.1 KB</td></tr>
+<tr><td>.opts</td><td>1</td><td>0.0 KB</td></tr>
+<tr><td>.typed</td><td>1</td><td>0.0 KB</td></tr>
+<tr><td><b>合计</b></td><td><b>7673</b></td><td><b>1065749.1 KB</b></td></tr>
+</tbody></table>
+<h3>6. 结论</h3>
+<ul>
+<li>自检项：<b>23/23 通过</b></li>
+<li>提示词：<b>1536 条已编译并校验</b></li>
+<li>文本：<b>80 篇已生成</b>，token 残留 0 处</li>
+<li>耗时：1.23s</li>
+</ul>
+<p>无遗留问题。</p>
+</section>
+</main>
+<a class="top" href="#" title="回到顶部">↑</a>
+<footer>夜织 CialloForge v1.0.0 · 重新生成：<code>node scripts/build-docs-html.js</code></footer>
+</body>
+</html>

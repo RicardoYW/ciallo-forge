@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>夜织 CialloForge · 界面</title>
+<link rel="stylesheet" href="app.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='26'>🌙</text></svg>">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand">
+    <span class="logo">夜织</span>
+    <span class="sub">CialloForge</span>
+    <span class="tag" id="topTag">16 卡 · 16 场景 · 全员 18+</span>
+    <span class="tag desktop" id="desktopTag" hidden>桌面版</span>
+  </div>
+  <nav class="tabs" id="tabs">
+    <button class="tab active" data-view="create">创作</button>
+    <button class="tab" data-view="roles">角色</button>
+    <button class="tab" data-view="scenes">场景</button>
+    <button class="tab" data-view="prompts">提示词</button>
+    <button class="tab" data-view="gallery">画廊</button>
+    <button class="tab" data-view="check">校验</button>
+    <button class="tab" data-view="settings">设置</button>
+  </nav>
+  <div class="status" id="topStatus"><span class="dot"></span><span id="topStatusText">连接中…</span></div>
+</header>
+
+<main id="app">
+
+  <!-- ══════════ 创作 ══════════ -->
+  <section class="view active" id="view-create">
+    <div class="cols">
+
+      <aside class="panel pool">
+        <div class="panel-head">
+          <h2>卡池</h2>
+          <div class="seg" id="genderFilter">
+            <button class="on" data-gender="">全部</button>
+            <button data-gender="male">♂ 男</button>
+            <button data-gender="female">♀ 女</button>
+          </div>
+        </div>
+        <input class="input search" id="charSearch" placeholder="搜名字 / 定位 / 癖好…（按 / 聚焦）">
+        <div class="pool-list" id="charPool"></div>
+        <div class="panel-foot">
+          <span id="poolInfo">已选 0 / 2</span>
+          <button class="btn tiny ghost" id="btnClearCast">清空</button>
+          <button class="btn tiny ghost" id="btnAutoCast">用场景默认</button>
+        </div>
+      </aside>
+
+      <section class="panel params">
+        <div class="panel-head"><h2>参数</h2><span class="hint" id="pairHint">—</span></div>
+
+        <label class="field">
+          <span>场景</span>
+          <select class="input" id="sceneSelect"></select>
+        </label>
+
+        <div class="grid2">
+          <label class="field"><span>主导方 A（{who}）</span>
+            <select class="input" id="leadSelect">
+              <option value="">— 按场景默认 —</option>
+            </select>
+          </label>
+          <label class="field"><span>对方 B（{target}）</span>
+            <select class="input" id="partnerSelect">
+              <option value="">— 自动补对方 —</option>
+            </select>
+          </label>
+        </div>
+
+        <label class="field">
+          <span>热度 <b id="heatVal">4</b> · <i id="heatName">直白</i></span>
+          <input type="range" id="heatRange" min="1" max="5" step="1" value="4" class="range">
+          <span class="heat-legend"><i>1 克制</i><i>2 暧昧</i><i>3 缠绵</i><i>4 直白</i><i>5 露骨</i></span>
+        </label>
+
+        <div class="grid2">
+          <label class="field"><span>节奏</span>
+            <select class="input" id="pacingSelect">
+              <option value="slow">慢燃 slow</option>
+              <option value="balanced">均速 balanced</option>
+              <option value="fast">快进 fast</option>
+              <option value="pwp">直入 pwp</option>
+            </select>
+          </label>
+          <label class="field"><span>目标字数</span>
+            <input class="input" id="wordsInput" type="number" min="200" max="8000" step="100" value="1500">
+          </label>
+        </div>
+
+        <label class="field"><span>种子（同种子 = 同一篇，可复现）</span>
+          <div class="row">
+            <input class="input" id="seedInput" value="20250101">
+            <button class="btn tiny" id="btnDice" title="随机种子">🎲</button>
+          </div>
+        </label>
+
+        <div class="checks">
+          <label class="chk"><input type="checkbox" id="autoPartner" checked><span>单人选角时自动补对方</span></label>
+          <label class="chk"><input type="checkbox" id="autoScroll" checked><span>生成时自动滚动</span></label>
+        </div>
+
+        <div class="actions">
+          <button class="btn primary" id="btnGenerate">生成正文</button>
+          <button class="btn" id="btnStop" disabled>停止</button>
+          <button class="btn" id="btnSave">存为 .md</button>
+          <button class="btn ghost" id="btnCopyMd">复制全文</button>
+          <button class="btn ghost" id="btnPromptFromHere">配图提示词 →</button>
+        </div>
+
+        <div class="kbd-hint">
+          <kbd>Ctrl</kbd>+<kbd>Enter</kbd> 生成 · <kbd>Ctrl</kbd>+<kbd>S</kbd> 存盘 · <kbd>Esc</kbd> 停止 · <kbd>/</kbd> 搜索
+        </div>
+      </section>
+
+      <section class="panel preview">
+        <div class="panel-head">
+          <h2 id="previewTitle">预览</h2>
+          <span class="hint" id="previewMeta">等待生成…</span>
+          <div class="seg" id="previewMode">
+            <button class="on" data-mode="text">正文</button>
+            <button data-mode="meta">元信息</button>
+          </div>
+        </div>
+        <div class="preview-body" id="previewBody">
+          <div class="empty">左边选卡司和场景，点「生成正文」。</div>
+        </div>
+      </section>
+
+    </div>
+  </section>
+
+  <!-- ══════════ 角色 ══════════ -->
+  <section class="view" id="view-roles">
+    <div class="panel-head sticky">
+      <h2>角色卡</h2>
+      <div class="seg" id="roleGenderFilter">
+        <button class="on" data-gender="">全部</button>
+        <button data-gender="male">♂ 男</button>
+        <button data-gender="female">♀ 女</button>
+      </div>
+      <input class="input search" id="roleSearch" placeholder="搜名字 / 定位 / 癖好…">
+      <span class="hint" id="roleCount"></span>
+    </div>
+    <div class="cards" id="roleCards"></div>
+  </section>
+
+  <!-- ══════════ 场景 ══════════ -->
+  <section class="view" id="view-scenes">
+    <div class="panel-head sticky">
+      <h2>场景库</h2>
+      <input class="input search" id="sceneSearch" placeholder="搜标题 / 主题 / 地点…">
+      <span class="hint" id="sceneCount"></span>
+    </div>
+    <div class="cards wide" id="sceneCards"></div>
+  </section>
+
+  <!-- ══════════ 提示词 ══════════ -->
+  <section class="view" id="view-prompts">
+    <div class="cols narrow-left">
+      <aside class="panel">
+        <div class="panel-head"><h2>编译设置</h2></div>
+        <label class="field"><span>角色</span><select class="input" id="pChar"></select></label>
+        <label class="field"><span>场景</span><select class="input" id="pScene"></select></label>
+        <label class="field"><span>目标格式</span>
+          <select class="input" id="pTarget">
+            <option value="sdxl">SDXL / SD1.5（A1111·Forge）</option>
+            <option value="pony">Pony Diffusion V6 XL</option>
+            <option value="novelai">NovelAI V4 / V3</option>
+            <option value="midjourney">Midjourney v6/v7</option>
+            <option value="comfyui">ComfyUI workflow</option>
+            <option value="generic">通用 markdown 包</option>
+            <option value="all">全部六种</option>
+          </select>
+        </label>
+        <div class="grid2">
+          <label class="field"><span>热度</span><input class="input" id="pHeat" type="number" min="1" max="5" value="4"></label>
+          <label class="field"><span>评级</span>
+            <select class="input" id="pRating">
+              <option value="explicit">explicit</option>
+              <option value="nsfw">nsfw</option>
+              <option value="suggestive">suggestive</option>
+              <option value="safe">safe</option>
+            </select>
+          </label>
+        </div>
+        <label class="field"><span>追加标签（分号分隔）</span><input class="input" id="pExtra" placeholder="rain; wet hair"></label>
+        <div class="actions">
+          <button class="btn primary" id="btnCompile">编译</button>
+          <button class="btn" id="btnCompileAll">全角色 × 全场景</button>
+          <button class="btn ghost" id="btnExportPrompts">导出 json/md/csv</button>
+        </div>
+        <div class="kbd-hint">界面编译结果与 CLI 完全一致（同一引擎）。</div>
+      </aside>
+
+      <section class="panel">
+        <div class="panel-head"><h2>结果</h2><span class="hint" id="promptMeta">—</span>
+          <button class="btn tiny ghost" id="btnCopyAllPrompts">全部复制</button>
+        </div>
+        <div class="prompt-list" id="promptList"><div class="empty">点「编译」出提示词。</div></div>
+      </section>
+    </div>
+  </section>
+
+  <!-- ══════════ 画廊 ══════════ -->
+  <section class="view" id="view-gallery">
+    <div class="panel-head sticky">
+      <h2>样章画廊</h2>
+      <input class="input search" id="gallerySearch" placeholder="搜标题 / 卡司 / 关键词…">
+      <button class="btn tiny" id="btnReloadGallery">重新扫描</button>
+      <button class="btn tiny ghost" id="btnOpenShowcase">打开 HTML 画廊</button>
+      <span class="hint" id="galleryCount"></span>
+    </div>
+    <div class="cols narrow-left">
+      <aside class="panel"><div class="gallery-list" id="galleryList"></div></aside>
+      <section class="panel"><div class="gallery-body" id="galleryBody"><div class="empty">左边选一篇。</div></div></section>
+    </div>
+  </section>
+
+  <!-- ══════════ 校验 ══════════ -->
+  <section class="view" id="view-check">
+    <div class="panel-head sticky">
+      <h2>年龄锁与数据体检</h2>
+      <button class="btn primary" id="btnRunValidate">跑校验</button>
+      <span class="hint" id="checkMeta">—</span>
+    </div>
+    <div class="check-grid" id="checkGrid"><div class="empty">点「跑校验」。</div></div>
+  </section>
+
+  <!-- ══════════ 设置 ══════════ -->
+  <section class="view" id="view-settings">
+    <div class="cols narrow-left">
+      <aside class="panel">
+        <div class="panel-head"><h2>默认参数</h2></div>
+        <div class="grid2">
+          <label class="field"><span>默认热度</span><input class="input" id="sHeat" type="number" min="1" max="5"></label>
+          <label class="field"><span>默认字数</span><input class="input" id="sWords" type="number" min="200" max="8000" step="100"></label>
+        </div>
+        <label class="field"><span>默认节奏</span>
+          <select class="input" id="sPacing">
+            <option value="slow">慢燃</option><option value="balanced">均速</option>
+            <option value="fast">快进</option><option value="pwp">直入</option>
+          </select>
+        </label>
+        <div class="grid2">
+          <label class="field"><span>最小字数</span><input class="input" id="sMin" type="number"></label>
+          <label class="field"><span>最大字数</span><input class="input" id="sMax" type="number"></label>
+        </div>
+        <div class="actions">
+          <button class="btn primary" id="btnSaveSettings">保存</button>
+          <button class="btn ghost" id="btnReloadSettings">重载</button>
+        </div>
+      </aside>
+
+      <section class="panel">
+        <div class="panel-head"><h2>运行信息</h2></div>
+        <dl class="kv" id="settingsInfo"></dl>
+        <div class="panel-head"><h2>目录</h2></div>
+        <dl class="kv" id="settingsPaths"></dl>
+        <div class="actions">
+          <button class="btn tiny" id="btnOpenData">打开数据目录</button>
+          <button class="btn tiny" id="btnOpenOut">打开产物目录</button>
+          <button class="btn tiny ghost" id="btnCopyPaths">复制路径</button>
+        </div>
+        <div class="kbd-hint" id="dataDirHint"></div>
+        <div class="panel-head"><h2>内容包</h2><span class="hint" id="packBadge">—</span></div>
+        <dl class="kv" id="packInfo"></dl>
+        <div class="actions">
+          <button class="btn tiny" id="btnPackToggle">启用 / 关闭</button>
+          <button class="btn tiny ghost" id="btnPackReload">刷新状态</button>
+        </div>
+        <div class="kbd-hint" id="packHint"></div>
+        <div class="panel-head"><h2>危险区</h2></div>
+        <div class="actions">
+          <button class="btn" id="btnRebuildExport">重建导出包（out/export）</button>
+          <button class="btn ghost" id="btnReloadData">重载数据文件</button>
+        </div>
+        <div class="kbd-hint">导出包含：角色卡 + 全矩阵提示词（json/md/csv）+ 每场景样例故事 + INDEX。</div>
+      </section>
+    </div>
+  </section>
+
+</main>
+
+<div class="toasts" id="toasts"></div>
+
+<!-- 弹层：文件预览 -->
+<div class="modal" id="modal" hidden>
+  <div class="modal-box">
+    <div class="modal-head"><h3 id="modalTitle">预览</h3>
+      <div><button class="btn tiny ghost" id="modalCopy">复制</button>
+      <button class="btn tiny ghost" id="modalClose">关闭</button></div>
+    </div>
+    <pre class="modal-body" id="modalBody"></pre>
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>

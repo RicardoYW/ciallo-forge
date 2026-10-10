@@ -1,0 +1,270 @@
+{
+  "schema": "ciallo-forge/voice@1",
+  "note": "声线寄存器：把任意台词种子改写成该角色的说话方式。每级是有序变换管线，依次 echo → stutter → particle → terminal → breath。",
+  "registers": {
+    "whisper-soft": {
+      "label": "气声 · 软",
+      "pipeline": [
+        "breath",
+        "particle",
+        "terminal"
+      ],
+      "particles": [
+        "呢",
+        "吧",
+        "呀"
+      ],
+      "terminal": [
+        "…",
+        "。"
+      ],
+      "breathRate": 0.5,
+      "pauseMark": "…",
+      "dropRate": 0.15,
+      "note": "把重要的话留在最后半句，用省略号吃掉结尾"
+    },
+    "clipped-command": {
+      "label": "短句 · 命令",
+      "pipeline": [
+        "terminal",
+        "echo"
+      ],
+      "particles": [],
+      "terminal": [
+        "。",
+        "。"
+      ],
+      "breathRate": 0.1,
+      "pauseMark": "——",
+      "dropRate": 0.25,
+      "note": "降低句长，末尾不上扬"
+    },
+    "run-on-bright": {
+      "label": "连珠 · 元气",
+      "pipeline": [
+        "particle",
+        "echo",
+        "terminal"
+      ],
+      "particles": [
+        "啦",
+        "呀",
+        "嘛"
+      ],
+      "terminal": [
+        "！",
+        "——",
+        "!"
+      ],
+      "breathRate": 0.2,
+      "pauseMark": "——",
+      "dropRate": 0,
+      "note": "一句话塞两件事，中间不断句"
+    },
+    "sparse-blunt": {
+      "label": "省字 · 钝",
+      "pipeline": [
+        "truncate",
+        "terminal"
+      ],
+      "particles": [],
+      "terminal": [
+        "。",
+        "……"
+      ],
+      "breathRate": 0.05,
+      "pauseMark": "……",
+      "dropRate": 0.4,
+      "note": "一次不超过十字，答案常常不回答问题"
+    },
+    "coach-cheer": {
+      "label": "倒数 · 带节奏",
+      "pipeline": [
+        "particle",
+        "terminal"
+      ],
+      "particles": [
+        "哦",
+        "啦",
+        "咯"
+      ],
+      "terminal": [
+        "。",
+        "——"
+      ],
+      "breathRate": 0.25,
+      "pauseMark": "——",
+      "dropRate": 0.05,
+      "note": "习惯用倒数控制节奏"
+    },
+    "slow-tease": {
+      "label": "慢半拍 · 反抛",
+      "pipeline": [
+        "echo",
+        "terminal"
+      ],
+      "particles": [
+        "呢",
+        "嘛"
+      ],
+      "terminal": [
+        "。",
+        "?"
+      ],
+      "breathRate": 0.15,
+      "pauseMark": "，",
+      "dropRate": 0.2,
+      "note": "把问题原样抛回去"
+    },
+    "warm-homely": {
+      "label": "温 · 慢",
+      "pipeline": [
+        "particle",
+        "terminal"
+      ],
+      "particles": [
+        "呀",
+        "吧",
+        "呢"
+      ],
+      "terminal": [
+        "。",
+        "…"
+      ],
+      "breathRate": 0.35,
+      "pauseMark": "……",
+      "dropRate": 0.1,
+      "note": "尾音拖长，先问吃了没"
+    },
+    "flustered-soft": {
+      "label": "慌 · 小声",
+      "pipeline": [
+        "stutter",
+        "echo",
+        "terminal"
+      ],
+      "particles": [
+        "啦",
+        "嘛",
+        "呀"
+      ],
+      "terminal": [
+        "…!",
+        "…",
+        "!"
+      ],
+      "breathRate": 0.6,
+      "pauseMark": "…",
+      "dropRate": 0,
+      "note": "一句话说两遍，第二遍用『不是』开头"
+    },
+    "gruff-short": {
+      "label": "糙 · 四字",
+      "pipeline": [
+        "truncate",
+        "terminal"
+      ],
+      "particles": [],
+      "terminal": [
+        "。",
+        "。"
+      ],
+      "breathRate": 0.1,
+      "pauseMark": "……",
+      "dropRate": 0.45,
+      "note": "回答不超过四个字，靠动作补"
+    },
+    "literate-roundabout": {
+      "label": "文 · 绕",
+      "pipeline": [
+        "echo",
+        "terminal"
+      ],
+      "particles": [
+        "吧",
+        "呢"
+      ],
+      "terminal": [
+        "。",
+        "……"
+      ],
+      "breathRate": 0.2,
+      "pauseMark": "……",
+      "dropRate": 0.2,
+      "note": "引一句旧书给自己壮胆"
+    },
+    "clipped-cold": {
+      "label": "冷 short · 医嘱",
+      "pipeline": [
+        "truncate",
+        "terminal"
+      ],
+      "particles": [],
+      "terminal": [
+        "。",
+        "。"
+      ],
+      "breathRate": 0.05,
+      "pauseMark": "。",
+      "dropRate": 0.3,
+      "note": "陈述句下命令，不解释理由；一次不超过一句"
+    },
+    "low-tease": {
+      "label": "低音 · 交易",
+      "pipeline": [
+        "echo",
+        "breath",
+        "terminal"
+      ],
+      "particles": [],
+      "terminal": [
+        "。",
+        "?"
+      ],
+      "breathRate": 0.25,
+      "pauseMark": "，",
+      "dropRate": 0.2,
+      "note": "把问题原样抛回去，用停顿逼对方先开口"
+    },
+    "earnest-fast": {
+      "label": "直球 · 抢话",
+      "pipeline": [
+        "stutter",
+        "particle",
+        "terminal"
+      ],
+      "particles": [
+        "啦",
+        "啊"
+      ],
+      "terminal": [
+        "!",
+        "——",
+        "。"
+      ],
+      "breathRate": 0.3,
+      "pauseMark": "——",
+      "dropRate": 0.05,
+      "note": "一句话塞两件事，说完自己先不好意思"
+    },
+    "steady-coach": {
+      "label": "稳 · 带节奏",
+      "pipeline": [
+        "particle",
+        "breath",
+        "terminal"
+      ],
+      "particles": [
+        "哦"
+      ],
+      "terminal": [
+        "。",
+        "——"
+      ],
+      "breathRate": 0.2,
+      "pauseMark": "——",
+      "dropRate": 0.1,
+      "note": "语气比 cheer 低一档，夸人夸得很具体"
+    }
+  }
+}
